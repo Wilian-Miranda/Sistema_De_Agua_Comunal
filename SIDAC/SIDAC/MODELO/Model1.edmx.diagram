@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e10f71929fb4c58bff0d31cbc22bf58" Name="Diagram1">
+        <EntityTypeShape EntityType="SIDACModel.Administradores" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Compras" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Consumidores" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Estados" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Inventarios" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Pagos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="SIDACModel.FK__Compras__FK_admn__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="SIDACModel.FK__Inventari__FK_co__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="SIDACModel.FK__Pagos__FK_consum__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="SIDACModel.FK__Pagos__FK_estado__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

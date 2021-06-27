@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SIDACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administradores">
+    <Key>
+      <PropertyRef Name="idAdmin" />
+    </Key>
+    <Property Name="idAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Compras" Relationship="Self.FK__Compras__FK_admn__412EB0B6" FromRole="Administradores" ToRole="Compras" />
+  </EntityType>
+  <EntityType Name="Compras">
+    <Key>
+      <PropertyRef Name="idCompra" />
+    </Key>
+    <Property Name="idCompra" Type="Int32" Nullable="false" />
+    <Property Name="proveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="valor" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FK_admnin" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Administradores" Relationship="Self.FK__Compras__FK_admn__412EB0B6" FromRole="Compras" ToRole="Administradores" />
+    <NavigationProperty Name="Inventarios" Relationship="Self.FK__Inventari__FK_co__6B24EA82" FromRole="Compras" ToRole="Inventarios" />
+  </EntityType>
+  <EntityType Name="Consumidores">
+    <Key>
+      <PropertyRef Name="idConsumidor" />
+    </Key>
+    <Property Name="idConsumidor" Type="Int32" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_consum__3C69FB99" FromRole="Consumidores" ToRole="Pagos" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="idEstado" />
+    </Key>
+    <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Estados" ToRole="Pagos" />
+  </EntityType>
+  <EntityType Name="Inventarios">
+    <Key>
+      <PropertyRef Name="idInventario" />
+    </Key>
+    <Property Name="idInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="precioUnitario" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="total" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="FK_compra" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Compras" Relationship="Self.FK__Inventari__FK_co__6B24EA82" FromRole="Inventarios" ToRole="Compras" />
+  </EntityType>
+  <EntityType Name="Pagos">
+    <Key>
+      <PropertyRef Name="idPago" />
+    </Key>
+    <Property Name="idPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="montoBase" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="montoCancelado" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="montoPendiente" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FK_estado" Type="Int32" Nullable="false" />
+    <Property Name="FK_consumidor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Consumidores" Relationship="Self.FK__Pagos__FK_consum__3C69FB99" FromRole="Pagos" ToRole="Consumidores" />
+    <NavigationProperty Name="Estados" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Pagos" ToRole="Estados" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Compras__FK_admn__412EB0B6">
+    <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
+    <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Administradores">
+        <PropertyRef Name="idAdmin" />
+      </Principal>
+      <Dependent Role="Compras">
+        <PropertyRef Name="FK_admnin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inventari__FK_co__6B24EA82">
+    <End Role="Compras" Type="Self.Compras" Multiplicity="1" />
+    <End Role="Inventarios" Type="Self.Inventarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compras">
+        <PropertyRef Name="idCompra" />
+      </Principal>
+      <Dependent Role="Inventarios">
+        <PropertyRef Name="FK_compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pagos__FK_consum__3C69FB99">
+    <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="1" />
+    <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumidores">
+        <PropertyRef Name="idConsumidor" />
+      </Principal>
+      <Dependent Role="Pagos">
+        <PropertyRef Name="FK_consumidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pagos__FK_estado__3B75D760">
+    <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+    <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Pagos">
+        <PropertyRef Name="FK_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SIDACEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administradores" EntityType="Self.Administradores" />
+    <EntitySet Name="Compras" EntityType="Self.Compras" />
+    <EntitySet Name="Consumidores" EntityType="Self.Consumidores" />
+    <EntitySet Name="Estados" EntityType="Self.Estados" />
+    <EntitySet Name="Inventarios" EntityType="Self.Inventarios" />
+    <EntitySet Name="Pagos" EntityType="Self.Pagos" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__Compras__FK_admn__412EB0B6" Association="Self.FK__Compras__FK_admn__412EB0B6">
+      <End Role="Administradores" EntitySet="Administradores" />
+      <End Role="Compras" EntitySet="Compras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
+      <End Role="Compras" EntitySet="Compras" />
+      <End Role="Inventarios" EntitySet="Inventarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pagos__FK_consum__3C69FB99" Association="Self.FK__Pagos__FK_consum__3C69FB99">
+      <End Role="Consumidores" EntitySet="Consumidores" />
+      <End Role="Pagos" EntitySet="Pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pagos__FK_estado__3B75D760" Association="Self.FK__Pagos__FK_estado__3B75D760">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Pagos" EntitySet="Pagos" />
+    </AssociationSet>
+    <FunctionImport Name="sp_ActualizarAdministrador">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombres" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarCompra">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proveedor" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="valor" Mode="In" Type="Decimal" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarConsumidor">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarInventarios">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="precioUnitario" Mode="In" Type="Decimal" />
+      <Parameter Name="total" Mode="In" Type="Decimal" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+      <Parameter Name="FK_compra" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ActualizarPago">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="montoCancelado" Mode="In" Type="Decimal" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="FK_estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarAdministrador">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarCompra">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarConsumidor">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarInventario">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarPago">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIDACModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SIDACModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertarAdministrador">
+      <Parameter Name="nombres" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertarCompra">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proveedor" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="valor" Mode="In" Type="Decimal" />
+      <Parameter Name="foto" Mode="In" Type="Binary" />
+      <Parameter Name="FK_Admin" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertarConsumidor">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertarItemInventario">
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="precioUnitario" Mode="In" Type="Decimal" />
+      <Parameter Name="total" Mode="In" Type="Decimal" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
+      <Parameter Name="FK_compra" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertarPago">
+      <Parameter Name="montoBase" Mode="In" Type="Decimal" />
+      <Parameter Name="montoCancelado" Mode="In" Type="Decimal" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="FK_estado" Mode="In" Type="Int32" />
+      <Parameter Name="FK_consumidor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MostrarAdministradores" ReturnType="Collection(SIDACModel.sp_MostrarAdministradores_Result)" />
+    <FunctionImport Name="sp_MostrarAdministradoresDefault" ReturnType="Collection(SIDACModel.sp_MostrarAdministradoresDefault_Result)" />
+    <FunctionImport Name="sp_MostrarCompras" ReturnType="Collection(SIDACModel.sp_MostrarCompras_Result)" />
+    <FunctionImport Name="sp_MostrarConsumidores" ReturnType="Collection(SIDACModel.sp_MostrarConsumidores_Result)" />
+    <FunctionImport Name="sp_MostrarConsumidoresDefault" ReturnType="Collection(SIDACModel.sp_MostrarConsumidoresDefault_Result)" />
+    <FunctionImport Name="sp_MostrarInventarios" ReturnType="Collection(SIDACModel.sp_MostrarInventarios_Result)" />
+    <FunctionImport Name="sp_MostrarPagos" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Result)" />
+    <FunctionImport Name="sp_MostrarPagosDefault" ReturnType="Collection(SIDACModel.sp_MostrarPagosDefault_Result)" />
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarAdministradores_Result">
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarAdministradoresDefault_Result">
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarCompras_Result">
+    <Property Type="Int32" Name="idCompra" Nullable="false" />
+    <Property Type="String" Name="proveedor" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" />
+    <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" />
+    <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="FK_admnin" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarConsumidores_Result">
+    <Property Type="Int32" Name="Código" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Correo_Electrónico" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarConsumidoresDefault_Result">
+    <Property Type="Int32" Name="Código" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Correo_Electrónico" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarInventarios_Result">
+    <Property Type="Int32" Name="idInventario" Nullable="false" />
+    <Property Type="Int32" Name="cantidad" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="80" />
+    <Property Type="Decimal" Name="precioUnitario" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="total" Nullable="false" Precision="10" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="Int32" Name="FK_compra" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarPagos_Result">
+    <Property Type="Int32" Name="Código" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Monto_base" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="Cancelado" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="Pendiente" Nullable="false" Precision="10" />
+    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarPagosDefault_Result">
+    <Property Type="Int32" Name="Código" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Monto_base" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="Cancelado" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="Pendiente" Nullable="false" Precision="10" />
+    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+</Schema>
