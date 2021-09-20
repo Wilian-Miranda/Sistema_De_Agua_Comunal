@@ -27,13 +27,12 @@ namespace SIDAC.MODELO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administradores> Administradores { get; set; }
         public virtual DbSet<Compras> Compras { get; set; }
         public virtual DbSet<Consumidores> Consumidores { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
-        public virtual DbSet<Inventarios> Inventarios { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<DetallesCompras> DetallesCompras { get; set; }
     
         public virtual int sp_ActualizarAdministrador(Nullable<int> id, string nombres, string apellidos, string telefono)
         {

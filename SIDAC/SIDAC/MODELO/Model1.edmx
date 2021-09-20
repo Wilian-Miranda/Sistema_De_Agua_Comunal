@@ -4,26 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Administradores">
-          <Key>
-            <PropertyRef Name="idAdmin" />
-          </Key>
-          <Property Name="idAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="telefono" Type="varchar" MaxLength="20" />
-        </EntityType>
+    <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Compras">
           <Key>
             <PropertyRef Name="idCompra" />
           </Key>
-          <Property Name="idCompra" Type="int" Nullable="false" />
+          <Property Name="idCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="proveedor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="valor" Type="smallmoney" Nullable="false" />
           <Property Name="foto" Type="image" />
-          <Property Name="FK_admnin" Type="int" Nullable="false" />
+          <Property Name="compra" Type="int" />
         </EntityType>
         <EntityType Name="Consumidores">
           <Key>
@@ -36,24 +27,24 @@
           <Property Name="correo" Type="varchar" MaxLength="30" />
           <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Estados">
+        <EntityType Name="DetallesCompras">
           <Key>
-            <PropertyRef Name="idEstado" />
+            <PropertyRef Name="idDetalleCompras" />
           </Key>
-          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Inventarios">
-          <Key>
-            <PropertyRef Name="idInventario" />
-          </Key>
-          <Property Name="idInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDetalleCompras" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="precioUnitario" Type="smallmoney" Nullable="false" />
           <Property Name="total" Type="smallmoney" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="FK_compra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Pagos">
           <Key>
@@ -79,26 +70,14 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK__Compras__FK_admn__412EB0B6">
-          <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
-          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Administradores">
-              <PropertyRef Name="idAdmin" />
-            </Principal>
-            <Dependent Role="Compras">
-              <PropertyRef Name="FK_admnin" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Inventari__FK_co__6B24EA82">
           <End Role="Compras" Type="Self.Compras" Multiplicity="1" />
-          <End Role="Inventarios" Type="Self.Inventarios" Multiplicity="*" />
+          <End Role="DetallesCompras" Type="Self.DetallesCompras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Compras">
               <PropertyRef Name="idCompra" />
             </Principal>
-            <Dependent Role="Inventarios">
+            <Dependent Role="DetallesCompras">
               <PropertyRef Name="FK_compra" />
             </Dependent>
           </ReferentialConstraint>
@@ -255,20 +234,15 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SIDACModelStoreContainer">
-          <EntitySet Name="Administradores" EntityType="Self.Administradores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consumidores" EntityType="Self.Consumidores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallesCompras" EntityType="Self.DetallesCompras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Compras__FK_admn__412EB0B6" Association="Self.FK__Compras__FK_admn__412EB0B6">
-            <End Role="Administradores" EntitySet="Administradores" />
-            <End Role="Compras" EntitySet="Compras" />
-          </AssociationSet>
           <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
             <End Role="Compras" EntitySet="Compras" />
-            <End Role="Inventarios" EntitySet="Inventarios" />
+            <End Role="DetallesCompras" EntitySet="DetallesCompras" />
           </AssociationSet>
           <AssociationSet Name="FK__Pagos__FK_consum__3C69FB99" Association="Self.FK__Pagos__FK_consum__3C69FB99">
             <End Role="Consumidores" EntitySet="Consumidores" />
@@ -279,21 +253,10 @@
             <End Role="Pagos" EntitySet="Pagos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIDACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Administradores">
-          <Key>
-            <PropertyRef Name="idAdmin" />
-          </Key>
-          <Property Name="idAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Compras" Relationship="Self.FK__Compras__FK_admn__412EB0B6" FromRole="Administradores" ToRole="Compras" />
-        </EntityType>
         <EntityType Name="Compras">
           <Key>
             <PropertyRef Name="idCompra" />
@@ -303,9 +266,8 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="valor" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="FK_admnin" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Administradores" Relationship="Self.FK__Compras__FK_admn__412EB0B6" FromRole="Compras" ToRole="Administradores" />
-          <NavigationProperty Name="Inventarios" Relationship="Self.FK__Inventari__FK_co__6B24EA82" FromRole="Compras" ToRole="Inventarios" />
+          <NavigationProperty Name="DetallesCompras" Relationship="SIDACModel.FK__Inventari__FK_co__6B24EA821" FromRole="Compras" ToRole="DetallesCompras" />
+          <Property Name="compra" Type="Int32" />
         </EntityType>
         <EntityType Name="Consumidores">
           <Key>
@@ -326,19 +288,6 @@
           <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Estados" ToRole="Pagos" />
-        </EntityType>
-        <EntityType Name="Inventarios">
-          <Key>
-            <PropertyRef Name="idInventario" />
-          </Key>
-          <Property Name="idInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="precioUnitario" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
-          <Property Name="total" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
-          <Property Name="FK_compra" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Compras" Relationship="Self.FK__Inventari__FK_co__6B24EA82" FromRole="Inventarios" ToRole="Compras" />
         </EntityType>
         <EntityType Name="Pagos">
           <Key>
@@ -366,30 +315,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK__Compras__FK_admn__412EB0B6">
-          <End Role="Administradores" Type="Self.Administradores" Multiplicity="1" />
-          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Administradores">
-              <PropertyRef Name="idAdmin" />
-            </Principal>
-            <Dependent Role="Compras">
-              <PropertyRef Name="FK_admnin" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Inventari__FK_co__6B24EA82">
-          <End Role="Compras" Type="Self.Compras" Multiplicity="1" />
-          <End Role="Inventarios" Type="Self.Inventarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Compras">
-              <PropertyRef Name="idCompra" />
-            </Principal>
-            <Dependent Role="Inventarios">
-              <PropertyRef Name="FK_compra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Pagos__FK_consum__3C69FB99">
           <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="1" />
           <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
@@ -415,21 +340,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SIDACEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Administradores" EntityType="Self.Administradores" />
           <EntitySet Name="Compras" EntityType="Self.Compras" />
           <EntitySet Name="Consumidores" EntityType="Self.Consumidores" />
           <EntitySet Name="Estados" EntityType="Self.Estados" />
-          <EntitySet Name="Inventarios" EntityType="Self.Inventarios" />
           <EntitySet Name="Pagos" EntityType="Self.Pagos" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK__Compras__FK_admn__412EB0B6" Association="Self.FK__Compras__FK_admn__412EB0B6">
-            <End Role="Administradores" EntitySet="Administradores" />
-            <End Role="Compras" EntitySet="Compras" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
-            <End Role="Compras" EntitySet="Compras" />
-            <End Role="Inventarios" EntitySet="Inventarios" />
-          </AssociationSet>
           <AssociationSet Name="FK__Pagos__FK_consum__3C69FB99" Association="Self.FK__Pagos__FK_consum__3C69FB99">
             <End Role="Consumidores" EntitySet="Consumidores" />
             <End Role="Pagos" EntitySet="Pagos" />
@@ -491,19 +406,19 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarAdministrador">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarCompra">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarConsumidor">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarInventario">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarPago">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIDACModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -564,6 +479,11 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="DetallesCompras" EntityType="SIDACModel.DetallesCompras" />
+          <AssociationSet Name="FK__Inventari__FK_co__6B24EA821" Association="SIDACModel.FK__Inventari__FK_co__6B24EA821">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="DetallesCompras" EntitySet="DetallesCompras" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -588,11 +508,10 @@
         <ComplexType Name="sp_MostrarCompras_Result">
           <Property Type="Int32" Name="idCompra" Nullable="false" />
           <Property Type="String" Name="proveedor" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" />
           <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" />
-          <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
-          <Property Type="Int32" Name="FK_admnin" Nullable="false" />
-        </ComplexType>
+          <Property Type="String" Name="Comprador" Nullable="false" MaxLength="101" />
+          </ComplexType>
         <ComplexType Name="sp_MostrarConsumidores_Result">
           <Property Type="Int32" Name="Código" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -640,31 +559,46 @@
           <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" />
         </ComplexType>
+        <EntityType Name="DetallesCompras">
+          <Key>
+            <PropertyRef Name="idDetalleCompras" />
+          </Key>
+          <Property Name="idDetalleCompras" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="precioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="total" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="FK_compra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compras" Relationship="SIDACModel.FK__Inventari__FK_co__6B24EA821" FromRole="DetallesCompras" ToRole="Compras" />
+        </EntityType>
+        <Association Name="FK__Inventari__FK_co__6B24EA821">
+          <End Type="SIDACModel.Compras" Role="Compras" Multiplicity="1" />
+          <End Type="SIDACModel.DetallesCompras" Role="DetallesCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="idCompra" />
+            </Principal>
+            <Dependent Role="DetallesCompras">
+              <PropertyRef Name="FK_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SIDACModelStoreContainer" CdmEntityContainer="SIDACEntities">
-          <EntitySetMapping Name="Administradores">
-            <EntityTypeMapping TypeName="SIDACModel.Administradores">
-              <MappingFragment StoreEntitySet="Administradores">
-                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Compras">
             <EntityTypeMapping TypeName="SIDACModel.Compras">
               <MappingFragment StoreEntitySet="Compras">
+                <ScalarProperty Name="compra" ColumnName="compra" />
                 <ScalarProperty Name="idCompra" ColumnName="idCompra" />
                 <ScalarProperty Name="proveedor" ColumnName="proveedor" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
-                <ScalarProperty Name="FK_admnin" ColumnName="FK_admnin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -685,19 +619,6 @@
               <MappingFragment StoreEntitySet="Estados">
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventarios">
-            <EntityTypeMapping TypeName="SIDACModel.Inventarios">
-              <MappingFragment StoreEntitySet="Inventarios">
-                <ScalarProperty Name="idInventario" ColumnName="idInventario" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -788,9 +709,8 @@
                 <ScalarProperty Name="proveedor" ColumnName="proveedor" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="foto" ColumnName="foto" />
-                <ScalarProperty Name="FK_admnin" ColumnName="FK_admnin" />
-              </ComplexTypeMapping>
+                <ScalarProperty Name="Comprador" ColumnName="Comprador" />
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MostrarConsumidores" FunctionName="SIDACModel.Store.sp_MostrarConsumidores">
@@ -862,6 +782,19 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SIDACModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIDACModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="DetallesCompras">
+            <EntityTypeMapping TypeName="SIDACModel.DetallesCompras">
+              <MappingFragment StoreEntitySet="DetallesCompras">
+                <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idDetalleCompras" ColumnName="idDetalleCompras" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

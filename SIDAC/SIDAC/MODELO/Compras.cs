@@ -17,7 +17,7 @@ namespace SIDAC.MODELO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Compras()
         {
-            this.Inventarios = new HashSet<Inventarios>();
+            this.DetallesCompras = new HashSet<DetallesCompras>();
         }
     
         public int idCompra { get; set; }
@@ -25,10 +25,9 @@ namespace SIDAC.MODELO
         public System.DateTime fecha { get; set; }
         public decimal valor { get; set; }
         public byte[] foto { get; set; }
-        public int FK_admnin { get; set; }
+        public Nullable<int> compra { get; set; }
     
-        public virtual Administradores Administradores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventarios> Inventarios { get; set; }
+        public virtual ICollection<DetallesCompras> DetallesCompras { get; set; }
     }
 }

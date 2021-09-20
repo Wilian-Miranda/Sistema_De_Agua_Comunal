@@ -12,9 +12,9 @@ namespace SIDAC.MODELO
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventarios
+    public partial class DetallesCompras
     {
-        public int idInventario { get; set; }
+        public int idDetalleCompras { get; set; }
         public int cantidad { get; set; }
         public string descripcion { get; set; }
         public decimal precioUnitario { get; set; }

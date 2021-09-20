@@ -15,9 +15,8 @@ namespace SIDAC.MODELO
     {
         public int idCompra { get; set; }
         public string proveedor { get; set; }
-        public System.DateTime fecha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
         public decimal valor { get; set; }
-        public byte[] foto { get; set; }
-        public int FK_admnin { get; set; }
+        public string Comprador { get; set; }
     }
 }

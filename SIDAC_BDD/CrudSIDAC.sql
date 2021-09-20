@@ -180,9 +180,10 @@ go
 go
 create proc sp_MostrarCompras
 as
-	Select * from Compras
+	Select a.idCompra,a.proveedor,a.valor,Cast(a.fecha as date)fecha,(b.nombres+' '+b.apellidos)Comprador from Compras  a
+		inner join Administradores b on a.FK_admnin=b.idAdmin
 go
-
+exec sp_MostrarCompras
 --Insertar
 go
 create proc sp_InsertarCompra
@@ -221,6 +222,7 @@ as
 go
 
 --CRUD
+--detalles compras
 --mostrar
 go
 create proc sp_MostrarInventarios

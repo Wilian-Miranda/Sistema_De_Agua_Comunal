@@ -48,3 +48,5 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.CopyComplete
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.exe
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.pdb
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmCompras.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.VisualizarFactura.resources
