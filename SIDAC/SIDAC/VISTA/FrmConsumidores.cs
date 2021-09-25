@@ -45,7 +45,7 @@ namespace SIDAC.VISTA
                 dtgConsumidores.Rows.Clear();
                 foreach (var i in consumidores.MostrarConsumidores())
                 {
-                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.estado);
+                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.Fk_estado);
                 }
                 txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
             }
@@ -63,7 +63,7 @@ namespace SIDAC.VISTA
             consumidores1.apellidos = txtApellidos.Text;
             consumidores1.telefono = txtTelefono.Text;
             consumidores1.correo = txtCorreo.Text;
-            consumidores1.estado = Convert.ToInt32(cbEstado.Text);
+            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.Text);
 
             //guardando datos
             consumidores.AgregarConsumidor(consumidores1);
@@ -82,7 +82,7 @@ namespace SIDAC.VISTA
             consumidores1.apellidos = txtApellidos.Text;
             consumidores1.telefono = txtTelefono.Text;
             consumidores1.correo = txtCorreo.Text;
-            consumidores1.estado = Convert.ToInt32(cbEstado.Text);
+            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.Text);
 
             //guardando datos
             consumidores.ActualizarConsumidor(consumidores1);

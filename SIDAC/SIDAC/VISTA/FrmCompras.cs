@@ -48,7 +48,15 @@ namespace SIDAC.VISTA
 
                     var noCompras = (from a in db.Compras
                                    select a.compra).ToList();
-                    txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
+                    if (compras.Count == 0)
+                    {
+                        txtNumeroCompra.Text = (0 + 1).ToString();
+                    }
+                    else
+                    {
+                        txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
+                    }
+                    
 
                     //dtgCompras.DataSource = compras.ToList();
                 }
@@ -257,6 +265,20 @@ namespace SIDAC.VISTA
         private void btnActualizar_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAgregarDetalles_Click(object sender, EventArgs e)
+        {
+            FrmDetallesCompras detalles = new FrmDetallesCompras();
+
+            detalles.ID = Convert.ToInt32(dtgCompras.CurrentRow.Cells[0].Value);
+            detalles.txtNumeroCompra.Text = dtgCompras.CurrentRow.Cells[1].Value.ToString();
+            detalles.txtProveedor.Text = dtgCompras.CurrentRow.Cells[2].Value.ToString();
+            detalles.txtValor.Text = dtgCompras.CurrentRow.Cells[3].Value.ToString();
+            detalles.txtFecha.Text = dtgCompras.CurrentRow.Cells[4].Value.ToString();
+
+
+            detalles.ShowDialog();
         }
     }
 }

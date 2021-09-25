@@ -21,8 +21,9 @@
     <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_consum__3C69FB99" FromRole="Consumidores" ToRole="Pagos" />
+    <Property Name="Fk_estado" Type="Int32" />
+    <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Consumidores_Estados" FromRole="Consumidores" ToRole="Estados" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -31,6 +32,10 @@
     <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Estados" ToRole="Pagos" />
+    <Property Name="identificador" Type="Int32" />
+    <NavigationProperty Name="Consumidores" Relationship="SIDACModel.FK_Consumidores_Estados" FromRole="Estados" ToRole="Consumidores" />
+    <NavigationProperty Name="Deudas" Relationship="SIDACModel.FK_Deudas_Estados" FromRole="Estados" ToRole="Deudas" />
+    <NavigationProperty Name="Inventarios" Relationship="SIDACModel.FK_Inventarios_Estados" FromRole="Estados" ToRole="Inventarios" />
   </EntityType>
   <EntityType Name="Pagos">
     <Key>
@@ -227,6 +232,24 @@
       <End Role="Compras" EntitySet="Compras" />
       <End Role="DetallesCompras" EntitySet="DetallesCompras" />
     </AssociationSet>
+    <EntitySet Name="Deudas" EntityType="SIDACModel.Deudas" />
+    <EntitySet Name="Inventarios" EntityType="SIDACModel.Inventarios" />
+    <AssociationSet Name="FK_Consumidores_Estados" Association="SIDACModel.FK_Consumidores_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Consumidores" EntitySet="Consumidores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="SIDACModel.FK_Inventarios_DetallesCompras">
+      <End Role="DetallesCompras" EntitySet="DetallesCompras" />
+      <End Role="Inventarios" EntitySet="Inventarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deudas_Estados" Association="SIDACModel.FK_Deudas_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Deudas" EntitySet="Deudas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventarios_Estados" Association="SIDACModel.FK_Inventarios_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Inventarios" EntitySet="Inventarios" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -311,9 +334,9 @@
     <Property Name="descripcion" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
     <Property Name="precioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
     <Property Name="total" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-    <Property Name="estado" Type="Int32" Nullable="false" />
     <Property Name="FK_compra" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Compras" Relationship="SIDACModel.FK__Inventari__FK_co__6B24EA821" FromRole="DetallesCompras" ToRole="Compras" />
+    <NavigationProperty Name="Inventarios" Relationship="SIDACModel.FK_Inventarios_DetallesCompras" FromRole="DetallesCompras" ToRole="Inventarios" />
   </EntityType>
   <Association Name="FK__Inventari__FK_co__6B24EA821">
     <End Type="SIDACModel.Compras" Role="Compras" Multiplicity="1" />
@@ -324,6 +347,77 @@
       </Principal>
       <Dependent Role="DetallesCompras">
         <PropertyRef Name="FK_compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Deudas">
+    <Key>
+      <PropertyRef Name="idDeuda" />
+    </Key>
+    <Property Name="idDeuda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="monto" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+    <Property Name="cancelado" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+    <Property Name="pendiente" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+    <Property Name="Fk_estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Deudas_Estados" FromRole="Deudas" ToRole="Estados" />
+  </EntityType>
+  <EntityType Name="Inventarios">
+    <Key>
+      <PropertyRef Name="Idinventario" />
+    </Key>
+    <Property Name="Idinventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_estado" Type="Int32" Nullable="false" />
+    <Property Name="FK_DetalleCompra" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DetallesCompras" Relationship="SIDACModel.FK_Inventarios_DetallesCompras" FromRole="Inventarios" ToRole="DetallesCompras" />
+    <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Inventarios_Estados" FromRole="Inventarios" ToRole="Estados" />
+    <Property Name="Utilizado" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Consumidores_Estados">
+    <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="0..1" />
+    <End Type="SIDACModel.Consumidores" Role="Consumidores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Consumidores">
+        <PropertyRef Name="Fk_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventarios_DetallesCompras">
+    <End Type="SIDACModel.DetallesCompras" Role="DetallesCompras" Multiplicity="1" />
+    <End Type="SIDACModel.Inventarios" Role="Inventarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetallesCompras">
+        <PropertyRef Name="idDetalleCompras" />
+      </Principal>
+      <Dependent Role="Inventarios">
+        <PropertyRef Name="FK_DetalleCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deudas_Estados">
+    <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="1" />
+    <End Type="SIDACModel.Deudas" Role="Deudas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Deudas">
+        <PropertyRef Name="Fk_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventarios_Estados">
+    <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="1" />
+    <End Type="SIDACModel.Inventarios" Role="Inventarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="Inventarios">
+        <PropertyRef Name="FK_estado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

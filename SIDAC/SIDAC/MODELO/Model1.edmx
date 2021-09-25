@@ -25,7 +25,7 @@
           <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="20" />
           <Property Name="correo" Type="varchar" MaxLength="30" />
-          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="Fk_estado" Type="int" />
         </EntityType>
         <EntityType Name="DetallesCompras">
           <Key>
@@ -36,8 +36,18 @@
           <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="precioUnitario" Type="smallmoney" Nullable="false" />
           <Property Name="total" Type="smallmoney" Nullable="false" />
-          <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="FK_compra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deudas">
+          <Key>
+            <PropertyRef Name="idDeuda" />
+          </Key>
+          <Property Name="idDeuda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="monto" Type="smallmoney" Nullable="false" />
+          <Property Name="cancelado" Type="smallmoney" Nullable="false" />
+          <Property Name="pendiente" Type="smallmoney" Nullable="false" />
+          <Property Name="Fk_estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -45,6 +55,16 @@
           </Key>
           <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="identificador" Type="int" />
+        </EntityType>
+        <EntityType Name="Inventarios">
+          <Key>
+            <PropertyRef Name="Idinventario" />
+          </Key>
+          <Property Name="Idinventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Utilizado" Type="int" Nullable="false" />
+          <Property Name="FK_estado" Type="int" Nullable="false" />
+          <Property Name="FK_DetalleCompra" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pagos">
           <Key>
@@ -102,6 +122,54 @@
               <PropertyRef Name="idEstado" />
             </Principal>
             <Dependent Role="Pagos">
+              <PropertyRef Name="FK_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumidores_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Consumidores">
+              <PropertyRef Name="Fk_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deudas_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Deudas">
+              <PropertyRef Name="Fk_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventarios_DetallesCompras">
+          <End Role="DetallesCompras" Type="Self.DetallesCompras" Multiplicity="1" />
+          <End Role="Inventarios" Type="Self.Inventarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DetallesCompras">
+              <PropertyRef Name="idDetalleCompras" />
+            </Principal>
+            <Dependent Role="Inventarios">
+              <PropertyRef Name="FK_DetalleCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventarios_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Inventarios" Type="Self.Inventarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Inventarios">
               <PropertyRef Name="FK_estado" />
             </Dependent>
           </ReferentialConstraint>
@@ -237,7 +305,9 @@
           <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consumidores" EntityType="Self.Consumidores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetallesCompras" EntityType="Self.DetallesCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deudas" EntityType="Self.Deudas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
@@ -251,6 +321,22 @@
           <AssociationSet Name="FK__Pagos__FK_estado__3B75D760" Association="Self.FK__Pagos__FK_estado__3B75D760">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumidores_Estados" Association="Self.FK_Consumidores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Consumidores" EntitySet="Consumidores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deudas_Estados" Association="Self.FK_Deudas_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Deudas" EntitySet="Deudas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="Self.FK_Inventarios_DetallesCompras">
+            <End Role="DetallesCompras" EntitySet="DetallesCompras" />
+            <End Role="Inventarios" EntitySet="Inventarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventarios_Estados" Association="Self.FK_Inventarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Inventarios" EntitySet="Inventarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -278,8 +364,9 @@
           <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_consum__3C69FB99" FromRole="Consumidores" ToRole="Pagos" />
+          <Property Name="Fk_estado" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Consumidores_Estados" FromRole="Consumidores" ToRole="Estados" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -288,6 +375,10 @@
           <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Estados" ToRole="Pagos" />
+          <Property Name="identificador" Type="Int32" />
+          <NavigationProperty Name="Consumidores" Relationship="SIDACModel.FK_Consumidores_Estados" FromRole="Estados" ToRole="Consumidores" />
+          <NavigationProperty Name="Deudas" Relationship="SIDACModel.FK_Deudas_Estados" FromRole="Estados" ToRole="Deudas" />
+          <NavigationProperty Name="Inventarios" Relationship="SIDACModel.FK_Inventarios_Estados" FromRole="Estados" ToRole="Inventarios" />
         </EntityType>
         <EntityType Name="Pagos">
           <Key>
@@ -484,6 +575,24 @@
             <End Role="Compras" EntitySet="Compras" />
             <End Role="DetallesCompras" EntitySet="DetallesCompras" />
           </AssociationSet>
+          <EntitySet Name="Deudas" EntityType="SIDACModel.Deudas" />
+          <EntitySet Name="Inventarios" EntityType="SIDACModel.Inventarios" />
+          <AssociationSet Name="FK_Consumidores_Estados" Association="SIDACModel.FK_Consumidores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Consumidores" EntitySet="Consumidores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="SIDACModel.FK_Inventarios_DetallesCompras">
+            <End Role="DetallesCompras" EntitySet="DetallesCompras" />
+            <End Role="Inventarios" EntitySet="Inventarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deudas_Estados" Association="SIDACModel.FK_Deudas_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Deudas" EntitySet="Deudas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventarios_Estados" Association="SIDACModel.FK_Inventarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Inventarios" EntitySet="Inventarios" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -568,9 +677,9 @@
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="precioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
           <Property Name="total" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
           <Property Name="FK_compra" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Compras" Relationship="SIDACModel.FK__Inventari__FK_co__6B24EA821" FromRole="DetallesCompras" ToRole="Compras" />
+          <NavigationProperty Name="Inventarios" Relationship="SIDACModel.FK_Inventarios_DetallesCompras" FromRole="DetallesCompras" ToRole="Inventarios" />
         </EntityType>
         <Association Name="FK__Inventari__FK_co__6B24EA821">
           <End Type="SIDACModel.Compras" Role="Compras" Multiplicity="1" />
@@ -581,6 +690,77 @@
             </Principal>
             <Dependent Role="DetallesCompras">
               <PropertyRef Name="FK_compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Deudas">
+          <Key>
+            <PropertyRef Name="idDeuda" />
+          </Key>
+          <Property Name="idDeuda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="monto" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="cancelado" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="pendiente" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Fk_estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Deudas_Estados" FromRole="Deudas" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="Inventarios">
+          <Key>
+            <PropertyRef Name="Idinventario" />
+          </Key>
+          <Property Name="Idinventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_estado" Type="Int32" Nullable="false" />
+          <Property Name="FK_DetalleCompra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetallesCompras" Relationship="SIDACModel.FK_Inventarios_DetallesCompras" FromRole="Inventarios" ToRole="DetallesCompras" />
+          <NavigationProperty Name="Estados" Relationship="SIDACModel.FK_Inventarios_Estados" FromRole="Inventarios" ToRole="Estados" />
+          <Property Name="Utilizado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Consumidores_Estados">
+          <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="SIDACModel.Consumidores" Role="Consumidores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Consumidores">
+              <PropertyRef Name="Fk_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventarios_DetallesCompras">
+          <End Type="SIDACModel.DetallesCompras" Role="DetallesCompras" Multiplicity="1" />
+          <End Type="SIDACModel.Inventarios" Role="Inventarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DetallesCompras">
+              <PropertyRef Name="idDetalleCompras" />
+            </Principal>
+            <Dependent Role="Inventarios">
+              <PropertyRef Name="FK_DetalleCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deudas_Estados">
+          <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="SIDACModel.Deudas" Role="Deudas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Deudas">
+              <PropertyRef Name="Fk_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventarios_Estados">
+          <End Type="SIDACModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="SIDACModel.Inventarios" Role="Inventarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Inventarios">
+              <PropertyRef Name="FK_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -605,18 +785,19 @@
           <EntitySetMapping Name="Consumidores">
             <EntityTypeMapping TypeName="SIDACModel.Consumidores">
               <MappingFragment StoreEntitySet="Consumidores">
+                <ScalarProperty Name="Fk_estado" ColumnName="Fk_estado" />
                 <ScalarProperty Name="idConsumidor" ColumnName="idConsumidor" />
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estados">
             <EntityTypeMapping TypeName="SIDACModel.Estados">
               <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
@@ -786,12 +967,33 @@
             <EntityTypeMapping TypeName="SIDACModel.DetallesCompras">
               <MappingFragment StoreEntitySet="DetallesCompras">
                 <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="idDetalleCompras" ColumnName="idDetalleCompras" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deudas">
+            <EntityTypeMapping TypeName="SIDACModel.Deudas">
+              <MappingFragment StoreEntitySet="Deudas">
+                <ScalarProperty Name="Fk_estado" ColumnName="Fk_estado" />
+                <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+                <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idDeuda" ColumnName="idDeuda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventarios">
+            <EntityTypeMapping TypeName="SIDACModel.Inventarios">
+              <MappingFragment StoreEntitySet="Inventarios">
+                <ScalarProperty Name="Utilizado" ColumnName="Utilizado" />
+                <ScalarProperty Name="FK_DetalleCompra" ColumnName="FK_DetalleCompra" />
+                <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
+                <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

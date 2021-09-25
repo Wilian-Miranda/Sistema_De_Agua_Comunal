@@ -18,12 +18,22 @@ namespace SIDAC.MODELO
         public Estados()
         {
             this.Pagos = new HashSet<Pagos>();
+            this.Consumidores = new HashSet<Consumidores>();
+            this.Deudas = new HashSet<Deudas>();
+            this.Inventarios = new HashSet<Inventarios>();
         }
     
         public int idEstado { get; set; }
         public string nombre { get; set; }
+        public Nullable<int> identificador { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Consumidores> Consumidores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deudas> Deudas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventarios> Inventarios { get; set; }
     }
 }

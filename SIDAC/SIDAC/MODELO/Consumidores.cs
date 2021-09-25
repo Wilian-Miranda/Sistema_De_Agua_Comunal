@@ -25,9 +25,10 @@ namespace SIDAC.MODELO
         public string apellidos { get; set; }
         public string telefono { get; set; }
         public string correo { get; set; }
-        public int estado { get; set; }
+        public Nullable<int> Fk_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        public virtual Estados Estados { get; set; }
     }
 }

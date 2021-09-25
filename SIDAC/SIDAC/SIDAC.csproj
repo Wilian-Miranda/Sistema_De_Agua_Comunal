@@ -82,7 +82,13 @@
     <Compile Include="MODELO\DetallesCompras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODELO\Deudas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODELO\Estados.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Inventarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MODELO\Model1.Context.cs">
@@ -154,6 +160,12 @@
     <Compile Include="VISTA\FrmControlPagos.Designer.cs">
       <DependentUpon>FrmControlPagos.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\FrmDetallesCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\FrmDetallesCompras.Designer.cs">
+      <DependentUpon>FrmDetallesCompras.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\FrmControlPagos.resx">
       <DependentUpon>FrmControlPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\FrmDetallesCompras.resx">
+      <DependentUpon>FrmDetallesCompras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>

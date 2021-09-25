@@ -34,7 +34,7 @@ namespace SIDAC.DAO
             {
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    db.sp_InsertarConsumidor(consumidor.idConsumidor,consumidor.nombres,consumidor.apellidos,     consumidor.telefono,consumidor.correo,consumidor.estado);
+                    db.sp_InsertarConsumidor(consumidor.idConsumidor,consumidor.nombres,consumidor.apellidos,     consumidor.telefono,consumidor.correo,consumidor.Fk_estado);
                     db.SaveChanges();
                     MessageBox.Show("Consumidor agregado existosamente.");
                 }
@@ -53,7 +53,7 @@ namespace SIDAC.DAO
                 using (SIDACEntities db = new SIDACEntities())
                 {
                     db.sp_ActualizarConsumidor(consumidor.idConsumidor, consumidor.nombres, consumidor.apellidos,
-                                               consumidor.telefono, consumidor.correo, consumidor.estado);
+                                               consumidor.telefono, consumidor.correo, consumidor.Fk_estado);
                     db.SaveChanges();
                     MessageBox.Show("Consumidor modificado existosamente.");
                 }

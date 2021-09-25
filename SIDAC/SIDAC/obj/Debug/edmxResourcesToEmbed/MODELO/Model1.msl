@@ -16,18 +16,19 @@
     <EntitySetMapping Name="Consumidores">
       <EntityTypeMapping TypeName="SIDACModel.Consumidores">
         <MappingFragment StoreEntitySet="Consumidores">
+          <ScalarProperty Name="Fk_estado" ColumnName="Fk_estado" />
           <ScalarProperty Name="idConsumidor" ColumnName="idConsumidor" />
           <ScalarProperty Name="nombres" ColumnName="nombres" />
           <ScalarProperty Name="apellidos" ColumnName="apellidos" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo" ColumnName="correo" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Estados">
       <EntityTypeMapping TypeName="SIDACModel.Estados">
         <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="identificador" ColumnName="identificador" />
           <ScalarProperty Name="idEstado" ColumnName="idEstado" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
         </MappingFragment>
@@ -197,12 +198,33 @@
       <EntityTypeMapping TypeName="SIDACModel.DetallesCompras">
         <MappingFragment StoreEntitySet="DetallesCompras">
           <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="total" ColumnName="total" />
           <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="idDetalleCompras" ColumnName="idDetalleCompras" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deudas">
+      <EntityTypeMapping TypeName="SIDACModel.Deudas">
+        <MappingFragment StoreEntitySet="Deudas">
+          <ScalarProperty Name="Fk_estado" ColumnName="Fk_estado" />
+          <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+          <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idDeuda" ColumnName="idDeuda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventarios">
+      <EntityTypeMapping TypeName="SIDACModel.Inventarios">
+        <MappingFragment StoreEntitySet="Inventarios">
+          <ScalarProperty Name="Utilizado" ColumnName="Utilizado" />
+          <ScalarProperty Name="FK_DetalleCompra" ColumnName="FK_DetalleCompra" />
+          <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
+          <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

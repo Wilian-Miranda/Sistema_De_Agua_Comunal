@@ -33,6 +33,8 @@ namespace SIDAC.MODELO
         public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<DetallesCompras> DetallesCompras { get; set; }
+        public virtual DbSet<Deudas> Deudas { get; set; }
+        public virtual DbSet<Inventarios> Inventarios { get; set; }
     
         public virtual int sp_ActualizarAdministrador(Nullable<int> id, string nombres, string apellidos, string telefono)
         {
