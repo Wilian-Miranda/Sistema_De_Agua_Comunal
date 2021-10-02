@@ -250,6 +250,7 @@
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Inventarios" EntitySet="Inventarios" />
     </AssociationSet>
+    <EntitySet Name="RetirosInventario" EntityType="SIDACModel.RetirosInventario" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -295,13 +296,14 @@
     <Property Type="Int32" Name="Estado" Nullable="false" />
   </ComplexType>
   <ComplexType Name="sp_MostrarInventarios_Result">
-    <Property Type="Int32" Name="idInventario" Nullable="false" />
     <Property Type="Int32" Name="cantidad" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="false" MaxLength="80" />
     <Property Type="Decimal" Name="precioUnitario" Nullable="false" Precision="10" />
     <Property Type="Decimal" Name="total" Nullable="false" Precision="10" />
-    <Property Type="Int32" Name="estado" Nullable="false" />
-    <Property Type="Int32" Name="FK_compra" Nullable="false" />
+    <Property Type="Int32" Name="compra" Nullable="true" />
+    <Property Type="Int32" Name="Utilizado" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Idinventario" Nullable="false" />
   </ComplexType>
   <ComplexType Name="sp_MostrarPagos_Result">
     <Property Type="Int32" Name="Código" Nullable="false" />
@@ -421,4 +423,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="RetirosInventario">
+    <Key>
+      <PropertyRef Name="idRetiro" />
+    </Key>
+    <Property Name="idRetiro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="motivo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="precioUnidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="subtotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

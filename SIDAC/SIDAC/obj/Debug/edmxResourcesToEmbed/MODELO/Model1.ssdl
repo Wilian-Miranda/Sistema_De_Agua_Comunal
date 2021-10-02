@@ -75,6 +75,18 @@
     <Property Name="FK_estado" Type="int" Nullable="false" />
     <Property Name="FK_consumidor" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="RetirosInventario">
+    <Key>
+      <PropertyRef Name="idRetiro" />
+    </Key>
+    <Property Name="idRetiro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cantidad" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="motivo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="precioUnidad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="subtotal" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -304,6 +316,7 @@
     <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RetirosInventario" EntityType="Self.RetirosInventario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
       <End Role="Compras" EntitySet="Compras" />

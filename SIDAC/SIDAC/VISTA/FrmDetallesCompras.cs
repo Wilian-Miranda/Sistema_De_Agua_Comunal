@@ -133,7 +133,52 @@ namespace SIDAC.VISTA
 
         private void btnCerrarAplicacion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            decimal total = 0;
+            for (int i = 0; i < dtgDetallesCompras.RowCount; i++)
+            {
+                total += Convert.ToDecimal(dtgDetallesCompras.Rows[i].Cells[4].Value);
+            }
+            if (Convert.ToDecimal(txtValor.Text)==total)
+            {
+                this.Close();
+            }
+            else
+            {
+                try
+                {
+                    for (int i = 0; i < dtgDetallesCompras.RowCount;i++)
+                    {
+                        int id = Convert.ToInt32(dtgDetallesCompras.Rows[i].Cells[0].Value.ToString());
+                        using (SIDACEntities db = new SIDACEntities())
+                        {
+
+                            //eliminando detalle en inventario
+                            var eliminarInventario = db.Inventarios.Where(x => x.FK_DetalleCompra == id).FirstOrDefault();
+                            db.Inventarios.Remove(eliminarInventario);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    for (int i = 0; i < dtgDetallesCompras.RowCount;i++)
+                    {
+                        int ID = Convert.ToInt32(dtgDetallesCompras.Rows[i].Cells[0].Value);
+                        using (SIDACEntities db = new SIDACEntities())
+                        {
+                            var eliminarDetalles = db.DetallesCompras.Where(x => x.idDetalleCompras == ID).FirstOrDefault();
+                            db.DetallesCompras.Remove(eliminarDetalles);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Error al eliminar detalles no válidos.\n\n" + ex.ToString());
+                }
+
+                this.Close();
+            }
+
         }
     }
 }

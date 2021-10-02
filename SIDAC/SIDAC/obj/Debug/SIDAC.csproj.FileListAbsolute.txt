@@ -38,7 +38,6 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\Xamarin.Form
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\Xamarin.Forms.Core.xml
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\Xamarin.Forms.Xaml.xml
-C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.Properties.Resources.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmConsumidores.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmControlPagos.resources
@@ -51,3 +50,6 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.pdb
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmCompras.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.VisualizarFactura.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmDetallesCompras.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmInventario.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmRegistrosInventario.resources

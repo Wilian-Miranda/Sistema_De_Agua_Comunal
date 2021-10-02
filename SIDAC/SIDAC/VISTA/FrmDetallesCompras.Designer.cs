@@ -29,15 +29,17 @@ namespace SIDAC.VISTA
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlSeleccioFormulario = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnCerrarAplicacion = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlNuevoCompra = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnActualizar = new Guna.UI2.WinForms.Guna2Button();
             this.pnlDatosPagos = new Guna.UI2.WinForms.Guna2Panel();
             this.txtPrecioUnitario = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,17 +58,15 @@ namespace SIDAC.VISTA
             this.label9 = new System.Windows.Forms.Label();
             this.primero = new System.Windows.Forms.Panel();
             this.dtgDetallesCompras = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.tercero = new System.Windows.Forms.Panel();
-            this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
-            this.btnCerrarAplicacion = new Guna.UI2.WinForms.Guna2Button();
-            this.btnActualizar = new Guna.UI2.WinForms.Guna2Button();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label4 = new System.Windows.Forms.Label();
+            this.tercero = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSeleccioFormulario.SuspendLayout();
             this.pnlNuevoCompra.SuspendLayout();
             this.pnlDatosPagos.SuspendLayout();
@@ -86,6 +86,24 @@ namespace SIDAC.VISTA
             this.pnlSeleccioFormulario.ShadowDecoration.Parent = this.pnlSeleccioFormulario;
             this.pnlSeleccioFormulario.Size = new System.Drawing.Size(879, 30);
             this.pnlSeleccioFormulario.TabIndex = 1;
+            // 
+            // btnCerrarAplicacion
+            // 
+            this.btnCerrarAplicacion.BorderRadius = 19;
+            this.btnCerrarAplicacion.CheckedState.Parent = this.btnCerrarAplicacion;
+            this.btnCerrarAplicacion.CustomImages.Parent = this.btnCerrarAplicacion;
+            this.btnCerrarAplicacion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrarAplicacion.FillColor = System.Drawing.Color.Red;
+            this.btnCerrarAplicacion.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnCerrarAplicacion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarAplicacion.HoverState.Parent = this.btnCerrarAplicacion;
+            this.btnCerrarAplicacion.Location = new System.Drawing.Point(846, 0);
+            this.btnCerrarAplicacion.Name = "btnCerrarAplicacion";
+            this.btnCerrarAplicacion.ShadowDecoration.Parent = this.btnCerrarAplicacion;
+            this.btnCerrarAplicacion.Size = new System.Drawing.Size(33, 30);
+            this.btnCerrarAplicacion.TabIndex = 22;
+            this.btnCerrarAplicacion.Text = "X";
+            this.btnCerrarAplicacion.Click += new System.EventHandler(this.btnCerrarAplicacion_Click);
             // 
             // label6
             // 
@@ -113,6 +131,26 @@ namespace SIDAC.VISTA
             this.pnlNuevoCompra.ShadowDecoration.Parent = this.pnlNuevoCompra;
             this.pnlNuevoCompra.Size = new System.Drawing.Size(879, 223);
             this.pnlNuevoCompra.TabIndex = 19;
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActualizar.BorderColor = System.Drawing.Color.DimGray;
+            this.btnActualizar.BorderRadius = 7;
+            this.btnActualizar.BorderThickness = 1;
+            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
+            this.btnActualizar.CustomImages.Parent = this.btnActualizar;
+            this.btnActualizar.FillColor = System.Drawing.Color.Gray;
+            this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.HoverState.Parent = this.btnActualizar;
+            this.btnActualizar.Location = new System.Drawing.Point(724, 187);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.ShadowDecoration.Parent = this.btnActualizar;
+            this.btnActualizar.Size = new System.Drawing.Size(145, 30);
+            this.btnActualizar.TabIndex = 32;
+            this.btnActualizar.Text = "Guardar detalles";
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // pnlDatosPagos
             // 
@@ -398,21 +436,21 @@ namespace SIDAC.VISTA
             this.dtgDetallesCompras.AllowUserToAddRows = false;
             this.dtgDetallesCompras.AllowUserToDeleteRows = false;
             this.dtgDetallesCompras.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            this.dtgDetallesCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dtgDetallesCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgDetallesCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgDetallesCompras.BackgroundColor = System.Drawing.Color.White;
             this.dtgDetallesCompras.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgDetallesCompras.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dtgDetallesCompras.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgDetallesCompras.ColumnHeadersHeight = 38;
             this.dtgDetallesCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -420,14 +458,14 @@ namespace SIDAC.VISTA
             this.Column6,
             this.Column7,
             this.Column8});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgDetallesCompras.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgDetallesCompras.DefaultCellStyle = dataGridViewCellStyle6;
             this.dtgDetallesCompras.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgDetallesCompras.EnableHeadersVisualStyles = false;
             this.dtgDetallesCompras.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
@@ -461,6 +499,48 @@ namespace SIDAC.VISTA
             this.dtgDetallesCompras.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgDetallesCompras.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Id";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Cantidad";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column6.FillWeight = 200F;
+            this.Column6.HeaderText = "Descripción";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Format = "C4";
+            dataGridViewCellStyle4.NullValue = "-";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column7.HeaderText = "P/U";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = "-";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column8.HeaderText = "Subtotal";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
             // tercero
             // 
             this.tercero.Controls.Add(this.lblTotal);
@@ -472,6 +552,27 @@ namespace SIDAC.VISTA
             this.tercero.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.tercero.Size = new System.Drawing.Size(859, 38);
             this.tercero.TabIndex = 34;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotal.Location = new System.Drawing.Point(44, 5);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(66, 18);
+            this.lblTotal.TabIndex = 35;
+            this.lblTotal.Text = "$0.0000";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 18);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Total:";
             // 
             // btnEliminar
             // 
@@ -492,107 +593,6 @@ namespace SIDAC.VISTA
             this.btnEliminar.TabIndex = 30;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnCerrarAplicacion
-            // 
-            this.btnCerrarAplicacion.BorderRadius = 19;
-            this.btnCerrarAplicacion.CheckedState.Parent = this.btnCerrarAplicacion;
-            this.btnCerrarAplicacion.CustomImages.Parent = this.btnCerrarAplicacion;
-            this.btnCerrarAplicacion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrarAplicacion.FillColor = System.Drawing.Color.Red;
-            this.btnCerrarAplicacion.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnCerrarAplicacion.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarAplicacion.HoverState.Parent = this.btnCerrarAplicacion;
-            this.btnCerrarAplicacion.Location = new System.Drawing.Point(846, 0);
-            this.btnCerrarAplicacion.Name = "btnCerrarAplicacion";
-            this.btnCerrarAplicacion.ShadowDecoration.Parent = this.btnCerrarAplicacion;
-            this.btnCerrarAplicacion.Size = new System.Drawing.Size(33, 30);
-            this.btnCerrarAplicacion.TabIndex = 22;
-            this.btnCerrarAplicacion.Text = "X";
-            this.btnCerrarAplicacion.Click += new System.EventHandler(this.btnCerrarAplicacion_Click);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.BorderColor = System.Drawing.Color.DimGray;
-            this.btnActualizar.BorderRadius = 7;
-            this.btnActualizar.BorderThickness = 1;
-            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
-            this.btnActualizar.CustomImages.Parent = this.btnActualizar;
-            this.btnActualizar.FillColor = System.Drawing.Color.Gray;
-            this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.HoverState.Parent = this.btnActualizar;
-            this.btnActualizar.Location = new System.Drawing.Point(724, 187);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.ShadowDecoration.Parent = this.btnActualizar;
-            this.btnActualizar.Size = new System.Drawing.Size(145, 30);
-            this.btnActualizar.TabIndex = 32;
-            this.btnActualizar.Text = "Guardar detalles";
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Id";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Cantidad";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Column6.FillWeight = 200F;
-            this.Column6.HeaderText = "Descripción";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.Format = "C4";
-            dataGridViewCellStyle22.NullValue = "-";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle22;
-            this.Column7.HeaderText = "P/U";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.Format = "C2";
-            dataGridViewCellStyle23.NullValue = "-";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle23;
-            this.Column8.HeaderText = "Subtotal";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 18);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Total:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTotal.Location = new System.Drawing.Point(44, 5);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(66, 18);
-            this.lblTotal.TabIndex = 35;
-            this.lblTotal.Text = "$0.0000";
             // 
             // FrmDetallesCompras
             // 

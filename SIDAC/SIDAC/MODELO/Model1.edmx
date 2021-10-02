@@ -80,6 +80,18 @@
           <Property Name="FK_estado" Type="int" Nullable="false" />
           <Property Name="FK_consumidor" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="RetirosInventario">
+          <Key>
+            <PropertyRef Name="idRetiro" />
+          </Key>
+          <Property Name="idRetiro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="motivo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="precioUnidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="subtotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -309,6 +321,7 @@
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RetirosInventario" EntityType="Self.RetirosInventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
             <End Role="Compras" EntitySet="Compras" />
@@ -593,6 +606,7 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Inventarios" EntitySet="Inventarios" />
           </AssociationSet>
+          <EntitySet Name="RetirosInventario" EntityType="SIDACModel.RetirosInventario" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -638,14 +652,15 @@
           <Property Type="Int32" Name="Estado" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_MostrarInventarios_Result">
-          <Property Type="Int32" Name="idInventario" Nullable="false" />
           <Property Type="Int32" Name="cantidad" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="80" />
           <Property Type="Decimal" Name="precioUnitario" Nullable="false" Precision="10" />
           <Property Type="Decimal" Name="total" Nullable="false" Precision="10" />
-          <Property Type="Int32" Name="estado" Nullable="false" />
-          <Property Type="Int32" Name="FK_compra" Nullable="false" />
-        </ComplexType>
+          <Property Type="Int32" Name="compra" Nullable="true" />
+          <Property Type="Int32" Name="Utilizado" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="Idinventario" Nullable="false" />
+          </ComplexType>
         <ComplexType Name="sp_MostrarPagos_Result">
           <Property Type="Int32" Name="Código" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
@@ -764,6 +779,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RetirosInventario">
+          <Key>
+            <PropertyRef Name="idRetiro" />
+          </Key>
+          <Property Name="idRetiro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="motivo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="precioUnidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subtotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -921,14 +948,15 @@
           <FunctionImportMapping FunctionImportName="sp_MostrarInventarios" FunctionName="SIDACModel.Store.sp_MostrarInventarios">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SIDACModel.sp_MostrarInventarios_Result">
-                <ScalarProperty Name="idInventario" ColumnName="idInventario" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
                 <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
-              </ComplexTypeMapping>
+                <ScalarProperty Name="compra" ColumnName="compra" />
+                <ScalarProperty Name="Utilizado" ColumnName="Utilizado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_MostrarPagos" FunctionName="SIDACModel.Store.sp_MostrarPagos">
@@ -994,6 +1022,19 @@
                 <ScalarProperty Name="FK_DetalleCompra" ColumnName="FK_DetalleCompra" />
                 <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
                 <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetirosInventario">
+            <EntityTypeMapping TypeName="SIDACModel.RetirosInventario">
+              <MappingFragment StoreEntitySet="RetirosInventario">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="precioUnidad" ColumnName="precioUnidad" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idRetiro" ColumnName="idRetiro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

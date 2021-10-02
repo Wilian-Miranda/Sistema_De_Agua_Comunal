@@ -73,9 +73,29 @@ namespace SIDAC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AgregarInventario {
+            get {
+                object obj = ResourceManager.GetObject("AgregarInventario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap buscarUsuario {
             get {
                 object obj = ResourceManager.GetObject("buscarUsuario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RetiroInventario {
+            get {
+                object obj = ResourceManager.GetObject("RetiroInventario", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

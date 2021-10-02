@@ -20,6 +20,7 @@
         <AssociationConnector Association="SIDACModel.FK_Inventarios_DetallesCompras" />
         <AssociationConnector Association="SIDACModel.FK_Deudas_Estados" />
         <AssociationConnector Association="SIDACModel.FK_Inventarios_Estados" />
+        <EntityTypeShape EntityType="SIDACModel.RetirosInventario" Width="1.5" PointX="5.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

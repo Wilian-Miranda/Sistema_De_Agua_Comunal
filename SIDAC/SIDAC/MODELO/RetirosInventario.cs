@@ -10,16 +10,16 @@
 namespace SIDAC.MODELO
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_MostrarInventarios_Result
+    public partial class RetirosInventario
     {
-        public int cantidad { get; set; }
+        public int idRetiro { get; set; }
+        public string cantidad { get; set; }
         public string descripcion { get; set; }
-        public decimal precioUnitario { get; set; }
-        public decimal total { get; set; }
-        public Nullable<int> compra { get; set; }
-        public int Utilizado { get; set; }
-        public string nombre { get; set; }
-        public int Idinventario { get; set; }
+        public string motivo { get; set; }
+        public string precioUnidad { get; set; }
+        public string subtotal { get; set; }
+        public string date { get; set; }
     }
 }

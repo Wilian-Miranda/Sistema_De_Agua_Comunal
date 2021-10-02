@@ -17,7 +17,7 @@ namespace SIDAC
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCompras());
+            Application.Run(new FrmInventario());
         }
     }
 }

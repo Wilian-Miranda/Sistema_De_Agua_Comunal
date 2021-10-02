@@ -76,7 +76,12 @@ namespace SIDAC.VISTA
                 {
                     var totalCompras = (from a in db.Compras
                                         select a.valor).ToList();
-                    lblTotalCompras.Text ="$" + totalCompras.Sum().ToString();
+
+                    var totalMateriales = (from a in db.DetallesCompras
+                                           select a.cantidad).ToList();
+
+
+                    lblTotalCompras.Text = "$" + totalCompras.Sum().ToString() + " | " + "Materiales: " + totalMateriales.Sum().ToString();
                 }
             }
             catch (Exception ex)

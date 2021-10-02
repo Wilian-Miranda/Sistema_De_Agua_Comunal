@@ -152,13 +152,14 @@
     <FunctionImportMapping FunctionImportName="sp_MostrarInventarios" FunctionName="SIDACModel.Store.sp_MostrarInventarios">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SIDACModel.sp_MostrarInventarios_Result">
-          <ScalarProperty Name="idInventario" ColumnName="idInventario" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
           <ScalarProperty Name="total" ColumnName="total" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="FK_compra" ColumnName="FK_compra" />
+          <ScalarProperty Name="compra" ColumnName="compra" />
+          <ScalarProperty Name="Utilizado" ColumnName="Utilizado" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -225,6 +226,19 @@
           <ScalarProperty Name="FK_DetalleCompra" ColumnName="FK_DetalleCompra" />
           <ScalarProperty Name="FK_estado" ColumnName="FK_estado" />
           <ScalarProperty Name="Idinventario" ColumnName="Idinventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RetirosInventario">
+      <EntityTypeMapping TypeName="SIDACModel.RetirosInventario">
+        <MappingFragment StoreEntitySet="RetirosInventario">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="precioUnidad" ColumnName="precioUnidad" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idRetiro" ColumnName="idRetiro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
