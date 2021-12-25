@@ -19,6 +19,14 @@ namespace SIDAC.VISTA
             InitializeComponent();
             CargarDatosCBEstado();
         }
+
+        private void FrmConsumidores_Load(object sender, EventArgs e)
+        {
+            MostrarConsumidores();
+        }
+
+        #region METODOS DE CARGA DE DATOS
+        //rellenar el combobox de estados del formulario
         private void CargarDatosCBEstado()
         {
             using (SIDACEntities db = new SIDACEntities())
@@ -29,13 +37,12 @@ namespace SIDAC.VISTA
                 cbEstado.DataSource = estados;
                 cbEstado.DisplayMember = "nombre";
                 cbEstado.ValueMember = "idEstado";
+                cbEstado.SelectedIndex = -1;
 
             }
         }
-        private void FrmConsumidores_Load(object sender, EventArgs e)
-        {
-            MostrarConsumidores();
-        }
+        #endregion
+
         #region Metodos CRUD
         //mostrar
         private void MostrarConsumidores()
@@ -53,7 +60,8 @@ namespace SIDAC.VISTA
                 txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
 
             }
-            else if (rbInactivos.Checked)
+
+            if (rbInactivos.Checked)
             {
                 //cargando datos a la tabla de consumidores
                 dtgConsumidores.Rows.Clear();
@@ -72,69 +80,112 @@ namespace SIDAC.VISTA
         //Agregar consumidor
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            CDConsumidores consumidores = new CDConsumidores();
+            if (ValidarCajas()==true)
+            {
+                CDConsumidores consumidores = new CDConsumidores();
 
-            //cargando datos al objeto consumidor
-            Consumidores consumidores1 = new Consumidores();
-            consumidores1.nombres = txtNombres.Text;
-            consumidores1.apellidos = txtApellidos.Text;
-            consumidores1.telefono = txtTelefono.Text;
-            consumidores1.correo = txtCorreo.Text;
-            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                //cargando datos al objeto consumidor
+                Consumidores consumidores1 = new Consumidores();
+                consumidores1.nombres = txtNombres.Text;
+                consumidores1.apellidos = txtApellidos.Text;
+                consumidores1.telefono = txtTelefono.Text;
+                consumidores1.correo = txtCorreo.Text;
+                consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
 
-            //guardando datos
-            consumidores.AgregarConsumidor(consumidores1);
-            Limpiar();
+                //guardando datos
+                consumidores.AgregarConsumidor(consumidores1);
+                Limpiar();
+            }
+
 
         }
 
+        //MODIFICAR
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            CDConsumidores consumidores = new CDConsumidores();
+            if (ValidarCajas()==true)
+            {
+                CDConsumidores consumidores = new CDConsumidores();
 
-            //cargando datos al objeto consumidor
-            Consumidores consumidores1 = new Consumidores();
-            consumidores1.idConsumidor = Convert.ToInt32(txtID.Text);
-            consumidores1.nombres = txtNombres.Text;
-            consumidores1.apellidos = txtApellidos.Text;
-            consumidores1.telefono = txtTelefono.Text;
-            consumidores1.correo = txtCorreo.Text;
-            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
-            //guardando datos
-            consumidores.ActualizarConsumidor(consumidores1);
-            Limpiar();
+                //cargando datos al objeto consumidor
+                Consumidores consumidores1 = new Consumidores();
+                consumidores1.idConsumidor = Convert.ToInt32(txtID.Text);
+                consumidores1.nombres = txtNombres.Text;
+                consumidores1.apellidos = txtApellidos.Text;
+                consumidores1.telefono = txtTelefono.Text;
+                consumidores1.correo = txtCorreo.Text;
+                consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                //guardando datos
+                consumidores.ActualizarConsumidor(consumidores1);
+                Limpiar();
+            }
+            
         }
-        //eliminar
+
+        //ELIMINAR
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dtgConsumidores.Rows.Count>0)
             {
                 CDConsumidores consumidores = new CDConsumidores();
                 consumidores.EliminarConsumidor(Convert.ToInt32(txtID.Text));
+                Limpiar();
             }
-            Limpiar();
+            
         }
         #endregion
-        private void Limpiar()
+
+        #region VALIDACIONES
+        private Boolean ValidarCajas()
+        {
+            Boolean validar = true;
+
+            validacion.SetError(txtApellidos, "");
+            validacion.SetError(cbEstado, "");
+            validacion.SetError(txtNombres, "");
+
+            if (txtNombres.Text.Equals(""))
+            {
+                validacion.SetError(txtNombres, "Este campo es obligatorio");
+                validar = false;
+            }
+
+            if (txtApellidos.Text.Equals(""))
+            {
+                validacion.SetError(txtApellidos, "Este campo es obligatorio");
+                validar = false;
+            }
+
+            if (cbEstado.SelectedValue == null)
+            {
+                validacion.SetError(cbEstado, "Este campo es obligatorio");
+                validar = false;
+            }
+
+            return validar;
+        }
+        #endregion
+
+        #region RADIO_BOTONES
+        private void rbActivos_CheckedChanged(object sender, EventArgs e)
         {
             MostrarConsumidores();
-            txtApellidos.Clear();
-            txtNombres.Clear();
-            txtCorreo.Clear();
-            txtTelefono.Clear();
-            cbEstado.SelectedIndex = -1;
-
-            lblId.Visible = false;
-            txtID.Visible = false;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
-            btnAgregar.Enabled =true;
-
+            Visible_Invisible_CajasFormulario();
         }
 
+        private void rbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            MostrarConsumidores();
+            Visible_Invisible_CajasFormulario();
+
+
+        }
+        #endregion
+
+        #region RELLENAR CAJAS
         private void dtgConsumidores_DoubleClick(object sender, EventArgs e)
         {
-            if (dtgConsumidores.SelectedRows.Count>0)
+            if (dtgConsumidores.SelectedRows.Count > 0)
             {
                 txtID.Text = dtgConsumidores.CurrentRow.Cells[0].Value.ToString();
                 txtNombres.Text = dtgConsumidores.CurrentRow.Cells[1].Value.ToString();
@@ -154,25 +205,25 @@ namespace SIDAC.VISTA
                 MessageBox.Show("Seleccione un registro");
             }
         }
+        #endregion
 
-        private void pnlNuevoConsumidor_DoubleClick(object sender, EventArgs e)
+        #region MOSTRAR FORMULARIO
+        private void btnAbrirFormulario_Click(object sender, EventArgs e)
         {
-            Limpiar();
+            if (pnlNuevoConsumidor.Width == 0)
+            {
+                pnlNuevoConsumidor.Visible = true;
+                pnlNuevoConsumidor.Enabled = true;
+                pnlNuevoConsumidor.Width = 300;
+            }
+            else if (pnlNuevoConsumidor.Width == 300)
+            {
+                pnlNuevoConsumidor.Visible = true;
+                pnlNuevoConsumidor.Enabled = true;
+                pnlNuevoConsumidor.Width = 0;
+            }
         }
 
-        private void rbActivos_CheckedChanged(object sender, EventArgs e)
-        {
-            MostrarConsumidores();
-            Visible_Invisible_CajasFormulario();
-        }
-
-        private void rbTodos_CheckedChanged(object sender, EventArgs e)
-        {
-            MostrarConsumidores();
-            Visible_Invisible_CajasFormulario();
-
-
-        }
         private void Visible_Invisible_CajasFormulario()
         {
             if (rbActivos.Checked)
@@ -194,107 +245,34 @@ namespace SIDAC.VISTA
                 txtCorreo.Enabled = false;
 
                 btnAgregar.Enabled = false;
-            }           
-           
+            }
+
         }
-        private void pnlTablaConsumidores_Paint(object sender, PaintEventArgs e)
+
+        #endregion
+
+        #region OTROS METODOS
+        private void Limpiar()
         {
+            MostrarConsumidores();
+            txtApellidos.Clear();
+            txtNombres.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            cbEstado.SelectedIndex = -1;
+
+            lblId.Visible = false;
+            txtID.Visible = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnAgregar.Enabled = true;
 
         }
-
-        private void pnlConsumidores_Paint(object sender, PaintEventArgs e)
+        private void pnlNuevoConsumidor_DoubleClick(object sender, EventArgs e)
         {
-
+            Limpiar();
         }
+        #endregion
 
-        private void pnlEncabezadoNuevoConsumidor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlEncabezadoConsumidores_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlNuevoConsumidor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnlEliminar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblId_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNombres_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtApellidos_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTelefono_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCorreo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
