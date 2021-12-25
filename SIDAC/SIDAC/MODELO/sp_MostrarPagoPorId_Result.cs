@@ -11,10 +11,17 @@ namespace SIDAC.MODELO
 {
     using System;
     
-    public partial class sp_MostrarAdministradoresDefault_Result
+    public partial class sp_MostrarPagoPorId_Result
     {
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Teléfono { get; set; }
+        public int idPago { get; set; }
+        public string nombre { get; set; }
+        public string mes { get; set; }
+        public decimal montoBase { get; set; }
+        public decimal montoCancelado { get; set; }
+        public decimal montoPendiente { get; set; }
+        public Nullable<decimal> mora { get; set; }
+        public string descripcion { get; set; }
+        public string estado { get; set; }
+        public System.DateTime fecha { get; set; }
     }
 }

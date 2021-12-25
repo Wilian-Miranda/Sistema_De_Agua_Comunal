@@ -18,12 +18,22 @@ namespace SIDAC.DAO
                 return db.sp_MostrarPagosDefault().ToList();
             }
         }
-        //mostrar consumidores1
+        //mostrar todos los pagos
         public List<sp_MostrarPagos_Result> MostrarPagos()
         {
             using (SIDACEntities db = new SIDACEntities())
             {
                 return db.sp_MostrarPagos().ToList();
+            }
+        }
+
+        //mostrar pagos atrasados
+        public List<sp_MostrarPagosAtrasados_Result> MostrarPagosAtrasados()
+        {
+            using (SIDACEntities db = new SIDACEntities())
+            {
+                return db.sp_MostrarPagosAtrasados().ToList();
+
             }
         }
 
@@ -34,7 +44,7 @@ namespace SIDAC.DAO
             {
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    db.sp_InsertarPago(pago.montoBase, pago.montoCancelado, pago.descripcion, pago.fecha, pago.FK_estado,
+                    db.sp_InsertarPago(pago.montoBase, pago.montoCancelado, pago.mora, pago.descripcion, pago.fecha, pago.FK_estado,
                                         pago.FK_consumidor) ;
                     db.SaveChanges();
                     MessageBox.Show("Pago agregado existosamente.");
@@ -53,7 +63,7 @@ namespace SIDAC.DAO
             {
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    db.sp_ActualizarPago(pago.idPago, pago.montoCancelado, pago.descripcion, pago.FK_estado);
+                    db.sp_ActualizarPago(pago.idPago, pago.montoCancelado, pago.mora, pago.descripcion, pago.FK_estado);
                     db.SaveChanges();
                     MessageBox.Show("Pago modificado existosamente.");
                 }

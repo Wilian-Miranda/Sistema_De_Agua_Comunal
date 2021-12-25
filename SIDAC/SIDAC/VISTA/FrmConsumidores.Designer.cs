@@ -52,18 +52,19 @@ namespace SIDAC.VISTA
             this.pnlConsumidores = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlTablaConsumidores = new Guna.UI2.WinForms.Guna2Panel();
             this.rbActivos = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.rbTodos = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.rbInactivos = new Guna.UI2.WinForms.Guna2RadioButton();
             this.pnlEliminar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
             this.dtgConsumidores = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.pnlEncabezadoConsumidores = new Guna.UI2.WinForms.Guna2Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlEncabezadoConsumidores = new Guna.UI2.WinForms.Guna2Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblCantidadConsumidores = new System.Windows.Forms.Label();
             this.pnlNuevoConsumidor.SuspendLayout();
             this.pnlEncabezadoNuevoConsumidor.SuspendLayout();
             this.pnlConsumidores.SuspendLayout();
@@ -377,7 +378,7 @@ namespace SIDAC.VISTA
             // pnlTablaConsumidores
             // 
             this.pnlTablaConsumidores.Controls.Add(this.rbActivos);
-            this.pnlTablaConsumidores.Controls.Add(this.rbTodos);
+            this.pnlTablaConsumidores.Controls.Add(this.rbInactivos);
             this.pnlTablaConsumidores.Controls.Add(this.pnlEliminar);
             this.pnlTablaConsumidores.Controls.Add(this.dtgConsumidores);
             this.pnlTablaConsumidores.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -400,7 +401,7 @@ namespace SIDAC.VISTA
             this.rbActivos.CheckedState.InnerColor = System.Drawing.Color.White;
             this.rbActivos.CheckedState.InnerOffset = -4;
             this.rbActivos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbActivos.Location = new System.Drawing.Point(97, 6);
+            this.rbActivos.Location = new System.Drawing.Point(114, 6);
             this.rbActivos.Name = "rbActivos";
             this.rbActivos.Size = new System.Drawing.Size(76, 22);
             this.rbActivos.TabIndex = 3;
@@ -413,30 +414,31 @@ namespace SIDAC.VISTA
             this.rbActivos.UseVisualStyleBackColor = false;
             this.rbActivos.CheckedChanged += new System.EventHandler(this.rbActivos_CheckedChanged);
             // 
-            // rbTodos
+            // rbInactivos
             // 
-            this.rbTodos.AutoSize = true;
-            this.rbTodos.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rbTodos.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbTodos.CheckedState.BorderThickness = 0;
-            this.rbTodos.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbTodos.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbTodos.CheckedState.InnerOffset = -4;
-            this.rbTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbTodos.Location = new System.Drawing.Point(23, 6);
-            this.rbTodos.Name = "rbTodos";
-            this.rbTodos.Size = new System.Drawing.Size(67, 22);
-            this.rbTodos.TabIndex = 2;
-            this.rbTodos.Text = "Todos";
-            this.rbTodos.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbTodos.UncheckedState.BorderThickness = 2;
-            this.rbTodos.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbTodos.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbTodos.UseVisualStyleBackColor = false;
-            this.rbTodos.CheckedChanged += new System.EventHandler(this.rbTodos_CheckedChanged);
+            this.rbInactivos.AutoSize = true;
+            this.rbInactivos.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rbInactivos.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbInactivos.CheckedState.BorderThickness = 0;
+            this.rbInactivos.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rbInactivos.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rbInactivos.CheckedState.InnerOffset = -4;
+            this.rbInactivos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbInactivos.Location = new System.Drawing.Point(23, 6);
+            this.rbInactivos.Name = "rbInactivos";
+            this.rbInactivos.Size = new System.Drawing.Size(85, 22);
+            this.rbInactivos.TabIndex = 2;
+            this.rbInactivos.Text = "Inactivos";
+            this.rbInactivos.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rbInactivos.UncheckedState.BorderThickness = 2;
+            this.rbInactivos.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.rbInactivos.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.rbInactivos.UseVisualStyleBackColor = false;
+            this.rbInactivos.CheckedChanged += new System.EventHandler(this.rbTodos_CheckedChanged);
             // 
             // pnlEliminar
             // 
+            this.pnlEliminar.Controls.Add(this.lblCantidadConsumidores);
             this.pnlEliminar.Controls.Add(this.btnEliminar);
             this.pnlEliminar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlEliminar.Location = new System.Drawing.Point(20, 505);
@@ -532,11 +534,37 @@ namespace SIDAC.VISTA
             this.dtgConsumidores.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dtgConsumidores.DoubleClick += new System.EventHandler(this.dtgConsumidores_DoubleClick);
             // 
+            // pnlEncabezadoConsumidores
+            // 
+            this.pnlEncabezadoConsumidores.BackColor = System.Drawing.Color.Silver;
+            this.pnlEncabezadoConsumidores.Controls.Add(this.label1);
+            this.pnlEncabezadoConsumidores.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezadoConsumidores.Location = new System.Drawing.Point(0, 0);
+            this.pnlEncabezadoConsumidores.Name = "pnlEncabezadoConsumidores";
+            this.pnlEncabezadoConsumidores.ShadowDecoration.Parent = this.pnlEncabezadoConsumidores;
+            this.pnlEncabezadoConsumidores.Size = new System.Drawing.Size(700, 60);
+            this.pnlEncabezadoConsumidores.TabIndex = 3;
+            this.pnlEncabezadoConsumidores.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEncabezadoConsumidores_Paint);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(240, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(246, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "GESTIÓN DE CONSUMIDORES";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Column6
             // 
             this.Column6.HeaderText = "Código";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.Visible = false;
             // 
             // Column1
             // 
@@ -568,30 +596,15 @@ namespace SIDAC.VISTA
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // pnlEncabezadoConsumidores
+            // lblCantidadConsumidores
             // 
-            this.pnlEncabezadoConsumidores.BackColor = System.Drawing.Color.Silver;
-            this.pnlEncabezadoConsumidores.Controls.Add(this.label1);
-            this.pnlEncabezadoConsumidores.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEncabezadoConsumidores.Location = new System.Drawing.Point(0, 0);
-            this.pnlEncabezadoConsumidores.Name = "pnlEncabezadoConsumidores";
-            this.pnlEncabezadoConsumidores.ShadowDecoration.Parent = this.pnlEncabezadoConsumidores;
-            this.pnlEncabezadoConsumidores.Size = new System.Drawing.Size(700, 60);
-            this.pnlEncabezadoConsumidores.TabIndex = 3;
-            this.pnlEncabezadoConsumidores.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEncabezadoConsumidores_Paint);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(240, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "GESTIÓN DE CONSUMIDORES";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblCantidadConsumidores.AutoSize = true;
+            this.lblCantidadConsumidores.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCantidadConsumidores.Location = new System.Drawing.Point(630, 0);
+            this.lblCantidadConsumidores.Name = "lblCantidadConsumidores";
+            this.lblCantidadConsumidores.Size = new System.Drawing.Size(30, 18);
+            this.lblCantidadConsumidores.TabIndex = 4;
+            this.lblCantidadConsumidores.Text = "0.0";
             // 
             // FrmConsumidores
             // 
@@ -617,6 +630,7 @@ namespace SIDAC.VISTA
             this.pnlTablaConsumidores.ResumeLayout(false);
             this.pnlTablaConsumidores.PerformLayout();
             this.pnlEliminar.ResumeLayout(false);
+            this.pnlEliminar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsumidores)).EndInit();
             this.pnlEncabezadoConsumidores.ResumeLayout(false);
             this.pnlEncabezadoConsumidores.PerformLayout();
@@ -648,7 +662,7 @@ namespace SIDAC.VISTA
         private Guna.UI2.WinForms.Guna2Button btnAgregar;
         private Guna.UI2.WinForms.Guna2Panel pnlTablaConsumidores;
         private Guna.UI2.WinForms.Guna2RadioButton rbActivos;
-        private Guna.UI2.WinForms.Guna2RadioButton rbTodos;
+        private Guna.UI2.WinForms.Guna2RadioButton rbInactivos;
         private Guna.UI2.WinForms.Guna2Panel pnlEliminar;
         private Guna.UI2.WinForms.Guna2Button btnEliminar;
         private Guna.UI2.WinForms.Guna2DataGridView dtgConsumidores;
@@ -658,5 +672,6 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Label lblCantidadConsumidores;
     }
 }

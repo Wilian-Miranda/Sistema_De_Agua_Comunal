@@ -11,11 +11,17 @@ namespace SIDAC.MODELO
 {
     using System;
     
-    public partial class sp_MostrarCompras_Result
+    public partial class sp_MostrarPagosAtrasados_Result
     {
-        public int idCompra { get; set; }
-        public string proveedor { get; set; }
-        public decimal valor { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
+        public int Código { get; set; }
+        public string Nombre { get; set; }
+        public string Mes { get; set; }
+        public decimal Monto_base { get; set; }
+        public decimal Cancelado { get; set; }
+        public decimal Pendiente { get; set; }
+        public Nullable<decimal> mora { get; set; }
+        public string Descripción { get; set; }
+        public string Estado { get; set; }
+        public System.DateTime Fecha { get; set; }
     }
 }

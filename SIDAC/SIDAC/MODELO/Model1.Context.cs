@@ -29,34 +29,13 @@ namespace SIDAC.MODELO
     
         public virtual DbSet<Compras> Compras { get; set; }
         public virtual DbSet<Consumidores> Consumidores { get; set; }
-        public virtual DbSet<Estados> Estados { get; set; }
-        public virtual DbSet<Pagos> Pagos { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<DetallesCompras> DetallesCompras { get; set; }
         public virtual DbSet<Deudas> Deudas { get; set; }
+        public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Inventarios> Inventarios { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<RetirosInventario> RetirosInventario { get; set; }
-    
-        public virtual int sp_ActualizarAdministrador(Nullable<int> id, string nombres, string apellidos, string telefono)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var nombresParameter = nombres != null ?
-                new ObjectParameter("nombres", nombres) :
-                new ObjectParameter("nombres", typeof(string));
-    
-            var apellidosParameter = apellidos != null ?
-                new ObjectParameter("apellidos", apellidos) :
-                new ObjectParameter("apellidos", typeof(string));
-    
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("telefono", telefono) :
-                new ObjectParameter("telefono", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarAdministrador", idParameter, nombresParameter, apellidosParameter, telefonoParameter);
-        }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual int sp_ActualizarCompra(Nullable<int> id, string proveedor, Nullable<System.DateTime> fecha, Nullable<decimal> valor, byte[] foto)
         {
@@ -145,7 +124,7 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarInventarios", idParameter, cantidadParameter, descripcionParameter, precioUnitarioParameter, totalParameter, estadoParameter, fK_compraParameter);
         }
     
-        public virtual int sp_ActualizarPago(Nullable<int> id, Nullable<decimal> montoCancelado, string descripcion, Nullable<int> fK_estado)
+        public virtual int sp_ActualizarPago(Nullable<int> id, Nullable<decimal> montoCancelado, Nullable<decimal> mora, string descripcion, Nullable<int> fK_estado)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -155,6 +134,10 @@ namespace SIDAC.MODELO
                 new ObjectParameter("montoCancelado", montoCancelado) :
                 new ObjectParameter("montoCancelado", typeof(decimal));
     
+            var moraParameter = mora.HasValue ?
+                new ObjectParameter("mora", mora) :
+                new ObjectParameter("mora", typeof(decimal));
+    
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
                 new ObjectParameter("descripcion", typeof(string));
@@ -163,7 +146,7 @@ namespace SIDAC.MODELO
                 new ObjectParameter("FK_estado", fK_estado) :
                 new ObjectParameter("FK_estado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarPago", idParameter, montoCanceladoParameter, descripcionParameter, fK_estadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarPago", idParameter, montoCanceladoParameter, moraParameter, descripcionParameter, fK_estadoParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -219,15 +202,6 @@ namespace SIDAC.MODELO
                 new ObjectParameter("owner_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_EliminarAdministrador(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarAdministrador", idParameter);
         }
     
         public virtual int sp_EliminarCompra(Nullable<int> id)
@@ -292,23 +266,6 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual int sp_InsertarAdministrador(string nombres, string apellidos, string telefono)
-        {
-            var nombresParameter = nombres != null ?
-                new ObjectParameter("nombres", nombres) :
-                new ObjectParameter("nombres", typeof(string));
-    
-            var apellidosParameter = apellidos != null ?
-                new ObjectParameter("apellidos", apellidos) :
-                new ObjectParameter("apellidos", typeof(string));
-    
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("telefono", telefono) :
-                new ObjectParameter("telefono", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarAdministrador", nombresParameter, apellidosParameter, telefonoParameter);
-        }
-    
         public virtual int sp_InsertarCompra(Nullable<int> id, string proveedor, Nullable<System.DateTime> fecha, Nullable<decimal> valor, byte[] foto, Nullable<int> fK_Admin)
         {
             var idParameter = id.HasValue ?
@@ -338,12 +295,8 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarCompra", idParameter, proveedorParameter, fechaParameter, valorParameter, fotoParameter, fK_AdminParameter);
         }
     
-        public virtual int sp_InsertarConsumidor(Nullable<int> id, string nombre, string apellido, string telefono, string correo, Nullable<int> estado)
+        public virtual int sp_InsertarConsumidor(string nombre, string apellido, string telefono, string correo, Nullable<int> estado)
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
@@ -364,7 +317,7 @@ namespace SIDAC.MODELO
                 new ObjectParameter("estado", estado) :
                 new ObjectParameter("estado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarConsumidor", idParameter, nombreParameter, apellidoParameter, telefonoParameter, correoParameter, estadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarConsumidor", nombreParameter, apellidoParameter, telefonoParameter, correoParameter, estadoParameter);
         }
     
         public virtual int sp_InsertarItemInventario(Nullable<int> cantidad, string descripcion, Nullable<decimal> precioUnitario, Nullable<decimal> total, Nullable<int> estado, Nullable<int> fK_compra)
@@ -396,7 +349,7 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarItemInventario", cantidadParameter, descripcionParameter, precioUnitarioParameter, totalParameter, estadoParameter, fK_compraParameter);
         }
     
-        public virtual int sp_InsertarPago(Nullable<decimal> montoBase, Nullable<decimal> montoCancelado, string descripcion, Nullable<System.DateTime> fecha, Nullable<int> fK_estado, Nullable<int> fK_consumidor)
+        public virtual int sp_InsertarPago(Nullable<decimal> montoBase, Nullable<decimal> montoCancelado, Nullable<decimal> mora, string descripcion, Nullable<System.DateTime> fecha, Nullable<int> fK_estado, Nullable<int> fK_consumidor)
         {
             var montoBaseParameter = montoBase.HasValue ?
                 new ObjectParameter("montoBase", montoBase) :
@@ -405,6 +358,10 @@ namespace SIDAC.MODELO
             var montoCanceladoParameter = montoCancelado.HasValue ?
                 new ObjectParameter("montoCancelado", montoCancelado) :
                 new ObjectParameter("montoCancelado", typeof(decimal));
+    
+            var moraParameter = mora.HasValue ?
+                new ObjectParameter("mora", mora) :
+                new ObjectParameter("mora", typeof(decimal));
     
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
@@ -422,17 +379,12 @@ namespace SIDAC.MODELO
                 new ObjectParameter("FK_consumidor", fK_consumidor) :
                 new ObjectParameter("FK_consumidor", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarPago", montoBaseParameter, montoCanceladoParameter, descripcionParameter, fechaParameter, fK_estadoParameter, fK_consumidorParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarPago", montoBaseParameter, montoCanceladoParameter, moraParameter, descripcionParameter, fechaParameter, fK_estadoParameter, fK_consumidorParameter);
         }
     
-        public virtual ObjectResult<sp_MostrarAdministradores_Result> sp_MostrarAdministradores()
+        public virtual ObjectResult<sp_MostraInventario_Result> sp_MostraInventario()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarAdministradores_Result>("sp_MostrarAdministradores");
-        }
-    
-        public virtual ObjectResult<sp_MostrarAdministradoresDefault_Result> sp_MostrarAdministradoresDefault()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarAdministradoresDefault_Result>("sp_MostrarAdministradoresDefault");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostraInventario_Result>("sp_MostraInventario");
         }
     
         public virtual ObjectResult<sp_MostrarCompras_Result> sp_MostrarCompras()
@@ -455,14 +407,59 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarInventarios_Result>("sp_MostrarInventarios");
         }
     
+        public virtual ObjectResult<sp_MostrarPagoPorId_Result> sp_MostrarPagoPorId(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagoPorId_Result>("sp_MostrarPagoPorId", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_MostrarPagoPorYear_Result> sp_MostrarPagoPorYear(Nullable<int> id, string year)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagoPorYear_Result>("sp_MostrarPagoPorYear", idParameter, yearParameter);
+        }
+    
         public virtual ObjectResult<sp_MostrarPagos_Result> sp_MostrarPagos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Result>("sp_MostrarPagos");
         }
     
+        public virtual ObjectResult<sp_MostrarPagosAtrasados_Result> sp_MostrarPagosAtrasados()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagosAtrasados_Result>("sp_MostrarPagosAtrasados");
+        }
+    
         public virtual ObjectResult<sp_MostrarPagosDefault_Result> sp_MostrarPagosDefault()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagosDefault_Result>("sp_MostrarPagosDefault");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_MostrarPagosPorYearPorId(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_MostrarPagosPorYearPorId", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_MostrarYearsPorPagosPorId(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_MostrarYearsPorPagosPorId", idParameter);
         }
     
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)

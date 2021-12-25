@@ -17,9 +17,8 @@ namespace SIDAC.MODELO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estados()
         {
-            this.Pagos = new HashSet<Pagos>();
             this.Consumidores = new HashSet<Consumidores>();
-            this.Deudas = new HashSet<Deudas>();
+            this.Pagos = new HashSet<Pagos>();
             this.Inventarios = new HashSet<Inventarios>();
         }
     
@@ -28,11 +27,9 @@ namespace SIDAC.MODELO
         public Nullable<int> identificador { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagos> Pagos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consumidores> Consumidores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Deudas> Deudas { get; set; }
+        public virtual ICollection<Pagos> Pagos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventarios> Inventarios { get; set; }
     }

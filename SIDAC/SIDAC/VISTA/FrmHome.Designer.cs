@@ -38,8 +38,8 @@ namespace SIDAC
             this.btnPagos = new Guna.UI2.WinForms.Guna2Button();
             this.btnConsumidores = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlPadre = new Guna.UI2.WinForms.Guna2Panel();
             this.pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.pnlPadre = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
@@ -106,6 +106,7 @@ namespace SIDAC
             this.btnReportes.Size = new System.Drawing.Size(200, 35);
             this.btnReportes.TabIndex = 7;
             this.btnReportes.Text = "Reportes";
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnInventarios
             // 
@@ -124,6 +125,7 @@ namespace SIDAC
             this.btnInventarios.Size = new System.Drawing.Size(200, 35);
             this.btnInventarios.TabIndex = 6;
             this.btnInventarios.Text = "Inventarios";
+            this.btnInventarios.Click += new System.EventHandler(this.btnInventarios_Click);
             // 
             // btnCompras
             // 
@@ -142,6 +144,7 @@ namespace SIDAC
             this.btnCompras.Size = new System.Drawing.Size(200, 35);
             this.btnCompras.TabIndex = 5;
             this.btnCompras.Text = "Compras";
+            this.btnCompras.Click += new System.EventHandler(this.btnCompras_Click);
             // 
             // btnPagos
             // 
@@ -160,6 +163,7 @@ namespace SIDAC
             this.btnPagos.Size = new System.Drawing.Size(200, 35);
             this.btnPagos.TabIndex = 4;
             this.btnPagos.Text = "Pagos";
+            this.btnPagos.Click += new System.EventHandler(this.btnPagos_Click);
             // 
             // btnConsumidores
             // 
@@ -178,6 +182,7 @@ namespace SIDAC
             this.btnConsumidores.Size = new System.Drawing.Size(200, 35);
             this.btnConsumidores.TabIndex = 3;
             this.btnConsumidores.Text = "Consumidores";
+            this.btnConsumidores.Click += new System.EventHandler(this.btnConsumidores_Click);
             // 
             // btnDashboard
             // 
@@ -196,15 +201,7 @@ namespace SIDAC
             this.btnDashboard.Size = new System.Drawing.Size(200, 35);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
-            // 
-            // pnlPadre
-            // 
-            this.pnlPadre.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPadre.Location = new System.Drawing.Point(200, 30);
-            this.pnlPadre.Name = "pnlPadre";
-            this.pnlPadre.ShadowDecoration.Parent = this.pnlPadre;
-            this.pnlPadre.Size = new System.Drawing.Size(1000, 620);
-            this.pnlPadre.TabIndex = 2;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // pbLogo
             // 
@@ -219,6 +216,15 @@ namespace SIDAC
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbLogo.TabIndex = 1;
             this.pbLogo.TabStop = false;
+            // 
+            // pnlPadre
+            // 
+            this.pnlPadre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPadre.Location = new System.Drawing.Point(200, 30);
+            this.pnlPadre.Name = "pnlPadre";
+            this.pnlPadre.ShadowDecoration.Parent = this.pnlPadre;
+            this.pnlPadre.Size = new System.Drawing.Size(1000, 620);
+            this.pnlPadre.TabIndex = 2;
             // 
             // FrmHome
             // 

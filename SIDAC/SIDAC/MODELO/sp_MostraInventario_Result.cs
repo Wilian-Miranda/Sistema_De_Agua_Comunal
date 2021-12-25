@@ -11,9 +11,14 @@ namespace SIDAC.MODELO
 {
     using System;
     
-    public partial class sp_MostrarAdministradores_Result
+    public partial class sp_MostraInventario_Result
     {
-        public string Nombre { get; set; }
-        public string Teléfono { get; set; }
+        public Nullable<int> No__de_Compra { get; set; }
+        public int cantidad { get; set; }
+        public string descripcion { get; set; }
+        public decimal precioUnitario { get; set; }
+        public decimal total { get; set; }
+        public int Utilizado { get; set; }
+        public string nombre { get; set; }
     }
 }

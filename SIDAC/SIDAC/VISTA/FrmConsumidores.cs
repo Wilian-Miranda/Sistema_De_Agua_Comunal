@@ -17,10 +17,21 @@ namespace SIDAC.VISTA
         public FrmConsumidores()
         {
             InitializeComponent();
-            cbEstado.Items.Add("1");
-            cbEstado.Items.Add("0");
+            CargarDatosCBEstado();
         }
+        private void CargarDatosCBEstado()
+        {
+            using (SIDACEntities db = new SIDACEntities())
+            {
+                var estados = (from t in db.Estados
+                               where t.identificador == 3
+                               select t).ToList();
+                cbEstado.DataSource = estados;
+                cbEstado.DisplayMember = "nombre";
+                cbEstado.ValueMember = "idEstado";
 
+            }
+        }
         private void FrmConsumidores_Load(object sender, EventArgs e)
         {
             MostrarConsumidores();
@@ -35,19 +46,26 @@ namespace SIDAC.VISTA
                 dtgConsumidores.Rows.Clear();
                 foreach (var i in consumidores.MostrarConsumidoresDefault())
                 {
-                    dtgConsumidores.Rows.Add(i.Código, i.Nombre, i.Apellido, i.Teléfono, i.Correo_Electrónico, i.Estado);
+                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
+                   
                 }
+                lblCantidadConsumidores.Text = consumidores.MostrarConsumidoresDefault().Count().ToString() + " consumidores";
                 txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
+
             }
-            else if (rbTodos.Checked)
+            else if (rbInactivos.Checked)
             {
                 //cargando datos a la tabla de consumidores
                 dtgConsumidores.Rows.Clear();
                 foreach (var i in consumidores.MostrarConsumidores())
                 {
-                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.Fk_estado);
+                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
+
                 }
                 txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
+                lblCantidadConsumidores.Text = consumidores.MostrarConsumidores().Count().ToString() + " consumidores";
+
+
             }
         }
 
@@ -58,12 +76,11 @@ namespace SIDAC.VISTA
 
             //cargando datos al objeto consumidor
             Consumidores consumidores1 = new Consumidores();
-            consumidores1.idConsumidor = Convert.ToInt32(txtID.Text);
             consumidores1.nombres = txtNombres.Text;
             consumidores1.apellidos = txtApellidos.Text;
             consumidores1.telefono = txtTelefono.Text;
             consumidores1.correo = txtCorreo.Text;
-            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.Text);
+            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
 
             //guardando datos
             consumidores.AgregarConsumidor(consumidores1);
@@ -82,8 +99,7 @@ namespace SIDAC.VISTA
             consumidores1.apellidos = txtApellidos.Text;
             consumidores1.telefono = txtTelefono.Text;
             consumidores1.correo = txtCorreo.Text;
-            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.Text);
-
+            consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
             //guardando datos
             consumidores.ActualizarConsumidor(consumidores1);
             Limpiar();
@@ -118,18 +134,25 @@ namespace SIDAC.VISTA
 
         private void dtgConsumidores_DoubleClick(object sender, EventArgs e)
         {
-            txtID.Text = dtgConsumidores.CurrentRow.Cells[0].Value.ToString();
-            txtNombres.Text = dtgConsumidores.CurrentRow.Cells[1].Value.ToString();
-            txtApellidos.Text = dtgConsumidores.CurrentRow.Cells[2].Value.ToString();
-            txtTelefono.Text = dtgConsumidores.CurrentRow.Cells[3].Value.ToString();
-            txtCorreo.Text = dtgConsumidores.CurrentRow.Cells[4].Value.ToString();
-            cbEstado.Text = dtgConsumidores.CurrentRow.Cells[5].Value.ToString();
+            if (dtgConsumidores.SelectedRows.Count>0)
+            {
+                txtID.Text = dtgConsumidores.CurrentRow.Cells[0].Value.ToString();
+                txtNombres.Text = dtgConsumidores.CurrentRow.Cells[1].Value.ToString();
+                txtApellidos.Text = dtgConsumidores.CurrentRow.Cells[2].Value.ToString();
+                txtTelefono.Text = dtgConsumidores.CurrentRow.Cells[3].Value.ToString();
+                txtCorreo.Text = dtgConsumidores.CurrentRow.Cells[4].Value.ToString();
+                cbEstado.Text = dtgConsumidores.CurrentRow.Cells[5].Value.ToString();
 
-            lblId.Visible = true;
-            txtID.Visible = true;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
-            btnAgregar.Enabled = false;
+                lblId.Visible = true;
+                txtID.Visible = true;
+                btnModificar.Enabled = true;
+                btnEliminar.Enabled = true;
+                btnAgregar.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un registro");
+            }
         }
 
         private void pnlNuevoConsumidor_DoubleClick(object sender, EventArgs e)
@@ -140,13 +163,40 @@ namespace SIDAC.VISTA
         private void rbActivos_CheckedChanged(object sender, EventArgs e)
         {
             MostrarConsumidores();
+            Visible_Invisible_CajasFormulario();
         }
 
         private void rbTodos_CheckedChanged(object sender, EventArgs e)
         {
             MostrarConsumidores();
-        }
+            Visible_Invisible_CajasFormulario();
 
+
+        }
+        private void Visible_Invisible_CajasFormulario()
+        {
+            if (rbActivos.Checked)
+            {
+                txtID.Enabled = true;
+                txtNombres.Enabled = true;
+                txtApellidos.Enabled = true;
+                txtTelefono.Enabled = true;
+                txtCorreo.Enabled = true;
+
+                btnAgregar.Enabled = true;
+            }
+            else
+            {
+                txtID.Enabled = false;
+                txtNombres.Enabled = false;
+                txtApellidos.Enabled = false;
+                txtTelefono.Enabled = false;
+                txtCorreo.Enabled = false;
+
+                btnAgregar.Enabled = false;
+            }           
+           
+        }
         private void pnlTablaConsumidores_Paint(object sender, PaintEventArgs e)
         {
 

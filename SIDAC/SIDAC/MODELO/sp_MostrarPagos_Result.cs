@@ -19,6 +19,7 @@ namespace SIDAC.MODELO
         public decimal Monto_base { get; set; }
         public decimal Cancelado { get; set; }
         public decimal Pendiente { get; set; }
+        public Nullable<decimal> mora { get; set; }
         public string Descripción { get; set; }
         public string Estado { get; set; }
         public System.DateTime Fecha { get; set; }

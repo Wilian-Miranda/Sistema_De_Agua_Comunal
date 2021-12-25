@@ -10,7 +10,7 @@ namespace SIDAC.DAO
 {
     class CDConsumidores
     {
-        //mostrar consumidores
+        //mostrar consumidores activos
         public List<sp_MostrarConsumidoresDefault_Result> MostrarConsumidoresDefault()
         {
             using(SIDACEntities db = new SIDACEntities())
@@ -18,12 +18,12 @@ namespace SIDAC.DAO
                 return db.sp_MostrarConsumidoresDefault().ToList();
             }
         }
-        //mostrar consumidores1
-        public List<Consumidores> MostrarConsumidores()
+        //mostrar consumidores inactivos
+        public List<sp_MostrarConsumidores_Result> MostrarConsumidores()
         {
             using (SIDACEntities db = new SIDACEntities())
             {
-                return db.Consumidores.ToList();
+                return db.sp_MostrarConsumidores().ToList();
             }
         }
 
@@ -34,7 +34,7 @@ namespace SIDAC.DAO
             {
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    db.sp_InsertarConsumidor(consumidor.idConsumidor,consumidor.nombres,consumidor.apellidos,     consumidor.telefono,consumidor.correo,consumidor.Fk_estado);
+                    db.sp_InsertarConsumidor(consumidor.nombres,consumidor.apellidos,consumidor.telefono,consumidor.correo,consumidor.Fk_estado);
                     db.SaveChanges();
                     MessageBox.Show("Consumidor agregado existosamente.");
                 }

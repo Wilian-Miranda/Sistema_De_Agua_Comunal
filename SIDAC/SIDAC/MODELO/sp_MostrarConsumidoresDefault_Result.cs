@@ -13,11 +13,11 @@ namespace SIDAC.MODELO
     
     public partial class sp_MostrarConsumidoresDefault_Result
     {
-        public int Código { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Teléfono { get; set; }
-        public string Correo_Electrónico { get; set; }
-        public int Estado { get; set; }
+        public int idConsumidor { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public string telefono { get; set; }
+        public string correo { get; set; }
+        public string nombre { get; set; }
     }
 }

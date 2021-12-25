@@ -15,9 +15,9 @@ namespace SIDAC.MODELO
     public partial class Inventarios
     {
         public int Idinventario { get; set; }
+        public int Utilizado { get; set; }
         public int FK_estado { get; set; }
         public int FK_DetalleCompra { get; set; }
-        public int Utilizado { get; set; }
     
         public virtual DetallesCompras DetallesCompras { get; set; }
         public virtual Estados Estados { get; set; }

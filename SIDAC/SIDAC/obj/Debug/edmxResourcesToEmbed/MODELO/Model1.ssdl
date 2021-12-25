@@ -15,12 +15,12 @@
     <Key>
       <PropertyRef Name="idConsumidor" />
     </Key>
-    <Property Name="idConsumidor" Type="int" Nullable="false" />
+    <Property Name="idConsumidor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="telefono" Type="varchar" MaxLength="20" />
     <Property Name="correo" Type="varchar" MaxLength="30" />
-    <Property Name="Fk_estado" Type="int" />
+    <Property Name="Fk_estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DetallesCompras">
     <Key>
@@ -39,10 +39,12 @@
     </Key>
     <Property Name="idDeuda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
     <Property Name="monto" Type="smallmoney" Nullable="false" />
     <Property Name="cancelado" Type="smallmoney" Nullable="false" />
     <Property Name="pendiente" Type="smallmoney" Nullable="false" />
-    <Property Name="Fk_estado" Type="int" Nullable="false" />
+    <Property Name="Fk_Consumidor" Type="int" Nullable="false" />
+    <Property Name="Fk_Idpago" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -70,6 +72,7 @@
     <Property Name="montoBase" Type="smallmoney" Nullable="false" />
     <Property Name="montoCancelado" Type="smallmoney" Nullable="false" />
     <Property Name="montoPendiente" Type="smallmoney" Nullable="false" />
+    <Property Name="mora" Type="smallmoney" />
     <Property Name="descripcion" Type="varchar" MaxLength="255" />
     <Property Name="fecha" Type="date" Nullable="false" />
     <Property Name="FK_estado" Type="int" Nullable="false" />
@@ -133,8 +136,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Consumidor">
+    <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="1" />
+    <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumidores">
+        <PropertyRef Name="idConsumidor" />
+      </Principal>
+      <Dependent Role="Deudas">
+        <PropertyRef Name="Fk_Consumidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Consumidores_Estados">
-    <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+    <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
     <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Estados">
@@ -145,15 +160,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Deudas_Estados">
-    <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+  <Association Name="FK_Deudas_Pagos">
+    <End Role="Pagos" Type="Self.Pagos" Multiplicity="1" />
     <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Estados">
-        <PropertyRef Name="idEstado" />
+      <Principal Role="Pagos">
+        <PropertyRef Name="idPago" />
       </Principal>
       <Dependent Role="Deudas">
-        <PropertyRef Name="Fk_estado" />
+        <PropertyRef Name="Fk_Idpago" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -182,12 +197,6 @@
     </ReferentialConstraint>
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="sp_ActualizarAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id" Type="int" Mode="In" />
-    <Parameter Name="nombres" Type="varchar" Mode="In" />
-    <Parameter Name="apellidos" Type="varchar" Mode="In" />
-    <Parameter Name="telefono" Type="varchar" Mode="In" />
-  </Function>
   <Function Name="sp_ActualizarCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="proveedor" Type="varchar" Mode="In" />
@@ -215,6 +224,7 @@
   <Function Name="sp_ActualizarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="montoCancelado" Type="smallmoney" Mode="In" />
+    <Parameter Name="mora" Type="smallmoney" Mode="In" />
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="FK_estado" Type="int" Mode="In" />
   </Function>
@@ -233,9 +243,6 @@
   <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_EliminarAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_EliminarCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
@@ -257,11 +264,6 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_InsertarAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nombres" Type="varchar" Mode="In" />
-    <Parameter Name="apellidos" Type="varchar" Mode="In" />
-    <Parameter Name="telefono" Type="varchar" Mode="In" />
-  </Function>
   <Function Name="sp_InsertarCompra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="proveedor" Type="varchar" Mode="In" />
@@ -271,7 +273,6 @@
     <Parameter Name="FK_Admin" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_InsertarConsumidor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="apellido" Type="varchar" Mode="In" />
     <Parameter Name="telefono" Type="varchar" Mode="In" />
@@ -289,19 +290,33 @@
   <Function Name="sp_InsertarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="montoBase" Type="smallmoney" Mode="In" />
     <Parameter Name="montoCancelado" Type="smallmoney" Mode="In" />
+    <Parameter Name="mora" Type="smallmoney" Mode="In" />
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="fecha" Type="date" Mode="In" />
     <Parameter Name="FK_estado" Type="int" Mode="In" />
     <Parameter Name="FK_consumidor" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_MostrarAdministradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_MostrarAdministradoresDefault" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MostraInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarConsumidores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarConsumidoresDefault" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarInventarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MostrarPagoPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MostrarPagoPorYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="year" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MostrarPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MostrarPagosAtrasados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarPagosDefault" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MostrarPagosPorYearPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MostrarYearsPorPagosPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -330,12 +345,16 @@
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Pagos" EntitySet="Pagos" />
     </AssociationSet>
+    <AssociationSet Name="FK_Consumidor" Association="Self.FK_Consumidor">
+      <End Role="Consumidores" EntitySet="Consumidores" />
+      <End Role="Deudas" EntitySet="Deudas" />
+    </AssociationSet>
     <AssociationSet Name="FK_Consumidores_Estados" Association="Self.FK_Consumidores_Estados">
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Consumidores" EntitySet="Consumidores" />
     </AssociationSet>
-    <AssociationSet Name="FK_Deudas_Estados" Association="Self.FK_Deudas_Estados">
-      <End Role="Estados" EntitySet="Estados" />
+    <AssociationSet Name="FK_Deudas_Pagos" Association="Self.FK_Deudas_Pagos">
+      <End Role="Pagos" EntitySet="Pagos" />
       <End Role="Deudas" EntitySet="Deudas" />
     </AssociationSet>
     <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="Self.FK_Inventarios_DetallesCompras">

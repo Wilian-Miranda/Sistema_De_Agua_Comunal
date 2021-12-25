@@ -18,6 +18,7 @@ namespace SIDAC.MODELO
         public Consumidores()
         {
             this.Pagos = new HashSet<Pagos>();
+            this.Deudas = new HashSet<Deudas>();
         }
     
         public int idConsumidor { get; set; }
@@ -25,10 +26,12 @@ namespace SIDAC.MODELO
         public string apellidos { get; set; }
         public string telefono { get; set; }
         public string correo { get; set; }
-        public Nullable<int> Fk_estado { get; set; }
+        public int Fk_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deudas> Deudas { get; set; }
         public virtual Estados Estados { get; set; }
     }
 }
