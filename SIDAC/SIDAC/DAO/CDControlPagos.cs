@@ -10,14 +10,7 @@ namespace SIDAC.DAO
 {
     class CDControlPagos
     {
-        //mostrar pagos pendientes
-        public List<sp_MostrarPagosDefault_Result> MostrarPagosDefault()
-        {
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                return db.sp_MostrarPagosDefault().ToList();
-            }
-        }
+
         //mostrar todos los pagos
         public List<sp_MostrarPagos_Result> MostrarPagos()
         {
@@ -27,15 +20,7 @@ namespace SIDAC.DAO
             }
         }
 
-        //mostrar pagos atrasados
-        public List<sp_MostrarPagosAtrasados_Result> MostrarPagosAtrasados()
-        {
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                return db.sp_MostrarPagosAtrasados().ToList();
 
-            }
-        }
 
         //Insertar
         public void RegistrarPago(Pagos pago)

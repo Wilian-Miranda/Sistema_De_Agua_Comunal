@@ -353,6 +353,10 @@
       <Parameter Name="FK_estado" Mode="In" Type="Int32" />
       <Parameter Name="FK_consumidor" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_MesesInYearsInPagos" ReturnType="Collection(SIDACModel.sp_MesesInYearsInPagos_Result)">
+      <Parameter Name="year" Mode="In" Type="Int32" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_MostraInventario" ReturnType="Collection(SIDACModel.sp_MostraInventario_Result)" />
     <FunctionImport Name="sp_MostrarCompras" ReturnType="Collection(SIDACModel.sp_MostrarCompras_Result)" />
     <FunctionImport Name="sp_MostrarConsumidores" ReturnType="Collection(SIDACModel.sp_MostrarConsumidores_Result)" />
@@ -366,8 +370,6 @@
       <Parameter Name="year" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_MostrarPagos" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Result)" />
-    <FunctionImport Name="sp_MostrarPagosAtrasados" ReturnType="Collection(SIDACModel.sp_MostrarPagosAtrasados_Result)" />
-    <FunctionImport Name="sp_MostrarPagosDefault" ReturnType="Collection(SIDACModel.sp_MostrarPagosDefault_Result)" />
     <FunctionImport Name="sp_MostrarPagosPorYearPorId" ReturnType="Collection(Int32)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -380,6 +382,14 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MostrarPagos_Estado_Year_Mes" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Estado_Year_Mes_Result)">
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="year" Mode="In" Type="String" />
+      <Parameter Name="mes" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -391,6 +401,10 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MesesInYearsInPagos_Result">
+    <Property Type="Int32" Name="valor" Nullable="true" />
+    <Property Type="String" Name="mes" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="sp_MostraInventario_Result">
     <Property Type="Int32" Name="No__de_Compra" Nullable="true" />
@@ -458,39 +472,27 @@
     <Property Type="DateTime" Name="fecha" Nullable="false" />
   </ComplexType>
   <ComplexType Name="sp_MostrarPagos_Result">
-    <Property Type="Int32" Name="Código" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
-    <Property Type="String" Name="Mes" Nullable="false" MaxLength="20" />
-    <Property Type="Decimal" Name="Monto_base" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Cancelado" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Pendiente" Nullable="false" Precision="10" />
+    <Property Type="Int32" Name="idPago" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="montoBase" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="montoCancelado" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="montoPendiente" Nullable="false" Precision="10" />
     <Property Type="Decimal" Name="mora" Nullable="true" Precision="10" />
-    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estado" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="sp_MostrarPagosAtrasados_Result">
-    <Property Type="Int32" Name="Código" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
-    <Property Type="String" Name="Mes" Nullable="false" MaxLength="20" />
-    <Property Type="Decimal" Name="Monto_base" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Cancelado" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Pendiente" Nullable="false" Precision="10" />
+  <ComplexType Name="sp_MostrarPagos_Estado_Year_Mes_Result">
+    <Property Type="Int32" Name="idPago" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="montoBase" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="montoCancelado" Nullable="false" Precision="10" />
+    <Property Type="Decimal" Name="montoPendiente" Nullable="false" Precision="10" />
     <Property Type="Decimal" Name="mora" Nullable="true" Precision="10" />
-    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="Fecha" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_MostrarPagosDefault_Result">
-    <Property Type="Int32" Name="Código" Nullable="false" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="101" />
-    <Property Type="String" Name="Mes" Nullable="false" MaxLength="20" />
-    <Property Type="Decimal" Name="Monto_base" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Cancelado" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="Pendiente" Nullable="false" Precision="10" />
-    <Property Type="Decimal" Name="mora" Nullable="true" Precision="10" />
-    <Property Type="String" Name="Descripción" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estado" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="fecha" Nullable="false" />
   </ComplexType>
 </Schema>

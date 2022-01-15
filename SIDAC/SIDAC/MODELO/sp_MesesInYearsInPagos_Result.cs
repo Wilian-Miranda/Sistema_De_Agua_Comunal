@@ -11,17 +11,9 @@ namespace SIDAC.MODELO
 {
     using System;
     
-    public partial class sp_MostrarPagosAtrasados_Result
+    public partial class sp_MesesInYearsInPagos_Result
     {
-        public int Código { get; set; }
-        public string Nombre { get; set; }
-        public string Mes { get; set; }
-        public decimal Monto_base { get; set; }
-        public decimal Cancelado { get; set; }
-        public decimal Pendiente { get; set; }
-        public Nullable<decimal> mora { get; set; }
-        public string Descripción { get; set; }
-        public string Estado { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public Nullable<int> valor { get; set; }
+        public string mes { get; set; }
     }
 }

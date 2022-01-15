@@ -42,7 +42,6 @@ namespace SIDAC.VISTA
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.rbPendientes = new Guna.UI2.WinForms.Guna2RadioButton();
             this.btnModificar = new Guna.UI2.WinForms.Guna2Button();
             this.btnAgregar = new Guna.UI2.WinForms.Guna2Button();
             this.cbEstado = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -68,9 +67,10 @@ namespace SIDAC.VISTA
             this.btnBuscarConsumidor = new Guna.UI2.WinForms.Guna2Button();
             this.btnMostrarControlesFiltros2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlControlesDeFiltros1 = new System.Windows.Forms.Panel();
+            this.cbMes = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbYears = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbFiltroPrincipal = new Guna.UI2.WinForms.Guna2ComboBox();
             this.btnMostrarControlesFiltros1 = new Guna.UI2.WinForms.Guna2Button();
-            this.rbAtrasados = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.rbCancelados = new Guna.UI2.WinForms.Guna2RadioButton();
             this.dtgPagos = new Guna.UI2.WinForms.Guna2DataGridView();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +94,8 @@ namespace SIDAC.VISTA
             this.pnlDatosConsumidor = new Guna.UI2.WinForms.Guna2Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.pnlDatosPagos = new Guna.UI2.WinForms.Guna2Panel();
+            this.txtMora = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtIdPago = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblIdPago = new System.Windows.Forms.Label();
             this.txtDescripcion = new Guna.UI2.WinForms.Guna2TextBox();
@@ -103,8 +105,6 @@ namespace SIDAC.VISTA
             this.label10 = new System.Windows.Forms.Label();
             this.txtPendiente = new Guna.UI2.WinForms.Guna2TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtMora = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.pnlEliminar.SuspendLayout();
             this.pnlTablaPagos.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -118,31 +118,6 @@ namespace SIDAC.VISTA
             this.pnlDatosConsumidor.SuspendLayout();
             this.pnlDatosPagos.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rbPendientes
-            // 
-            this.rbPendientes.AutoSize = true;
-            this.rbPendientes.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rbPendientes.Checked = true;
-            this.rbPendientes.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbPendientes.CheckedState.BorderThickness = 0;
-            this.rbPendientes.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbPendientes.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbPendientes.CheckedState.InnerOffset = -4;
-            this.rbPendientes.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbPendientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbPendientes.Location = new System.Drawing.Point(2, 2);
-            this.rbPendientes.Name = "rbPendientes";
-            this.rbPendientes.Size = new System.Drawing.Size(104, 30);
-            this.rbPendientes.TabIndex = 3;
-            this.rbPendientes.TabStop = true;
-            this.rbPendientes.Text = "Pendientes";
-            this.rbPendientes.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbPendientes.UncheckedState.BorderThickness = 2;
-            this.rbPendientes.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbPendientes.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbPendientes.UseVisualStyleBackColor = false;
-            this.rbPendientes.CheckedChanged += new System.EventHandler(this.rbPendientes_CheckedChanged);
             // 
             // btnModificar
             // 
@@ -399,6 +374,7 @@ namespace SIDAC.VISTA
             this.pnlEliminar.ShadowDecoration.Parent = this.pnlEliminar;
             this.pnlEliminar.Size = new System.Drawing.Size(950, 35);
             this.pnlEliminar.TabIndex = 1;
+            this.pnlEliminar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEliminar_Paint);
             // 
             // pnlTablaPagos
             // 
@@ -433,10 +409,10 @@ namespace SIDAC.VISTA
             this.pnlControlesDeFiltros2.Controls.Add(this.btnBuscarConsumidor);
             this.pnlControlesDeFiltros2.Controls.Add(this.btnMostrarControlesFiltros2);
             this.pnlControlesDeFiltros2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlControlesDeFiltros2.Location = new System.Drawing.Point(542, 0);
+            this.pnlControlesDeFiltros2.Location = new System.Drawing.Point(917, 0);
             this.pnlControlesDeFiltros2.Name = "pnlControlesDeFiltros2";
             this.pnlControlesDeFiltros2.Padding = new System.Windows.Forms.Padding(2);
-            this.pnlControlesDeFiltros2.Size = new System.Drawing.Size(408, 34);
+            this.pnlControlesDeFiltros2.Size = new System.Drawing.Size(33, 34);
             this.pnlControlesDeFiltros2.TabIndex = 1;
             // 
             // btnFiltrar
@@ -448,12 +424,13 @@ namespace SIDAC.VISTA
             this.btnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnFiltrar.ForeColor = System.Drawing.Color.White;
             this.btnFiltrar.HoverState.Parent = this.btnFiltrar;
-            this.btnFiltrar.Location = new System.Drawing.Point(35, 2);
+            this.btnFiltrar.Location = new System.Drawing.Point(-315, 2);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.ShadowDecoration.Parent = this.btnFiltrar;
             this.btnFiltrar.Size = new System.Drawing.Size(61, 30);
             this.btnFiltrar.TabIndex = 17;
             this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.Visible = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // cbYear
@@ -471,11 +448,12 @@ namespace SIDAC.VISTA
             this.cbYear.HoverState.Parent = this.cbYear;
             this.cbYear.ItemHeight = 25;
             this.cbYear.ItemsAppearance.Parent = this.cbYear;
-            this.cbYear.Location = new System.Drawing.Point(96, 2);
+            this.cbYear.Location = new System.Drawing.Point(-254, 2);
             this.cbYear.Name = "cbYear";
             this.cbYear.ShadowDecoration.Parent = this.cbYear;
-            this.cbYear.Size = new System.Drawing.Size(100, 31);
+            this.cbYear.Size = new System.Drawing.Size(75, 31);
             this.cbYear.TabIndex = 16;
+            this.cbYear.Visible = false;
             this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
             // txtNombreABuscar
@@ -484,10 +462,11 @@ namespace SIDAC.VISTA
             this.txtNombreABuscar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreABuscar.FormattingEnabled = true;
             this.txtNombreABuscar.ItemHeight = 22;
-            this.txtNombreABuscar.Location = new System.Drawing.Point(196, 2);
+            this.txtNombreABuscar.Location = new System.Drawing.Point(-179, 2);
             this.txtNombreABuscar.Name = "txtNombreABuscar";
             this.txtNombreABuscar.Size = new System.Drawing.Size(180, 30);
             this.txtNombreABuscar.TabIndex = 15;
+            this.txtNombreABuscar.Visible = false;
             this.txtNombreABuscar.SelectedIndexChanged += new System.EventHandler(this.txtNombreABuscar_SelectedIndexChanged);
             this.txtNombreABuscar.SelectedValueChanged += new System.EventHandler(this.txtNombreABuscar_SelectedValueChanged);
             // 
@@ -501,11 +480,12 @@ namespace SIDAC.VISTA
             this.btnBuscarConsumidor.ForeColor = System.Drawing.Color.White;
             this.btnBuscarConsumidor.HoverState.Parent = this.btnBuscarConsumidor;
             this.btnBuscarConsumidor.Image = global::SIDAC.Properties.Resources.buscarUsuario;
-            this.btnBuscarConsumidor.Location = new System.Drawing.Point(376, 2);
+            this.btnBuscarConsumidor.Location = new System.Drawing.Point(1, 2);
             this.btnBuscarConsumidor.Name = "btnBuscarConsumidor";
             this.btnBuscarConsumidor.ShadowDecoration.Parent = this.btnBuscarConsumidor;
             this.btnBuscarConsumidor.Size = new System.Drawing.Size(30, 30);
             this.btnBuscarConsumidor.TabIndex = 14;
+            this.btnBuscarConsumidor.Visible = false;
             this.btnBuscarConsumidor.Click += new System.EventHandler(this.btnBuscarConsumidor_Click);
             // 
             // btnMostrarControlesFiltros2
@@ -528,16 +508,88 @@ namespace SIDAC.VISTA
             // pnlControlesDeFiltros1
             // 
             this.pnlControlesDeFiltros1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.pnlControlesDeFiltros1.Controls.Add(this.cbMes);
+            this.pnlControlesDeFiltros1.Controls.Add(this.cbYears);
+            this.pnlControlesDeFiltros1.Controls.Add(this.cbFiltroPrincipal);
             this.pnlControlesDeFiltros1.Controls.Add(this.btnMostrarControlesFiltros1);
-            this.pnlControlesDeFiltros1.Controls.Add(this.rbAtrasados);
-            this.pnlControlesDeFiltros1.Controls.Add(this.rbCancelados);
-            this.pnlControlesDeFiltros1.Controls.Add(this.rbPendientes);
             this.pnlControlesDeFiltros1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlControlesDeFiltros1.Location = new System.Drawing.Point(0, 0);
             this.pnlControlesDeFiltros1.Name = "pnlControlesDeFiltros1";
             this.pnlControlesDeFiltros1.Padding = new System.Windows.Forms.Padding(2);
-            this.pnlControlesDeFiltros1.Size = new System.Drawing.Size(33, 34);
+            this.pnlControlesDeFiltros1.Size = new System.Drawing.Size(360, 34);
             this.pnlControlesDeFiltros1.TabIndex = 0;
+            this.pnlControlesDeFiltros1.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlControlesDeFiltros1_Paint);
+            // 
+            // cbMes
+            // 
+            this.cbMes.BackColor = System.Drawing.Color.Transparent;
+            this.cbMes.BorderRadius = 5;
+            this.cbMes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbMes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMes.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbMes.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbMes.FocusedState.Parent = this.cbMes;
+            this.cbMes.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbMes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbMes.HoverState.Parent = this.cbMes;
+            this.cbMes.ItemHeight = 25;
+            this.cbMes.ItemsAppearance.Parent = this.cbMes;
+            this.cbMes.Location = new System.Drawing.Point(212, 2);
+            this.cbMes.Name = "cbMes";
+            this.cbMes.ShadowDecoration.Parent = this.cbMes;
+            this.cbMes.Size = new System.Drawing.Size(110, 31);
+            this.cbMes.TabIndex = 21;
+            this.cbMes.SelectedIndexChanged += new System.EventHandler(this.cbMes_SelectedIndexChanged);
+            // 
+            // cbYears
+            // 
+            this.cbYears.BackColor = System.Drawing.Color.Transparent;
+            this.cbYears.BorderRadius = 5;
+            this.cbYears.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbYears.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbYears.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbYears.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbYears.FocusedState.Parent = this.cbYears;
+            this.cbYears.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbYears.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbYears.HoverState.Parent = this.cbYears;
+            this.cbYears.ItemHeight = 25;
+            this.cbYears.ItemsAppearance.Parent = this.cbYears;
+            this.cbYears.Location = new System.Drawing.Point(115, 2);
+            this.cbYears.Name = "cbYears";
+            this.cbYears.ShadowDecoration.Parent = this.cbYears;
+            this.cbYears.Size = new System.Drawing.Size(97, 31);
+            this.cbYears.TabIndex = 20;
+            this.cbYears.SelectedIndexChanged += new System.EventHandler(this.cbYears_SelectedIndexChanged);
+            this.cbYears.Enter += new System.EventHandler(this.cbYears_Enter);
+            this.cbYears.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbYears_MouseClick);
+            // 
+            // cbFiltroPrincipal
+            // 
+            this.cbFiltroPrincipal.BackColor = System.Drawing.Color.Transparent;
+            this.cbFiltroPrincipal.BorderRadius = 5;
+            this.cbFiltroPrincipal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbFiltroPrincipal.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbFiltroPrincipal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltroPrincipal.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFiltroPrincipal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFiltroPrincipal.FocusedState.Parent = this.cbFiltroPrincipal;
+            this.cbFiltroPrincipal.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbFiltroPrincipal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbFiltroPrincipal.HoverState.Parent = this.cbFiltroPrincipal;
+            this.cbFiltroPrincipal.ItemHeight = 25;
+            this.cbFiltroPrincipal.ItemsAppearance.Parent = this.cbFiltroPrincipal;
+            this.cbFiltroPrincipal.Location = new System.Drawing.Point(2, 2);
+            this.cbFiltroPrincipal.Name = "cbFiltroPrincipal";
+            this.cbFiltroPrincipal.ShadowDecoration.Parent = this.cbFiltroPrincipal;
+            this.cbFiltroPrincipal.Size = new System.Drawing.Size(113, 31);
+            this.cbFiltroPrincipal.TabIndex = 19;
+            this.cbFiltroPrincipal.Tag = "hola";
+            this.cbFiltroPrincipal.SelectedIndexChanged += new System.EventHandler(this.cbFiltroPrincipal_SelectedIndexChanged);
+            this.cbFiltroPrincipal.Enter += new System.EventHandler(this.cbFiltroPrincipal_Enter);
+            this.cbFiltroPrincipal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbFiltroPrincipal_MouseClick);
             // 
             // btnMostrarControlesFiltros1
             // 
@@ -548,59 +600,13 @@ namespace SIDAC.VISTA
             this.btnMostrarControlesFiltros1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnMostrarControlesFiltros1.ForeColor = System.Drawing.Color.White;
             this.btnMostrarControlesFiltros1.HoverState.Parent = this.btnMostrarControlesFiltros1;
-            this.btnMostrarControlesFiltros1.Location = new System.Drawing.Point(1, 2);
+            this.btnMostrarControlesFiltros1.Location = new System.Drawing.Point(328, 2);
             this.btnMostrarControlesFiltros1.Name = "btnMostrarControlesFiltros1";
             this.btnMostrarControlesFiltros1.ShadowDecoration.Parent = this.btnMostrarControlesFiltros1;
             this.btnMostrarControlesFiltros1.Size = new System.Drawing.Size(30, 30);
             this.btnMostrarControlesFiltros1.TabIndex = 5;
             this.btnMostrarControlesFiltros1.Text = "+";
             this.btnMostrarControlesFiltros1.Click += new System.EventHandler(this.btnMostrarControlesFiltros1_Click);
-            // 
-            // rbAtrasados
-            // 
-            this.rbAtrasados.AutoSize = true;
-            this.rbAtrasados.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rbAtrasados.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbAtrasados.CheckedState.BorderThickness = 0;
-            this.rbAtrasados.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbAtrasados.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbAtrasados.CheckedState.InnerOffset = -4;
-            this.rbAtrasados.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbAtrasados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbAtrasados.Location = new System.Drawing.Point(215, 2);
-            this.rbAtrasados.Name = "rbAtrasados";
-            this.rbAtrasados.Size = new System.Drawing.Size(107, 30);
-            this.rbAtrasados.TabIndex = 4;
-            this.rbAtrasados.Text = "Con retraso";
-            this.rbAtrasados.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbAtrasados.UncheckedState.BorderThickness = 2;
-            this.rbAtrasados.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbAtrasados.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbAtrasados.UseVisualStyleBackColor = false;
-            this.rbAtrasados.CheckedChanged += new System.EventHandler(this.rbAtrasados_CheckedChanged);
-            // 
-            // rbCancelados
-            // 
-            this.rbCancelados.AutoSize = true;
-            this.rbCancelados.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rbCancelados.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbCancelados.CheckedState.BorderThickness = 0;
-            this.rbCancelados.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbCancelados.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbCancelados.CheckedState.InnerOffset = -4;
-            this.rbCancelados.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbCancelados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbCancelados.Location = new System.Drawing.Point(106, 2);
-            this.rbCancelados.Name = "rbCancelados";
-            this.rbCancelados.Size = new System.Drawing.Size(109, 30);
-            this.rbCancelados.TabIndex = 2;
-            this.rbCancelados.Text = "Cancelados";
-            this.rbCancelados.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbCancelados.UncheckedState.BorderThickness = 2;
-            this.rbCancelados.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbCancelados.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbCancelados.UseVisualStyleBackColor = false;
-            this.rbCancelados.CheckedChanged += new System.EventHandler(this.rbTodos_CheckedChanged);
             // 
             // dtgPagos
             // 
@@ -638,7 +644,7 @@ namespace SIDAC.VISTA
             this.Column7});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
@@ -673,11 +679,12 @@ namespace SIDAC.VISTA
             this.dtgPagos.ThemeStyle.ReadOnly = true;
             this.dtgPagos.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dtgPagos.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dtgPagos.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtgPagos.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtgPagos.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.dtgPagos.ThemeStyle.RowsStyle.Height = 22;
             this.dtgPagos.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgPagos.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dtgPagos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPagos_CellContentClick);
             this.dtgPagos.DoubleClick += new System.EventHandler(this.dtgPagos_DoubleClick);
             // 
             // Column6
@@ -942,6 +949,39 @@ namespace SIDAC.VISTA
             this.pnlDatosPagos.TabIndex = 23;
             this.pnlDatosPagos.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDatosPagos_Paint);
             // 
+            // txtMora
+            // 
+            this.txtMora.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMora.DefaultText = "";
+            this.txtMora.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMora.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMora.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMora.DisabledState.Parent = this.txtMora;
+            this.txtMora.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMora.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMora.FocusedState.Parent = this.txtMora;
+            this.txtMora.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMora.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMora.HoverState.Parent = this.txtMora;
+            this.txtMora.Location = new System.Drawing.Point(191, 126);
+            this.txtMora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMora.Name = "txtMora";
+            this.txtMora.PasswordChar = '\0';
+            this.txtMora.PlaceholderText = "0.00";
+            this.txtMora.SelectedText = "";
+            this.txtMora.ShadowDecoration.Parent = this.txtMora;
+            this.txtMora.Size = new System.Drawing.Size(150, 30);
+            this.txtMora.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(187, 104);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 18);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Mora:";
+            // 
             // txtIdPago
             // 
             this.txtIdPago.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1087,39 +1127,6 @@ namespace SIDAC.VISTA
             this.label9.TabIndex = 19;
             this.label9.Text = "Pendiente:";
             // 
-            // txtMora
-            // 
-            this.txtMora.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMora.DefaultText = "";
-            this.txtMora.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMora.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMora.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMora.DisabledState.Parent = this.txtMora;
-            this.txtMora.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMora.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMora.FocusedState.Parent = this.txtMora;
-            this.txtMora.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMora.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMora.HoverState.Parent = this.txtMora;
-            this.txtMora.Location = new System.Drawing.Point(191, 126);
-            this.txtMora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtMora.Name = "txtMora";
-            this.txtMora.PasswordChar = '\0';
-            this.txtMora.PlaceholderText = "0.00";
-            this.txtMora.SelectedText = "";
-            this.txtMora.ShadowDecoration.Parent = this.txtMora;
-            this.txtMora.Size = new System.Drawing.Size(150, 30);
-            this.txtMora.TabIndex = 28;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(187, 104);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 18);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Mora:";
-            // 
             // FrmControlPagos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1140,7 +1147,6 @@ namespace SIDAC.VISTA
             this.panel1.ResumeLayout(false);
             this.pnlControlesDeFiltros2.ResumeLayout(false);
             this.pnlControlesDeFiltros1.ResumeLayout(false);
-            this.pnlControlesDeFiltros1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPagos)).EndInit();
             this.pnlEncabezadoPagos.ResumeLayout(false);
             this.pnlEncabezadoPagos.PerformLayout();
@@ -1157,8 +1163,6 @@ namespace SIDAC.VISTA
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2RadioButton rbPendientes;
         private Guna.UI2.WinForms.Guna2Button btnModificar;
         private Guna.UI2.WinForms.Guna2Button btnAgregar;
         private Guna.UI2.WinForms.Guna2ComboBox cbEstado;
@@ -1176,7 +1180,6 @@ namespace SIDAC.VISTA
         private Guna.UI2.WinForms.Guna2Button btnEliminar;
         private Guna.UI2.WinForms.Guna2Panel pnlEliminar;
         private Guna.UI2.WinForms.Guna2Panel pnlTablaPagos;
-        private Guna.UI2.WinForms.Guna2RadioButton rbCancelados;
         private Guna.UI2.WinForms.Guna2DataGridView dtgPagos;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Panel pnlEncabezadoPagos;
@@ -1199,7 +1202,6 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.ComboBox cbConsumidor;
         private Guna.UI2.WinForms.Guna2TextBox txtIdPago;
         private System.Windows.Forms.Label lblIdPago;
-        private Guna.UI2.WinForms.Guna2RadioButton rbAtrasados;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlControlesDeFiltros1;
         private Guna.UI2.WinForms.Guna2Button btnMostrarControlesFiltros1;
@@ -1221,5 +1223,8 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private Guna.UI2.WinForms.Guna2TextBox txtMora;
         private System.Windows.Forms.Label label13;
+        private Guna.UI2.WinForms.Guna2ComboBox cbFiltroPrincipal;
+        private Guna.UI2.WinForms.Guna2ComboBox cbMes;
+        private Guna.UI2.WinForms.Guna2ComboBox cbYears;
     }
 }

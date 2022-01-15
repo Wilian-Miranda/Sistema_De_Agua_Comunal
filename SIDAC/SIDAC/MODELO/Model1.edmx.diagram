@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63dcebbc079a46568a81a1945654bd99" Name="Diagram1">
+      <Diagram DiagramId="6796f85283e447c384fb7082fbe29501" Name="Diagram1">
         <EntityTypeShape EntityType="SIDACModel.Compras" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SIDACModel.Consumidores" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SIDACModel.DetallesCompras" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />

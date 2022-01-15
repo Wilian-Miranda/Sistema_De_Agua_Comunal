@@ -382,6 +382,19 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarPago", montoBaseParameter, montoCanceladoParameter, moraParameter, descripcionParameter, fechaParameter, fK_estadoParameter, fK_consumidorParameter);
         }
     
+        public virtual ObjectResult<sp_MesesInYearsInPagos_Result> sp_MesesInYearsInPagos(Nullable<int> year, string estado)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MesesInYearsInPagos_Result>("sp_MesesInYearsInPagos", yearParameter, estadoParameter);
+        }
+    
         public virtual ObjectResult<sp_MostraInventario_Result> sp_MostraInventario()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostraInventario_Result>("sp_MostraInventario");
@@ -434,16 +447,6 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Result>("sp_MostrarPagos");
         }
     
-        public virtual ObjectResult<sp_MostrarPagosAtrasados_Result> sp_MostrarPagosAtrasados()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagosAtrasados_Result>("sp_MostrarPagosAtrasados");
-        }
-    
-        public virtual ObjectResult<sp_MostrarPagosDefault_Result> sp_MostrarPagosDefault()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagosDefault_Result>("sp_MostrarPagosDefault");
-        }
-    
         public virtual ObjectResult<Nullable<int>> sp_MostrarPagosPorYearPorId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -482,6 +485,32 @@ namespace SIDAC.MODELO
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_YearsInPagos(string estado)
+        {
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_YearsInPagos", estadoParameter);
+        }
+    
+        public virtual ObjectResult<sp_MostrarPagos_Estado_Year_Mes_Result> sp_MostrarPagos_Estado_Year_Mes(string estado, string year, string mes)
+        {
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            var mesParameter = mes != null ?
+                new ObjectParameter("mes", mes) :
+                new ObjectParameter("mes", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Estado_Year_Mes_Result>("sp_MostrarPagos_Estado_Year_Mes", estadoParameter, yearParameter, mesParameter);
         }
     }
 }

@@ -296,6 +296,10 @@
     <Parameter Name="FK_estado" Type="int" Mode="In" />
     <Parameter Name="FK_consumidor" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_MesesInYearsInPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="year" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MostraInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_MostrarConsumidores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -309,8 +313,11 @@
     <Parameter Name="year" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_MostrarPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_MostrarPagosAtrasados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="sp_MostrarPagosDefault" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MostrarPagos_Estado_Year_Mes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="year" Type="varchar" Mode="In" />
+    <Parameter Name="mes" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MostrarPagosPorYearPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -323,6 +330,9 @@
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_YearsInPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="SIDACModelStoreContainer">
     <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Consumidores" EntityType="Self.Consumidores" Schema="dbo" store:Type="Tables" />

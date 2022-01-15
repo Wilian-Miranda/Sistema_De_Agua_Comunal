@@ -118,6 +118,9 @@
     <Compile Include="MODELO\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODELO\sp_MesesInYearsInPagos_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODELO\sp_MostraInventario_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -139,10 +142,7 @@
     <Compile Include="MODELO\sp_MostrarPagoPorYear_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MODELO\sp_MostrarPagosAtrasados_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MODELO\sp_MostrarPagosDefault_Result.cs">
+    <Compile Include="MODELO\sp_MostrarPagos_Estado_Year_Mes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MODELO\sp_MostrarPagos_Result.cs">
