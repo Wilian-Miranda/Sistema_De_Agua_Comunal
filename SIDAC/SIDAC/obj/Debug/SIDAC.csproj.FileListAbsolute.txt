@@ -51,5 +51,5 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.VisualizarFactura.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmDetallesCompras.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmInventario.resources
-C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmRegistrosInventario.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache

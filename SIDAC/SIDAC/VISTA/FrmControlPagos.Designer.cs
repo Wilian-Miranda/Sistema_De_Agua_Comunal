@@ -377,7 +377,7 @@ namespace SIDAC.VISTA
             this.pnlEliminar.Location = new System.Drawing.Point(20, 505);
             this.pnlEliminar.Name = "pnlEliminar";
             this.pnlEliminar.ShadowDecoration.Parent = this.pnlEliminar;
-            this.pnlEliminar.Size = new System.Drawing.Size(560, 35);
+            this.pnlEliminar.Size = new System.Drawing.Size(950, 35);
             this.pnlEliminar.TabIndex = 1;
             // 
             // pnlTablaPagos
@@ -390,7 +390,7 @@ namespace SIDAC.VISTA
             this.pnlTablaPagos.Name = "pnlTablaPagos";
             this.pnlTablaPagos.Padding = new System.Windows.Forms.Padding(20);
             this.pnlTablaPagos.ShadowDecoration.Parent = this.pnlTablaPagos;
-            this.pnlTablaPagos.Size = new System.Drawing.Size(600, 560);
+            this.pnlTablaPagos.Size = new System.Drawing.Size(990, 560);
             this.pnlTablaPagos.TabIndex = 5;
             // 
             // panel1
@@ -401,7 +401,7 @@ namespace SIDAC.VISTA
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(20, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(560, 34);
+            this.panel1.Size = new System.Drawing.Size(950, 34);
             this.panel1.TabIndex = 5;
             // 
             // pnlControlesDeFiltros2
@@ -413,7 +413,7 @@ namespace SIDAC.VISTA
             this.pnlControlesDeFiltros2.Controls.Add(this.btnBuscarConsumidor);
             this.pnlControlesDeFiltros2.Controls.Add(this.btnMostrarControlesFiltros2);
             this.pnlControlesDeFiltros2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlControlesDeFiltros2.Location = new System.Drawing.Point(527, 0);
+            this.pnlControlesDeFiltros2.Location = new System.Drawing.Point(917, 0);
             this.pnlControlesDeFiltros2.Name = "pnlControlesDeFiltros2";
             this.pnlControlesDeFiltros2.Padding = new System.Windows.Forms.Padding(2);
             this.pnlControlesDeFiltros2.Size = new System.Drawing.Size(33, 34);
@@ -459,6 +459,7 @@ namespace SIDAC.VISTA
             this.cbYear.TabIndex = 16;
             this.cbYear.Visible = false;
             this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
+            this.cbYear.Click += new System.EventHandler(this.cbYear_Click);
             // 
             // txtNombreABuscar
             // 
@@ -660,7 +661,7 @@ namespace SIDAC.VISTA
             this.dtgPagos.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dtgPagos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtgPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPagos.Size = new System.Drawing.Size(554, 439);
+            this.dtgPagos.Size = new System.Drawing.Size(944, 439);
             this.dtgPagos.TabIndex = 0;
             this.dtgPagos.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dtgPagos.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -774,7 +775,7 @@ namespace SIDAC.VISTA
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(207, 19);
+            this.label1.Location = new System.Drawing.Point(402, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(176, 19);
             this.label1.TabIndex = 0;
@@ -790,7 +791,7 @@ namespace SIDAC.VISTA
             this.pnlEncabezadoPagos.Name = "pnlEncabezadoPagos";
             this.pnlEncabezadoPagos.Padding = new System.Windows.Forms.Padding(0, 10, 5, 10);
             this.pnlEncabezadoPagos.ShadowDecoration.Parent = this.pnlEncabezadoPagos;
-            this.pnlEncabezadoPagos.Size = new System.Drawing.Size(600, 60);
+            this.pnlEncabezadoPagos.Size = new System.Drawing.Size(990, 60);
             this.pnlEncabezadoPagos.TabIndex = 3;
             // 
             // btnAbrirVentanaPagos
@@ -802,7 +803,7 @@ namespace SIDAC.VISTA
             this.btnAbrirVentanaPagos.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAbrirVentanaPagos.ForeColor = System.Drawing.Color.White;
             this.btnAbrirVentanaPagos.HoverState.Parent = this.btnAbrirVentanaPagos;
-            this.btnAbrirVentanaPagos.Location = new System.Drawing.Point(565, 10);
+            this.btnAbrirVentanaPagos.Location = new System.Drawing.Point(955, 10);
             this.btnAbrirVentanaPagos.Name = "btnAbrirVentanaPagos";
             this.btnAbrirVentanaPagos.ShadowDecoration.Parent = this.btnAbrirVentanaPagos;
             this.btnAbrirVentanaPagos.Size = new System.Drawing.Size(30, 40);
@@ -818,7 +819,7 @@ namespace SIDAC.VISTA
             this.pnlConsumidores.Location = new System.Drawing.Point(0, 0);
             this.pnlConsumidores.Name = "pnlConsumidores";
             this.pnlConsumidores.ShadowDecoration.Parent = this.pnlConsumidores;
-            this.pnlConsumidores.Size = new System.Drawing.Size(600, 620);
+            this.pnlConsumidores.Size = new System.Drawing.Size(990, 620);
             this.pnlConsumidores.TabIndex = 3;
             // 
             // pnlNuevoPago
@@ -833,10 +834,10 @@ namespace SIDAC.VISTA
             this.pnlNuevoPago.Controls.Add(this.pnlDatosConsumidor);
             this.pnlNuevoPago.Controls.Add(this.pnlDatosPagos);
             this.pnlNuevoPago.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlNuevoPago.Location = new System.Drawing.Point(600, 0);
+            this.pnlNuevoPago.Location = new System.Drawing.Point(990, 0);
             this.pnlNuevoPago.Name = "pnlNuevoPago";
             this.pnlNuevoPago.ShadowDecoration.Parent = this.pnlNuevoPago;
-            this.pnlNuevoPago.Size = new System.Drawing.Size(400, 620);
+            this.pnlNuevoPago.Size = new System.Drawing.Size(10, 620);
             this.pnlNuevoPago.TabIndex = 3;
             this.pnlNuevoPago.Visible = false;
             // 
@@ -874,7 +875,7 @@ namespace SIDAC.VISTA
             this.pnlEncabezadoNuevoPago.Location = new System.Drawing.Point(0, 0);
             this.pnlEncabezadoNuevoPago.Name = "pnlEncabezadoNuevoPago";
             this.pnlEncabezadoNuevoPago.ShadowDecoration.Parent = this.pnlEncabezadoNuevoPago;
-            this.pnlEncabezadoNuevoPago.Size = new System.Drawing.Size(400, 60);
+            this.pnlEncabezadoNuevoPago.Size = new System.Drawing.Size(10, 60);
             this.pnlEncabezadoNuevoPago.TabIndex = 2;
             this.pnlEncabezadoNuevoPago.DoubleClick += new System.EventHandler(this.pnlEncabezadoNuevoPago_DoubleClick);
             // 
@@ -884,7 +885,7 @@ namespace SIDAC.VISTA
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(151, 19);
+            this.label2.Location = new System.Drawing.Point(-44, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 19);
             this.label2.TabIndex = 1;
@@ -1230,6 +1231,6 @@ namespace SIDAC.VISTA
         private Guna.UI2.WinForms.Guna2ComboBox cbFiltroPrincipal;
         private Guna.UI2.WinForms.Guna2ComboBox cbMes;
         private Guna.UI2.WinForms.Guna2ComboBox cbYears;
-        private System.Windows.Forms.ErrorProvider Validacion;
+        public System.Windows.Forms.ErrorProvider Validacion;
     }
 }

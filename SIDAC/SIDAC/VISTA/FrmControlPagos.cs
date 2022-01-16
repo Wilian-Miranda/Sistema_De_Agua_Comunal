@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SIDAC.DAO;
 using SIDAC.MODELO;
+using SIDAC.VALIDACIONES;
 
 namespace SIDAC.VISTA
 {
@@ -21,9 +22,11 @@ namespace SIDAC.VISTA
             //CargarDatosCBYear("Pendiente");
             CargarDatosFiltroPrincipal();
         }
+
+        CDControlPagos pago = new CDControlPagos();
         private void FrmControlPagos_Load(object sender, EventArgs e)
         {
-            MostrarPagos(cbFiltroPrincipal.Text);
+            pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
             CargarEstados();
         }
         #region METODOS DE CARGA DE DATOS
@@ -56,65 +59,28 @@ namespace SIDAC.VISTA
         #endregion
 
         #region CRUD PAGOS
-        public void MostrarPagos(string estado)
-        {
-            CDControlPagos pago = new CDControlPagos();
-
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                var pagos = (from t in db.sp_MostrarPagos()
-                             where t.estado == estado
-                             select t).ToList();
-
-
-                dtgPagos.Rows.Clear();
-                foreach (var i in pagos)
-                {
-                    dtgPagos.Rows.Add(i.idPago, i.nombre, i.mes, i.montoBase, i.montoCancelado,
-                                        i.montoPendiente, i.mora, i.descripcion, i.estado, i.fecha);
-                }
-            }
-  
-        }
-        CDControlPagos pago = new CDControlPagos();
+        VsFrmPagos validacion = new VsFrmPagos();
         //AGREGAR
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (ValidarCajas(0)==true)
+            //llamando al metodo que valida las cajas
+            Boolean validarCajas = false;
+            validarCajas = validacion.ValidarCajas(0,this.txtID,this.txtNombres,this.txtApellidos, this.txtMontoBase,this.txtCancelado,this.txtMora,cbConsumidor.SelectedValue, this.Validacion);
+
+            if (validarCajas==true)
             {
-                Pagos pago1 = new Pagos();
-                pago1.montoBase = Convert.ToDecimal(txtMontoBase.Text);
-                pago1.montoCancelado = Convert.ToDecimal(txtCancelado.Text);
-                pago1.descripcion = txtDescripcion.Text;
-                pago1.mora = Convert.ToDecimal(txtMora.Text);
-                pago1.fecha = Convert.ToDateTime(txtFecha.Text);
-                pago1.FK_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
-                pago1.FK_consumidor = Convert.ToInt32(txtID.Text);
+                Pagos CrNuevoPago = new Pagos();
+                CrNuevoPago.montoBase = Convert.ToDecimal(txtMontoBase.Text);
+                CrNuevoPago.montoCancelado = Convert.ToDecimal(txtCancelado.Text);
+                CrNuevoPago.descripcion = txtDescripcion.Text;
+                CrNuevoPago.mora = Convert.ToDecimal(txtMora.Text);
+                CrNuevoPago.fecha = Convert.ToDateTime(txtFecha.Text);
+                CrNuevoPago.FK_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                CrNuevoPago.FK_consumidor = Convert.ToInt32(txtID.Text);
 
-                pago.RegistrarPago(pago1);
+                pago.RegistrarPago(CrNuevoPago);
 
-                if (txtNombreABuscar.SelectedValue != null || txtNombreABuscar.Text != "")
-                {
-                    btnFiltrar.PerformClick();
-                    cbYear.SelectedIndex = 0;
-                }
-                else
-                {
-                    if (cbFiltroPrincipal.Text != "" && cbYears.Text.Equals("") && cbMes.Text.Equals(""))
-                    {
-                        MostrarPagos(cbFiltroPrincipal.Text);
-                    }
-                    else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text.Equals(""))
-                    {
-                        FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
-                    }
-                    else if(cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text != "")
-                    {
-                        MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text);
-                    }
-
-                }
-
+                MantenerFiltroElegidos();
                 Limpiar();
             }
 
@@ -122,39 +88,22 @@ namespace SIDAC.VISTA
         //modificar
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (ValidarCajas(1)==true)
+            //llamando al metodo que valida las cajas
+            Boolean validarCajas = false;
+            validarCajas = validacion.ValidarCajas(1, this.txtID, this.txtNombres, this.txtApellidos, this.txtMontoBase, this.txtCancelado, this.txtMora, cbConsumidor.SelectedValue, this.Validacion);
+
+            if (validarCajas==true)
             {
-                Pagos pago1 = new Pagos();
-                pago1.montoCancelado = Convert.ToDecimal(txtCancelado.Text);
-                pago1.descripcion = txtDescripcion.Text;
-                pago1.mora = Convert.ToDecimal(txtMora.Text);
-                pago1.FK_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
-                pago1.idPago = Convert.ToInt32(txtIdPago.Text);
+                Pagos CrModificarPago = new Pagos();
+                CrModificarPago.montoCancelado = Convert.ToDecimal(txtCancelado.Text);
+                CrModificarPago.descripcion = txtDescripcion.Text;
+                CrModificarPago.mora = Convert.ToDecimal(txtMora.Text);
+                CrModificarPago.FK_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                CrModificarPago.idPago = Convert.ToInt32(txtIdPago.Text);
 
-                pago.ActualizarPago(pago1);
+                pago.ActualizarPago(CrModificarPago);
 
-                if (txtNombreABuscar.SelectedValue != null || txtNombreABuscar.Text != "")
-                {
-                    btnFiltrar.PerformClick();
-                    cbYear.SelectedIndex = 0;
-                }
-                else
-                {
-                    if (cbFiltroPrincipal.Text != "" && cbYears.Text.Equals("") && cbMes.Text.Equals(""))
-                    {
-                        MostrarPagos(cbFiltroPrincipal.Text);
-                    }
-                    else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text.Equals(""))
-                    {
-                        FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
-                    }
-                    else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text != "")
-                    {
-                        MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text);
-                    }
-
-                }
-
+                MantenerFiltroElegidos();
                 Limpiar();
             }
 
@@ -163,92 +112,13 @@ namespace SIDAC.VISTA
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             pago.EliminarPago(Convert.ToInt32(txtIdPago.Text));
-
-            if (txtNombreABuscar.SelectedValue != null || txtNombreABuscar.Text != "")
-            {
-                btnFiltrar.PerformClick();
-                cbYear.SelectedIndex = 0;
-            }
-            else
-            {
-                if (cbFiltroPrincipal.Text != "" && cbYears.Text.Equals("") && cbMes.Text.Equals(""))
-                {
-                    MostrarPagos(cbFiltroPrincipal.Text);
-                }
-                else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text.Equals(""))
-                {
-                    FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
-                }
-                else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text != "")
-                {
-                    MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text);
-                }
-
-            }
-
+            MantenerFiltroElegidos();
             Limpiar();
 
         }
         #endregion
 
-        #region VALIDACIONES
-        private Boolean ValidarCajas(int filtro)
-        {
-            Boolean validar = true;
-
-            Validacion.SetError(txtID, "");
-            Validacion.SetError(txtNombres, "");
-            Validacion.SetError(txtApellidos, "");
-            Validacion.SetError(txtMontoBase, "");
-            Validacion.SetError(txtCancelado, "");
-            Validacion.SetError(txtMora, "");
-
-
-            if (filtro==0)
-            {
-                if (cbConsumidor.SelectedValue == null || txtID.Text.Equals(""))
-                {
-                    Validacion.SetError(txtID, "Este campo es obligatorio");
-                    Validacion.SetError(txtNombres, "Este campo es obligatorio");
-                    Validacion.SetError(txtApellidos, "Este campo es obligatorio");
-                    validar = false;
-                }
-            }
-            else
-            {
-                if (txtID.Text.Equals(""))
-                {
-                    Validacion.SetError(txtID, "Este campo es obligatorio");
-                    Validacion.SetError(txtNombres, "Este campo es obligatorio");
-                    Validacion.SetError(txtApellidos, "Este campo es obligatorio");
-                    validar = false;
-                }
-            }
-
-
-            if (txtMontoBase.Text.Equals(""))
-            {
-                Validacion.SetError(txtMontoBase, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            if (txtCancelado.Text.Equals(""))
-            {
-                Validacion.SetError(txtCancelado, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            if (txtMora.Text.Equals(""))
-            {
-                Validacion.SetError(txtMora, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            return validar;
-        }
-        #endregion
-
-        #region RELLENAR CAJAS
+        #region RELLENAR CAJAS DEL PANEL-FORMULARIO
         private void dtgPagos_DoubleClick(object sender, EventArgs e)
         {
             if (dtgPagos.SelectedRows.Count > 0)
@@ -286,38 +156,15 @@ namespace SIDAC.VISTA
             if (cbFiltroPrincipal.SelectedIndex >= 0)
             {
                 //buscar  y muestra los pagos segun un estado
-                MostrarPagos(cbFiltroPrincipal.Text);
+                pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
                 //buscar  y muestra en comboB cbYears los años en los que se tienen registros de pagos segun un estado
-                CargarDatosCBYear_Estado(cbFiltroPrincipal.Text);
+                pago.CargarDatosCBYear_Estado(cbFiltroPrincipal.Text, this.cbYears);
 
                 //se le indica que no se seleccione ninguno por defecto
                 cbMes.SelectedIndex = -1;
                 cbYears.SelectedIndex = -1;
             }
-
-        }
-        //metodo para cargar los años segun el estado
-        private void CargarDatosCBYear_Estado(String estado)
-        {
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                var years = db.sp_YearsInPagos(estado).ToList();
-
-                if (years.Count > 0)
-                {
-                    cbYears.DataSource = years;
-                    cbYears.DisplayMember = "mes";
-                    cbYears.ValueMember = "value";
-
-                    cbYears.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbYears.DataSource = null;
-                    cbYears.ResetText();
-                }
-            }
-        }
+        }      
 
         //cuando ya se tienen cargados los años, aqui se llama al metodo para buscar y mostrar los pagos segun estado-year
         private void cbYears_SelectedIndexChanged(object sender, EventArgs e)
@@ -328,7 +175,7 @@ namespace SIDAC.VISTA
                 int year = Convert.ToInt32(cbYears.Text);
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
+                    pago.FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text,this.dtgPagos);
 
                     //cargar los datos de los meses que se tienen registros en la db en la combobox, que ya estan filtrados 
                     //por estado y año
@@ -347,28 +194,6 @@ namespace SIDAC.VISTA
                 }
             }
         }
-        //metodo para buscar y mostrar los pagos segun un estado y año
-        private void FiltrarPagos_Estado_Year(String estado, String year)
-        {
-
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                //realizar  busqueda de los pagos pendientes en un año determinado
-                var pagos = (from t in db.sp_MostrarPagos()
-                             where t.estado == estado && (t.fecha.Year).ToString() == year
-                             select t).ToList();
-
-
-                dtgPagos.Rows.Clear();
-                foreach (var i in pagos)
-                {
-                    dtgPagos.Rows.Add(i.idPago, i.nombre, i.mes, i.montoBase, i.montoCancelado,
-                                        i.montoPendiente, i.mora, i.descripcion, i.estado, i.fecha);
-                }
-            }
-
-
-        }
 
         //cuando ya estan cargados los meses de los registros que ya estan filtrados por estado-year
         //aqui se llama al metodo para filtrar los pagos por estado-year-mes
@@ -376,35 +201,18 @@ namespace SIDAC.VISTA
         {
             if (cbMes.SelectedIndex >= 0 && cbYears.SelectedIndex >= 0 && cbFiltroPrincipal.SelectedIndex >= 0)
             {
-                MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text);
+                pago.MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text, this.dtgPagos);
             }
 
         }
         
-        //metodo para filtrar los pagos segun un estado-year-mes
-        private void MostrarPagos_Estado_Year_Mes(String estado, String year, String mes)
-        {
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
-
-                var pago = db.sp_MostrarPagos_Estado_Year_Mes(estado, year, mes);
-
-                dtgPagos.Rows.Clear();
-                foreach (var i in pago)
-                {
-                    dtgPagos.Rows.Add(i.idPago, i.nombre, i.mes, i.montoBase, i.montoCancelado,
-                                        i.montoPendiente, i.mora, i.descripcion, i.estado, i.fecha);
-                }
-            }
-        }
         #region otros metodos relacionados
         //cuando se de click en comboB del los filtros por estado, se borraran los filtros por años y meses y se muestarn 
         //todos los pagos segun un estado
         private void cbFiltroPrincipal_MouseClick(object sender, MouseEventArgs e)
         {
 
-            MostrarPagos(cbFiltroPrincipal.Text);
+            pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
 
             cbMes.DataSource = null;
             cbMes.ResetText();
@@ -416,10 +224,9 @@ namespace SIDAC.VISTA
         //y se muestran todos los pagos segun un estado-year
         private void cbYears_MouseClick(object sender, MouseEventArgs e)
         {
-            FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text);
+            pago.FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text, this.dtgPagos);
             cbMes.SelectedIndex = -1;
         }
-
         #endregion
         #endregion
 
@@ -471,19 +278,10 @@ namespace SIDAC.VISTA
                 //idconsumidor = Convert.ToInt32(id);
                 idconsumidor = id;
             }
-            //MessageBox.Show(txtNombreABuscar.SelectedValue.ToString() + cbYear.Text);
+
             if (txtNombreABuscar.Text != "" && txtNombreABuscar.SelectedIndex != -1)
             {
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    var pagos = db.sp_MostrarPagoPorId(idconsumidor).ToList();
-
-                    dtgPagos.Rows.Clear();
-                    foreach (var i in pagos)
-                    {
-                        dtgPagos.Rows.Add(i.idPago, i.nombre, i.mes, i.montoBase, i.montoCancelado, i.montoPendiente, i.mora, i.descripcion, i.estado, i.fecha);
-                    }
-                }
+                pago.MostrarPagosPorId(idconsumidor, this.dtgPagos);
             }
             if (txtNombreABuscar.Text != "" && txtNombreABuscar.SelectedValue != null)
             {
@@ -509,17 +307,24 @@ namespace SIDAC.VISTA
         {
             if (cbYear.SelectedValue != null && txtNombreABuscar.SelectedValue != null)
             {
-                int id = Convert.ToInt32(txtNombreABuscar.SelectedValue.ToString());
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    var pagosFiltradosPorYear = db.sp_MostrarPagoPorYear(id, cbYear.Text);
+                pago.MostrarPagos_Year_Id(txtNombreABuscar.SelectedValue.ToString(), cbYear.Text, this.dtgPagos);
+            }
+        }
 
-                    dtgPagos.Rows.Clear();
-                    foreach (var i in pagosFiltradosPorYear)
-                    {
-                        dtgPagos.Rows.Add(i.idPago, i.nombre, i.mes, i.montoBase, i.montoCancelado, i.montoPendiente, i.mora, i.descripcion, i.estado, i.fecha);
-                    }
-                }
+        //metodo para mostrar todos los pagos de un consumidor si de da click
+        //en la comboB cbYear 
+        private void cbYear_Click(object sender, EventArgs e)
+        {
+            int idconsumidor = 0;
+            if (txtNombreABuscar.SelectedValue != null)
+            {
+                int id = Convert.ToInt32(txtNombreABuscar.SelectedValue.ToString());
+                //idconsumidor = Convert.ToInt32(id);
+                idconsumidor = id;
+            }
+            if (txtNombreABuscar.Text != "" && txtNombreABuscar.SelectedIndex != -1)
+            {
+                pago.MostrarPagosPorId(idconsumidor, this.dtgPagos);
             }
         }
         #endregion
@@ -740,7 +545,49 @@ namespace SIDAC.VISTA
             txtFecha.Enabled = true;
             cbConsumidor.Enabled = true;
         }
-        #endregion
 
+        private void MantenerFiltroElegidos()
+        {
+            if ((txtNombreABuscar.SelectedValue != null || txtNombreABuscar.Text != "") && cbYear.Text != "" || cbYear.SelectedValue != null)
+            {
+                if (cbYear.SelectedValue != null && txtNombreABuscar.SelectedValue != null)
+                {
+                    pago.MostrarPagos_Year_Id(txtNombreABuscar.SelectedValue.ToString(),cbYear.Text,this.dtgPagos);
+                }
+            }
+            else if (txtNombreABuscar.SelectedValue != null || txtNombreABuscar.Text != "")
+            {
+                int idconsumidor = 0;
+                if (txtNombreABuscar.SelectedValue != null)
+                {
+                    int id = Convert.ToInt32(txtNombreABuscar.SelectedValue.ToString());
+                    //idconsumidor = Convert.ToInt32(id);
+                    idconsumidor = id;
+                }
+                if (txtNombreABuscar.Text != "" && txtNombreABuscar.SelectedIndex != -1)
+                {
+                    pago.MostrarPagosPorId(idconsumidor, this.dtgPagos);
+
+                }
+            }
+            else
+            {
+                if (cbFiltroPrincipal.Text != "" && cbYears.Text.Equals("") && cbMes.Text.Equals(""))
+                {
+                    pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
+                }
+                else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text.Equals(""))
+                {
+                    pago.FiltrarPagos_Estado_Year(cbFiltroPrincipal.Text, cbYears.Text, this.dtgPagos);
+                }
+                else if (cbFiltroPrincipal.Text != "" && cbYears.Text != "" && cbMes.Text != "")
+                {
+                    pago.MostrarPagos_Estado_Year_Mes(cbFiltroPrincipal.Text, cbYears.Text, cbMes.Text, this.dtgPagos);
+                }
+
+            }
+        }
+        #endregion
+ 
     }
 }
