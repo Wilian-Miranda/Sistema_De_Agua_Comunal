@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms.Suite;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,70 @@ namespace SIDAC.VALIDACIONES
             }
 
             return validar;
+        }
+
+        //validacion para el ingreso de cantidades correctas en las cajas
+        public void VerificarValoresNumericos(String identificadorAccion, Guna.UI2.WinForms.Guna2TextBox caja, Guna.UI2.WinForms.Guna2Button botonActivo, string montoPagar, string cancelado)
+        {
+
+            caja.FillColor = Color.White;
+            try
+            {
+                double monto = Convert.ToDouble(caja.Text);
+                botonActivo.Enabled = true;
+
+                if (monto > 0)
+                {
+                    caja.FillColor = Color.LimeGreen;
+
+                    //realizar la operacion de restar lo cancelado del monto base
+                    if (identificadorAccion.Equals("montoCancelado"))
+                    {
+                        double valorcancelado = Convert.ToDouble(cancelado);
+                        double montoBase = Convert.ToDouble(montoPagar);
+                        if (valorcancelado > montoBase)
+                        {
+                            botonActivo.Enabled = false;
+                            caja.FillColor = Color.Crimson;
+                        }
+                        else
+                        {
+                            caja.FillColor = Color.LimeGreen;
+                            botonActivo.Enabled = true;
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    caja.FillColor = Color.Crimson;
+
+                    if (botonActivo.Enabled)
+                    {
+                        botonActivo.Enabled = false;
+                    }
+
+
+                }
+                if (identificadorAccion.Equals("mora") && monto == 0)
+                {
+                    caja.FillColor = Color.LimeGreen;
+                    if (botonActivo.Enabled == false)
+                    {
+                        botonActivo.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                caja.FillColor = Color.Crimson;
+                if (botonActivo.Enabled)
+                {
+                    botonActivo.Enabled = false;
+                }
+            }
+
         }
     }
 }

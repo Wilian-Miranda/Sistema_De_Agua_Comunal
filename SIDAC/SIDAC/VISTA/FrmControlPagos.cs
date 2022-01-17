@@ -24,6 +24,9 @@ namespace SIDAC.VISTA
         }
 
         CDControlPagos pago = new CDControlPagos();
+        VsFrmPagos validacion = new VsFrmPagos();
+        static String accionEnPagos = "Agregar";
+
         private void FrmControlPagos_Load(object sender, EventArgs e)
         {
             pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
@@ -59,7 +62,6 @@ namespace SIDAC.VISTA
         #endregion
 
         #region CRUD PAGOS
-        VsFrmPagos validacion = new VsFrmPagos();
         //AGREGAR
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -145,6 +147,8 @@ namespace SIDAC.VISTA
                 cbConsumidor.Enabled = false;
                 txtNombres.Enabled = false;
                 txtApellidos.Enabled = false;
+
+                accionEnPagos = "Modificar";
             }
         }
 
@@ -417,6 +421,46 @@ namespace SIDAC.VISTA
         #endregion
         #endregion
 
+        #region VALIDACION DE DATOS NUMERICOS EN LAS CAJAS
+
+        private void txtMontoBase_TextChanged(object sender, EventArgs e)
+        {
+            if (accionEnPagos.Equals("Modificar"))
+            {
+                validacion.VerificarValoresNumericos("", this.txtMontoBase, this.btnModificar, txtMontoBase.Text, txtCancelado.Text);
+            }
+            else
+            {
+                validacion.VerificarValoresNumericos("", this.txtMontoBase, this.btnAgregar, txtMontoBase.Text, txtCancelado.Text);
+            }
+
+        }
+
+        private void txtCancelado_TextChanged(object sender, EventArgs e)
+        {
+            if (accionEnPagos.Equals("Modificar"))
+            {
+                validacion.VerificarValoresNumericos("montoCancelado", this.txtCancelado, this.btnModificar, txtMontoBase.Text, txtCancelado.Text);
+            }
+            else
+            {
+                validacion.VerificarValoresNumericos("montoCancelado", this.txtCancelado, this.btnAgregar, txtMontoBase.Text, txtCancelado.Text);
+            }
+        }
+
+        private void txtMora_TextChanged(object sender, EventArgs e)
+        {
+            if (accionEnPagos.Equals("Modificar"))
+            {
+                validacion.VerificarValoresNumericos("mora", this.txtMora, this.btnModificar, txtMontoBase.Text, txtCancelado.Text);
+            }
+            else
+            {
+                validacion.VerificarValoresNumericos("mora", this.txtMora, this.btnAgregar, txtMontoBase.Text, txtCancelado.Text);
+            }
+        }
+        #endregion
+
         #region ABRIR VENTANAS-PANELES
         //filtro 1: donde se filtran pagos segun estado-año-mes
         private void btnMostrarControlesFiltros1_Click(object sender, EventArgs e)
@@ -544,6 +588,12 @@ namespace SIDAC.VISTA
             txtMontoBase.Enabled = true;
             txtFecha.Enabled = true;
             cbConsumidor.Enabled = true;
+
+            txtMontoBase.FillColor = Color.White;
+            txtCancelado.FillColor = Color.White;
+            txtMora.FillColor = Color.White;
+
+            accionEnPagos = "Agregar";
         }
 
         private void MantenerFiltroElegidos()
@@ -588,6 +638,6 @@ namespace SIDAC.VISTA
             }
         }
         #endregion
- 
+        
     }
 }
