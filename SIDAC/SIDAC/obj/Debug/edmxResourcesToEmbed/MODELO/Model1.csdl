@@ -9,8 +9,10 @@
     <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="valor" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
     <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Fk_idProyecto" Type="Int32" />
     <Property Name="compra" Type="Int32" />
     <NavigationProperty Name="DetallesCompras" Relationship="Self.FK__Inventari__FK_co__6B24EA82" FromRole="Compras" ToRole="DetallesCompras" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_Compras_Proyectos" FromRole="Compras" ToRole="Proyectos" />
   </EntityType>
   <EntityType Name="Consumidores">
     <Key>
@@ -50,9 +52,7 @@
     <Property Name="cancelado" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
     <Property Name="pendiente" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
     <Property Name="Fk_Consumidor" Type="Int32" Nullable="false" />
-    <Property Name="Fk_Idpago" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Consumidores" Relationship="Self.FK_Consumidor" FromRole="Deudas" ToRole="Consumidores" />
-    <NavigationProperty Name="Pagos" Relationship="Self.FK_Deudas_Pagos" FromRole="Deudas" ToRole="Pagos" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -91,8 +91,24 @@
     <Property Name="FK_estado" Type="Int32" Nullable="false" />
     <Property Name="FK_consumidor" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Consumidores" Relationship="Self.FK__Pagos__FK_consum__3C69FB99" FromRole="Pagos" ToRole="Consumidores" />
-    <NavigationProperty Name="Deudas" Relationship="Self.FK_Deudas_Pagos" FromRole="Pagos" ToRole="Deudas" />
     <NavigationProperty Name="Estados" Relationship="Self.FK__Pagos__FK_estado__3B75D760" FromRole="Pagos" ToRole="Estados" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+    </Key>
+    <Property Name="idProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="presupuesto" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="costo" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="costoMateriales" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="diasTrabajo" Type="Int32" Nullable="false" />
+    <Property Name="numeroTrabajadores" Type="Int32" />
+    <Property Name="pagoTotalTrabajadores" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="fechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="fechaFinalizado" Type="DateTime" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Compras" Relationship="Self.FK_Compras_Proyectos" FromRole="Proyectos" ToRole="Compras" />
   </EntityType>
   <EntityType Name="RetirosInventario">
     <Key>
@@ -125,6 +141,18 @@
       </Principal>
       <Dependent Role="DetallesCompras">
         <PropertyRef Name="FK_compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compras_Proyectos">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+    <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="Compras">
+        <PropertyRef Name="Fk_idProyecto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -176,18 +204,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Deudas_Pagos">
-    <End Role="Pagos" Type="Self.Pagos" Multiplicity="1" />
-    <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pagos">
-        <PropertyRef Name="idPago" />
-      </Principal>
-      <Dependent Role="Deudas">
-        <PropertyRef Name="Fk_Idpago" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Pagos__FK_estado__3B75D760">
     <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
     <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
@@ -220,11 +236,16 @@
     <EntitySet Name="Estados" EntityType="Self.Estados" />
     <EntitySet Name="Inventarios" EntityType="Self.Inventarios" />
     <EntitySet Name="Pagos" EntityType="Self.Pagos" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
     <EntitySet Name="RetirosInventario" EntityType="Self.RetirosInventario" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
       <End Role="Compras" EntitySet="Compras" />
       <End Role="DetallesCompras" EntitySet="DetallesCompras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compras_Proyectos" Association="Self.FK_Compras_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Compras" EntitySet="Compras" />
     </AssociationSet>
     <AssociationSet Name="FK__Pagos__FK_consum__3C69FB99" Association="Self.FK__Pagos__FK_consum__3C69FB99">
       <End Role="Consumidores" EntitySet="Consumidores" />
@@ -241,10 +262,6 @@
     <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="Self.FK_Inventarios_DetallesCompras">
       <End Role="DetallesCompras" EntitySet="DetallesCompras" />
       <End Role="Inventarios" EntitySet="Inventarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Deudas_Pagos" Association="Self.FK_Deudas_Pagos">
-      <End Role="Pagos" EntitySet="Pagos" />
-      <End Role="Deudas" EntitySet="Deudas" />
     </AssociationSet>
     <AssociationSet Name="FK__Pagos__FK_estado__3B75D760" Association="Self.FK__Pagos__FK_estado__3B75D760">
       <End Role="Estados" EntitySet="Estados" />
@@ -285,6 +302,19 @@
       <Parameter Name="descripcion" Mode="In" Type="String" />
       <Parameter Name="FK_estado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_ActualizarProyecto">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="presupuesto" Mode="In" Type="Decimal" />
+      <Parameter Name="costo" Mode="In" Type="Decimal" />
+      <Parameter Name="costoMateriales" Mode="In" Type="Decimal" />
+      <Parameter Name="diasTrabajo" Mode="In" Type="Int32" />
+      <Parameter Name="numTrabajadores" Mode="In" Type="Int32" />
+      <Parameter Name="pagoTrabajadores" Mode="In" Type="Decimal" />
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinalizado" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -311,6 +341,9 @@
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_EliminarPago">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EliminarProyecto">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIDACModel.sp_helpdiagramdefinition_Result)">
@@ -353,6 +386,18 @@
       <Parameter Name="FK_estado" Mode="In" Type="Int32" />
       <Parameter Name="FK_consumidor" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_InsertarProyecto">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="presupuesto" Mode="In" Type="Decimal" />
+      <Parameter Name="costo" Mode="In" Type="Decimal" />
+      <Parameter Name="costoMateriales" Mode="In" Type="Decimal" />
+      <Parameter Name="diasTrabajo" Mode="In" Type="Int32" />
+      <Parameter Name="numTrabajadores" Mode="In" Type="Int32" />
+      <Parameter Name="pagoTrabajadores" Mode="In" Type="Decimal" />
+      <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinalizado" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_MesesInYearsInPagos" ReturnType="Collection(SIDACModel.sp_MesesInYearsInPagos_Result)">
       <Parameter Name="year" Mode="In" Type="Int32" />
       <Parameter Name="estado" Mode="In" Type="String" />
@@ -370,8 +415,16 @@
       <Parameter Name="year" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_MostrarPagos" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Result)" />
+    <FunctionImport Name="sp_MostrarPagos_Estado_Year_Mes" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Estado_Year_Mes_Result)">
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="year" Mode="In" Type="String" />
+      <Parameter Name="mes" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_MostrarPagosPorYearPorId" ReturnType="Collection(Int32)">
       <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MostrarProyectos_year" ReturnType="Collection(SIDACModel.sp_MostrarProyectos_year_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_MostrarYearsPorPagosPorId" ReturnType="Collection(Int32)">
       <Parameter Name="id" Mode="In" Type="Int32" />
@@ -384,11 +437,6 @@
     <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
       <Parameter Name="estado" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_MostrarPagos_Estado_Year_Mes" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Estado_Year_Mes_Result)">
-      <Parameter Name="estado" Mode="In" Type="String" />
-      <Parameter Name="year" Mode="In" Type="String" />
-      <Parameter Name="mes" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -494,5 +542,18 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="estado" Nullable="false" MaxLength="20" />
     <Property Type="DateTime" Name="fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarProyectos_year_Result">
+    <Property Type="Int32" Name="idProyecto" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="presupuesto" Nullable="true" Precision="10" />
+    <Property Type="Decimal" Name="costo" Nullable="true" Precision="10" />
+    <Property Type="Decimal" Name="costoMateriales" Nullable="true" Precision="10" />
+    <Property Type="Int32" Name="diasTrabajo" Nullable="false" />
+    <Property Type="Int32" Name="numeroTrabajadores" Nullable="true" />
+    <Property Type="Decimal" Name="pagoTotalTrabajadores" Nullable="true" Precision="10" />
+    <Property Type="DateTime" Name="fechaInicio" Nullable="true" />
+    <Property Type="DateTime" Name="fechaFinalizado" Nullable="true" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
   </ComplexType>
 </Schema>

@@ -73,6 +73,7 @@
     <Compile Include="DAO\CDCompras.cs" />
     <Compile Include="DAO\CDConsumidores.cs" />
     <Compile Include="DAO\CDControlPagos.cs" />
+    <Compile Include="DAO\CDProyectos.cs" />
     <Compile Include="MODELO\Compras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -107,6 +108,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="MODELO\Pagos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO\Proyectos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MODELO\RetirosInventario.cs">
@@ -148,6 +152,9 @@
     <Compile Include="MODELO\sp_MostrarPagos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODELO\sp_MostrarProyectos_year_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODELO\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -176,11 +183,11 @@
     <Compile Include="VISTA\FrmDetallesCompras.Designer.cs">
       <DependentUpon>FrmDetallesCompras.cs</DependentUpon>
     </Compile>
-    <Compile Include="VISTA\FrmDeudas.cs">
+    <Compile Include="VISTA\FrmProyectos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VISTA\FrmDeudas.Designer.cs">
-      <DependentUpon>FrmDeudas.cs</DependentUpon>
+    <Compile Include="VISTA\FrmProyectos.Designer.cs">
+      <DependentUpon>FrmProyectos.cs</DependentUpon>
     </Compile>
     <Compile Include="VISTA\FrmHome.cs">
       <SubType>Form</SubType>
@@ -235,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\FrmInventario.resx">
       <DependentUpon>FrmInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\FrmProyectos.resx">
+      <DependentUpon>FrmProyectos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\FrmRegistrosInventario.resx">
       <DependentUpon>FrmRegistrosInventario.cs</DependentUpon>

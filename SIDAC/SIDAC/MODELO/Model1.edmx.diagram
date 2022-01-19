@@ -4,22 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6796f85283e447c384fb7082fbe29501" Name="Diagram1">
-        <EntityTypeShape EntityType="SIDACModel.Compras" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.Consumidores" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.DetallesCompras" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.Deudas" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.Estados" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.Inventarios" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.Pagos" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.RetirosInventario" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIDACModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
+      <Diagram DiagramId="df6933031ec04cf9b64815e4d9b6b7d5" Name="Diagram1">
+        <EntityTypeShape EntityType="SIDACModel.Compras" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Consumidores" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.DetallesCompras" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Deudas" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Estados" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Inventarios" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Pagos" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.Proyectos" Width="1.5" PointX="1.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.RetirosInventario" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIDACModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="SIDACModel.FK__Inventari__FK_co__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="SIDACModel.FK_Compras_Proyectos" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK__Pagos__FK_consum__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK_Consumidor" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK_Consumidores_Estados" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK_Inventarios_DetallesCompras" ManuallyRouted="false" />
-        <AssociationConnector Association="SIDACModel.FK_Deudas_Pagos" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK__Pagos__FK_estado__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="SIDACModel.FK_Inventarios_Estados" ManuallyRouted="false" />
       </Diagram>

@@ -34,6 +34,7 @@ namespace SIDAC.MODELO
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Inventarios> Inventarios { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<Proyectos> Proyectos { get; set; }
         public virtual DbSet<RetirosInventario> RetirosInventario { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
@@ -149,6 +150,55 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarPago", idParameter, montoCanceladoParameter, moraParameter, descripcionParameter, fK_estadoParameter);
         }
     
+        public virtual int sp_ActualizarProyecto(Nullable<int> id, string nombre, Nullable<decimal> presupuesto, Nullable<decimal> costo, Nullable<decimal> costoMateriales, Nullable<int> diasTrabajo, Nullable<int> numTrabajadores, Nullable<decimal> pagoTrabajadores, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFinalizado, string descripcion)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var presupuestoParameter = presupuesto.HasValue ?
+                new ObjectParameter("presupuesto", presupuesto) :
+                new ObjectParameter("presupuesto", typeof(decimal));
+    
+            var costoParameter = costo.HasValue ?
+                new ObjectParameter("costo", costo) :
+                new ObjectParameter("costo", typeof(decimal));
+    
+            var costoMaterialesParameter = costoMateriales.HasValue ?
+                new ObjectParameter("costoMateriales", costoMateriales) :
+                new ObjectParameter("costoMateriales", typeof(decimal));
+    
+            var diasTrabajoParameter = diasTrabajo.HasValue ?
+                new ObjectParameter("diasTrabajo", diasTrabajo) :
+                new ObjectParameter("diasTrabajo", typeof(int));
+    
+            var numTrabajadoresParameter = numTrabajadores.HasValue ?
+                new ObjectParameter("numTrabajadores", numTrabajadores) :
+                new ObjectParameter("numTrabajadores", typeof(int));
+    
+            var pagoTrabajadoresParameter = pagoTrabajadores.HasValue ?
+                new ObjectParameter("pagoTrabajadores", pagoTrabajadores) :
+                new ObjectParameter("pagoTrabajadores", typeof(decimal));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinalizadoParameter = fechaFinalizado.HasValue ?
+                new ObjectParameter("fechaFinalizado", fechaFinalizado) :
+                new ObjectParameter("fechaFinalizado", typeof(System.DateTime));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizarProyecto", idParameter, nombreParameter, presupuestoParameter, costoParameter, costoMaterialesParameter, diasTrabajoParameter, numTrabajadoresParameter, pagoTrabajadoresParameter, fechaInicioParameter, fechaFinalizadoParameter, descripcionParameter);
+        }
+    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -238,6 +288,15 @@ namespace SIDAC.MODELO
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarPago", idParameter);
+        }
+    
+        public virtual int sp_EliminarProyecto(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminarProyecto", idParameter);
         }
     
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
@@ -382,6 +441,51 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarPago", montoBaseParameter, montoCanceladoParameter, moraParameter, descripcionParameter, fechaParameter, fK_estadoParameter, fK_consumidorParameter);
         }
     
+        public virtual int sp_InsertarProyecto(string nombre, Nullable<decimal> presupuesto, Nullable<decimal> costo, Nullable<decimal> costoMateriales, Nullable<int> diasTrabajo, Nullable<int> numTrabajadores, Nullable<decimal> pagoTrabajadores, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFinalizado, string descripcion)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var presupuestoParameter = presupuesto.HasValue ?
+                new ObjectParameter("presupuesto", presupuesto) :
+                new ObjectParameter("presupuesto", typeof(decimal));
+    
+            var costoParameter = costo.HasValue ?
+                new ObjectParameter("costo", costo) :
+                new ObjectParameter("costo", typeof(decimal));
+    
+            var costoMaterialesParameter = costoMateriales.HasValue ?
+                new ObjectParameter("costoMateriales", costoMateriales) :
+                new ObjectParameter("costoMateriales", typeof(decimal));
+    
+            var diasTrabajoParameter = diasTrabajo.HasValue ?
+                new ObjectParameter("diasTrabajo", diasTrabajo) :
+                new ObjectParameter("diasTrabajo", typeof(int));
+    
+            var numTrabajadoresParameter = numTrabajadores.HasValue ?
+                new ObjectParameter("numTrabajadores", numTrabajadores) :
+                new ObjectParameter("numTrabajadores", typeof(int));
+    
+            var pagoTrabajadoresParameter = pagoTrabajadores.HasValue ?
+                new ObjectParameter("pagoTrabajadores", pagoTrabajadores) :
+                new ObjectParameter("pagoTrabajadores", typeof(decimal));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinalizadoParameter = fechaFinalizado.HasValue ?
+                new ObjectParameter("fechaFinalizado", fechaFinalizado) :
+                new ObjectParameter("fechaFinalizado", typeof(System.DateTime));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertarProyecto", nombreParameter, presupuestoParameter, costoParameter, costoMaterialesParameter, diasTrabajoParameter, numTrabajadoresParameter, pagoTrabajadoresParameter, fechaInicioParameter, fechaFinalizadoParameter, descripcionParameter);
+        }
+    
         public virtual ObjectResult<sp_MesesInYearsInPagos_Result> sp_MesesInYearsInPagos(Nullable<int> year, string estado)
         {
             var yearParameter = year.HasValue ?
@@ -447,6 +551,23 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Result>("sp_MostrarPagos");
         }
     
+        public virtual ObjectResult<sp_MostrarPagos_Estado_Year_Mes_Result> sp_MostrarPagos_Estado_Year_Mes(string estado, string year, string mes)
+        {
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            var mesParameter = mes != null ?
+                new ObjectParameter("mes", mes) :
+                new ObjectParameter("mes", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Estado_Year_Mes_Result>("sp_MostrarPagos_Estado_Year_Mes", estadoParameter, yearParameter, mesParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> sp_MostrarPagosPorYearPorId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -454,6 +575,15 @@ namespace SIDAC.MODELO
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_MostrarPagosPorYearPorId", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_MostrarProyectos_year_Result> sp_MostrarProyectos_year(string year)
+        {
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarProyectos_year_Result>("sp_MostrarProyectos_year", yearParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_MostrarYearsPorPagosPorId(Nullable<int> id)
@@ -494,23 +624,6 @@ namespace SIDAC.MODELO
                 new ObjectParameter("estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_YearsInPagos", estadoParameter);
-        }
-    
-        public virtual ObjectResult<sp_MostrarPagos_Estado_Year_Mes_Result> sp_MostrarPagos_Estado_Year_Mes(string estado, string year, string mes)
-        {
-            var estadoParameter = estado != null ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(string));
-    
-            var yearParameter = year != null ?
-                new ObjectParameter("year", year) :
-                new ObjectParameter("year", typeof(string));
-    
-            var mesParameter = mes != null ?
-                new ObjectParameter("mes", mes) :
-                new ObjectParameter("mes", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Estado_Year_Mes_Result>("sp_MostrarPagos_Estado_Year_Mes", estadoParameter, yearParameter, mesParameter);
         }
     }
 }

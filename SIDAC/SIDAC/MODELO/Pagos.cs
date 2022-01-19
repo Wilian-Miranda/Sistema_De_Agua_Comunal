@@ -14,12 +14,6 @@ namespace SIDAC.MODELO
     
     public partial class Pagos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pagos()
-        {
-            this.Deudas = new HashSet<Deudas>();
-        }
-    
         public int idPago { get; set; }
         public string mes { get; set; }
         public decimal montoBase { get; set; }
@@ -32,8 +26,6 @@ namespace SIDAC.MODELO
         public int FK_consumidor { get; set; }
     
         public virtual Consumidores Consumidores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Deudas> Deudas { get; set; }
         public virtual Estados Estados { get; set; }
     }
 }

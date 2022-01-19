@@ -12,24 +12,27 @@ namespace SIDAC.MODELO
     using System;
     using System.Collections.Generic;
     
-    public partial class Compras
+    public partial class Proyectos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Compras()
+        public Proyectos()
         {
-            this.DetallesCompras = new HashSet<DetallesCompras>();
+            this.Compras = new HashSet<Compras>();
         }
     
-        public int idCompra { get; set; }
-        public string proveedor { get; set; }
-        public System.DateTime fecha { get; set; }
-        public decimal valor { get; set; }
-        public byte[] foto { get; set; }
-        public Nullable<int> Fk_idProyecto { get; set; }
-        public Nullable<int> compra { get; set; }
+        public int idProyecto { get; set; }
+        public string nombre { get; set; }
+        public Nullable<decimal> presupuesto { get; set; }
+        public Nullable<decimal> costo { get; set; }
+        public Nullable<decimal> costoMateriales { get; set; }
+        public int diasTrabajo { get; set; }
+        public Nullable<int> numeroTrabajadores { get; set; }
+        public Nullable<decimal> pagoTotalTrabajadores { get; set; }
+        public Nullable<System.DateTime> fechaInicio { get; set; }
+        public Nullable<System.DateTime> fechaFinalizado { get; set; }
+        public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallesCompras> DetallesCompras { get; set; }
-        public virtual Proyectos Proyectos { get; set; }
+        public virtual ICollection<Compras> Compras { get; set; }
     }
 }

@@ -9,6 +9,7 @@
     <Property Name="fecha" Type="date" Nullable="false" />
     <Property Name="valor" Type="smallmoney" Nullable="false" />
     <Property Name="foto" Type="image" />
+    <Property Name="Fk_idProyecto" Type="int" />
     <Property Name="compra" Type="int" />
   </EntityType>
   <EntityType Name="Consumidores">
@@ -44,7 +45,6 @@
     <Property Name="cancelado" Type="smallmoney" Nullable="false" />
     <Property Name="pendiente" Type="smallmoney" Nullable="false" />
     <Property Name="Fk_Consumidor" Type="int" Nullable="false" />
-    <Property Name="Fk_Idpago" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -77,6 +77,22 @@
     <Property Name="fecha" Type="date" Nullable="false" />
     <Property Name="FK_estado" Type="int" Nullable="false" />
     <Property Name="FK_consumidor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+    </Key>
+    <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="presupuesto" Type="smallmoney" />
+    <Property Name="costo" Type="smallmoney" />
+    <Property Name="costoMateriales" Type="smallmoney" />
+    <Property Name="diasTrabajo" Type="int" Nullable="false" />
+    <Property Name="numeroTrabajadores" Type="int" />
+    <Property Name="pagoTotalTrabajadores" Type="smallmoney" />
+    <Property Name="fechaInicio" Type="date" />
+    <Property Name="fechaFinalizado" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="RetirosInventario">
     <Key>
@@ -136,6 +152,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Compras_Proyectos">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+    <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="Compras">
+        <PropertyRef Name="Fk_idProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Consumidor">
     <End Role="Consumidores" Type="Self.Consumidores" Multiplicity="1" />
     <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
@@ -157,18 +185,6 @@
       </Principal>
       <Dependent Role="Consumidores">
         <PropertyRef Name="Fk_estado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Deudas_Pagos">
-    <End Role="Pagos" Type="Self.Pagos" Multiplicity="1" />
-    <End Role="Deudas" Type="Self.Deudas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pagos">
-        <PropertyRef Name="idPago" />
-      </Principal>
-      <Dependent Role="Deudas">
-        <PropertyRef Name="Fk_Idpago" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -228,6 +244,19 @@
     <Parameter Name="descripcion" Type="varchar" Mode="In" />
     <Parameter Name="FK_estado" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_ActualizarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="presupuesto" Type="smallmoney" Mode="In" />
+    <Parameter Name="costo" Type="smallmoney" Mode="In" />
+    <Parameter Name="costoMateriales" Type="smallmoney" Mode="In" />
+    <Parameter Name="diasTrabajo" Type="int" Mode="In" />
+    <Parameter Name="numTrabajadores" Type="int" Mode="In" />
+    <Parameter Name="pagoTrabajadores" Type="smallmoney" Mode="In" />
+    <Parameter Name="fechaInicio" Type="date" Mode="In" />
+    <Parameter Name="fechaFinalizado" Type="date" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -254,6 +283,9 @@
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_EliminarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_EliminarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -296,6 +328,18 @@
     <Parameter Name="FK_estado" Type="int" Mode="In" />
     <Parameter Name="FK_consumidor" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_InsertarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="presupuesto" Type="smallmoney" Mode="In" />
+    <Parameter Name="costo" Type="smallmoney" Mode="In" />
+    <Parameter Name="costoMateriales" Type="smallmoney" Mode="In" />
+    <Parameter Name="diasTrabajo" Type="int" Mode="In" />
+    <Parameter Name="numTrabajadores" Type="int" Mode="In" />
+    <Parameter Name="pagoTrabajadores" Type="smallmoney" Mode="In" />
+    <Parameter Name="fechaInicio" Type="date" Mode="In" />
+    <Parameter Name="fechaFinalizado" Type="date" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MesesInYearsInPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="year" Type="int" Mode="In" />
     <Parameter Name="estado" Type="varchar" Mode="In" />
@@ -321,6 +365,9 @@
   <Function Name="sp_MostrarPagosPorYearPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_MostrarProyectos_year" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="year" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MostrarYearsPorPagosPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -341,6 +388,7 @@
     <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RetirosInventario" EntityType="Self.RetirosInventario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Inventari__FK_co__6B24EA82" Association="Self.FK__Inventari__FK_co__6B24EA82">
@@ -355,6 +403,10 @@
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Pagos" EntitySet="Pagos" />
     </AssociationSet>
+    <AssociationSet Name="FK_Compras_Proyectos" Association="Self.FK_Compras_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Compras" EntitySet="Compras" />
+    </AssociationSet>
     <AssociationSet Name="FK_Consumidor" Association="Self.FK_Consumidor">
       <End Role="Consumidores" EntitySet="Consumidores" />
       <End Role="Deudas" EntitySet="Deudas" />
@@ -362,10 +414,6 @@
     <AssociationSet Name="FK_Consumidores_Estados" Association="Self.FK_Consumidores_Estados">
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Consumidores" EntitySet="Consumidores" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Deudas_Pagos" Association="Self.FK_Deudas_Pagos">
-      <End Role="Pagos" EntitySet="Pagos" />
-      <End Role="Deudas" EntitySet="Deudas" />
     </AssociationSet>
     <AssociationSet Name="FK_Inventarios_DetallesCompras" Association="Self.FK_Inventarios_DetallesCompras">
       <End Role="DetallesCompras" EntitySet="DetallesCompras" />

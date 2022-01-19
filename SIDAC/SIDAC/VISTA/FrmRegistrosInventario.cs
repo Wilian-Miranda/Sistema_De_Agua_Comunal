@@ -39,5 +39,11 @@ namespace SIDAC.VISTA
                 MessageBox.Show("Error al mostrar los registros.\n\n" + ex.ToString());
             }
         }
+
+
+        private void btnCerrarVentana_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

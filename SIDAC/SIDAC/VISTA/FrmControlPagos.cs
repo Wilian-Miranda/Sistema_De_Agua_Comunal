@@ -19,7 +19,6 @@ namespace SIDAC.VISTA
         {
             InitializeComponent();
             txtFecha.Text = DateTime.Now.ToString();
-            //CargarDatosCBYear("Pendiente");
             CargarDatosFiltroPrincipal();
         }
 

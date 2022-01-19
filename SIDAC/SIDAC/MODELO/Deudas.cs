@@ -21,9 +21,7 @@ namespace SIDAC.MODELO
         public decimal cancelado { get; set; }
         public decimal pendiente { get; set; }
         public int Fk_Consumidor { get; set; }
-        public int Fk_Idpago { get; set; }
     
         public virtual Consumidores Consumidores { get; set; }
-        public virtual Pagos Pagos { get; set; }
     }
 }
