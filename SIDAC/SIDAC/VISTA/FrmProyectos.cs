@@ -1,5 +1,6 @@
 ﻿using SIDAC.DAO;
 using SIDAC.MODELO;
+using SIDAC.VALIDACIONES;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace SIDAC.VISTA
         //instancias unicas a utilizar
         CDProyectos clsD_Proyectos = new CDProyectos();
         Proyectos proyecto = new Proyectos();
+        VsFrmProyectos ClsValidacion = new VsFrmProyectos();
         private void FrmProyectos_Load(object sender, EventArgs e)
         {
             clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
@@ -32,42 +34,72 @@ namespace SIDAC.VISTA
         #region CRUD
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            proyecto.nombre = txtNombre.Text;
-            proyecto.presupuesto = Convert.ToDecimal(txtPresupuesto.Text);
-            proyecto.costo = Convert.ToDecimal(txtCosto.Text);
-            proyecto.costoMateriales = 0;
-            proyecto.diasTrabajo = Convert.ToInt32(txtDiasTrabajo.Text);
-            proyecto.numeroTrabajadores = Convert.ToInt32(txtNumTrabajadores.Text);
-            proyecto.pagoTotalTrabajadores = Convert.ToDecimal(txtPagoTrabajadores.Text);
-            proyecto.fechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
-            proyecto.fechaFinalizado = Convert.ToDateTime(txtFechaFinalizado.Text);
-            proyecto.descripcion = txtDescripcion.Text;
+            if (ValidarCajas())
+            {
+                proyecto.nombre = txtNombre.Text;
+                proyecto.presupuesto = Convert.ToDecimal(txtPresupuesto.Text);
+                proyecto.costo = Convert.ToDecimal(txtCosto.Text);
+                proyecto.costoMateriales = 0;
+                proyecto.diasTrabajo = Convert.ToInt32(txtDiasTrabajo.Text);
+                proyecto.numeroTrabajadores = Convert.ToInt32(txtNumTrabajadores.Text);
+                proyecto.pagoTotalTrabajadores = Convert.ToDecimal(txtPagoTrabajadores.Text);
+                proyecto.fechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
+                proyecto.fechaFinalizado = Convert.ToDateTime(txtFechaFinalizado.Text);
+                proyecto.descripcion = txtDescripcion.Text;
 
-            clsD_Proyectos.InsertarProyecto(proyecto);
-            clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
-            Limpiar();
-            LimpiarInstancia();
+
+                if (Convert.ToDateTime(txtFechaInicio.Text) >= Convert.ToDateTime(txtFechaFinalizado.Text))
+                {
+                    MessageBox.Show("La fecha de finalizacion del proyecto, no debe ser menor o igual a la fecha de inicio.");
+                }
+                else
+                {
+                    clsD_Proyectos.InsertarProyecto(proyecto);
+                    clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
+
+                    clsD_Proyectos.Ryears_Proyectos(this.cbFiltroYear);
+
+                    Limpiar();
+                    LimpiarInstancia();
+                }
+            }
+
         }
 
         //actualizar
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            proyecto.idProyecto = Convert.ToInt32(txtID.Text);
-            proyecto.nombre = txtNombre.Text;
-            proyecto.presupuesto = Convert.ToDecimal(txtPresupuesto.Text);
-            proyecto.costo = Convert.ToDecimal(txtCosto.Text);
-            proyecto.costoMateriales = 0;
-            proyecto.diasTrabajo = Convert.ToInt32(txtDiasTrabajo.Text);
-            proyecto.numeroTrabajadores = Convert.ToInt32(txtNumTrabajadores.Text);
-            proyecto.pagoTotalTrabajadores = Convert.ToDecimal(txtPagoTrabajadores.Text);
-            proyecto.fechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
-            proyecto.fechaFinalizado = Convert.ToDateTime(txtFechaFinalizado.Text);
-            proyecto.descripcion = txtDescripcion.Text;
+            if (ValidarCajas())
+            {
+                proyecto.idProyecto = Convert.ToInt32(txtID.Text);
+                proyecto.nombre = txtNombre.Text;
+                proyecto.presupuesto = Convert.ToDecimal(txtPresupuesto.Text);
+                proyecto.costo = Convert.ToDecimal(txtCosto.Text);
+                proyecto.costoMateriales = 0;
+                proyecto.diasTrabajo = Convert.ToInt32(txtDiasTrabajo.Text);
+                proyecto.numeroTrabajadores = Convert.ToInt32(txtNumTrabajadores.Text);
+                proyecto.pagoTotalTrabajadores = Convert.ToDecimal(txtPagoTrabajadores.Text);
+                proyecto.fechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
+                proyecto.fechaFinalizado = Convert.ToDateTime(txtFechaFinalizado.Text);
+                proyecto.descripcion = txtDescripcion.Text;
 
-            clsD_Proyectos.ActualizarProyecto(proyecto);
-            clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
-            Limpiar();
-            LimpiarInstancia();
+                if (Convert.ToDateTime(txtFechaInicio.Text) >= Convert.ToDateTime(txtFechaFinalizado.Text))
+                {
+                    MessageBox.Show("La fecha de finalizacion del proyecto, \n no debe ser menor o igual a la fecha de inicio.");
+                }
+                else
+                {
+                    clsD_Proyectos.ActualizarProyecto(proyecto);
+                    clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
+
+                    clsD_Proyectos.Ryears_Proyectos(this.cbFiltroYear);
+
+                    Limpiar();
+                    LimpiarInstancia();
+                }
+
+            }
+
         }
 
         //eliminar
@@ -75,6 +107,9 @@ namespace SIDAC.VISTA
         {
             clsD_Proyectos.EliminarProyecto(Convert.ToInt32(txtID.Text));
             clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
+
+            clsD_Proyectos.Ryears_Proyectos(this.cbFiltroYear);
+
             Limpiar();
         }
         #endregion
@@ -140,6 +175,7 @@ namespace SIDAC.VISTA
                     btnAbrirVentana.PerformClick();
                 }
 
+                accion = "Modificar";
 
             }
         }
@@ -154,19 +190,21 @@ namespace SIDAC.VISTA
         {
             txtID.Clear();
             txtNombre.Clear();
-            txtPresupuesto.Clear();
-            txtCosto.Clear();
-            txtCostoMateriales.Clear();
-            txtDiasTrabajo.Clear();
-            txtNumTrabajadores.Clear();
-            txtPagoTrabajadores.Clear();
-            txtFechaInicio.ResetText();
-            txtFechaFinalizado.ResetText();
+            txtPresupuesto.Text = "0.0";
+            txtCosto.Text = "0.00";
+            txtCostoMateriales.Text = "0.00"; ;
+            txtDiasTrabajo.Text = "0";
+            txtNumTrabajadores.Text = "0";
+            txtPagoTrabajadores.Text = "0.00"; ;
+            txtFechaInicio.Text = DateTime.Today.ToString();
+            txtFechaFinalizado.Text = DateTime.Today.ToString();
             txtDescripcion.Clear();
 
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
+
+            accion = "Agregar";
         }
         private void LimpiarInstancia()
         {
@@ -201,6 +239,128 @@ namespace SIDAC.VISTA
         {
             clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
 
+        }
+        #endregion
+
+        #region VALIDACION CAJAS VACIAS
+        private Boolean ValidarCajas()
+        {
+            Boolean validacion = true;
+            Validacion.SetError(txtNombre, "");
+            Validacion.SetError(txtPresupuesto, "");
+
+            if (txtNombre.Text == "")
+            {
+                Validacion.SetError(txtNombre, "Este valor es obligatorio.");
+                validacion = false;
+            }
+            if (txtPresupuesto.Text=="")
+            {
+                Validacion.SetError(txtPresupuesto, "Este valor es obligatorio.");
+                validacion = false;
+            }
+
+            return validacion;
+        }
+
+        #endregion
+
+        #region VALIDACION DE NUMEROS EN LAS CAJAS
+
+        static String accion = "Agregar";
+        
+
+        //se evalua cada tecla presionada para permitir solo numeros
+        //si es entero se bloquea el punto
+        private void txtPresupuesto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           ClsValidacion.SoloNumeros(e, "Decimal");
+        }
+
+        //se verifica en la caja que el tipo de dato tenga la estructura correcta, si no se bloquea la opcion
+        //de agregar y/o eliminar
+        private void txtPresupuesto_TextChanged(object sender, EventArgs e)
+        {
+            if (accion.Equals("Agregar"))
+            {
+                ClsValidacion.ValidarNumEnCajas(txtPresupuesto, "Decimal", accion, this.btnAgregar);
+            }
+            else
+            {
+                ClsValidacion.ValidarNumEnCajas(txtPresupuesto, "Decimal", accion, this.btnModificar);
+            }
+        }
+
+        //caja costo
+        private void txtCosto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidacion.SoloNumeros(e, "Decimal");
+        }
+
+        private void txtCosto_TextChanged(object sender, EventArgs e)
+        {
+            if (accion.Equals("Agregar"))
+            {
+                ClsValidacion.ValidarNumEnCajas(txtCosto, "Decimal", accion, this.btnAgregar);
+            }
+            else
+            {
+                ClsValidacion.ValidarNumEnCajas(txtCosto, "Decimal", accion, this.btnModificar);
+            }
+        }
+
+        //caja dias de trabajo
+        private void txtDiasTrabajo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidacion.SoloNumeros(e, "Entero");
+        }
+
+        private void txtDiasTrabajo_TextChanged(object sender, EventArgs e)
+        {
+            if (accion.Equals("Agregar"))
+            {
+                ClsValidacion.ValidarNumEnCajas(txtDiasTrabajo, "Entero", accion, this.btnAgregar);
+            }
+            else
+            {
+                ClsValidacion.ValidarNumEnCajas(txtDiasTrabajo, "Entero", accion, this.btnModificar);
+            }
+        }
+
+        //caja pago a trbajadores
+        private void txtPagoTrabajadores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidacion.SoloNumeros(e, "Decimal");
+        }
+
+        private void txtPagoTrabajadores_TextChanged(object sender, EventArgs e)
+        {
+            if (accion.Equals("Agregar"))
+            {
+                ClsValidacion.ValidarNumEnCajas(txtPagoTrabajadores, "Decimal", accion, this.btnAgregar);
+            }
+            else
+            {
+                ClsValidacion.ValidarNumEnCajas(txtPagoTrabajadores, "Decimal", accion, this.btnModificar);
+            }
+        }
+
+        //caja numero de trabajadores
+        private void txtNumTrabajadores_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsValidacion.SoloNumeros(e, "Entero");
+        }
+
+        private void txtNumTrabajadores_TextChanged(object sender, EventArgs e)
+        {
+            if (accion.Equals("Agregar"))
+            {
+                ClsValidacion.ValidarNumEnCajas(txtNumTrabajadores, "Entero", accion, this.btnAgregar);
+            }
+            else
+            {
+                ClsValidacion.ValidarNumEnCajas(txtNumTrabajadores, "Entero", accion, this.btnModificar);
+            }
         }
         #endregion
 

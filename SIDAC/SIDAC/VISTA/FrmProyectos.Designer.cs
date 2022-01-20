@@ -29,6 +29,7 @@ namespace SIDAC.VISTA
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -92,6 +93,7 @@ namespace SIDAC.VISTA
             this.pnlEncabezado = new Guna.UI2.WinForms.Guna2Panel();
             this.btnAbrirVentana = new Guna.UI2.WinForms.Guna2Button();
             this.lblTituloFormulario = new System.Windows.Forms.Label();
+            this.Validacion = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlDetallesProyecto.SuspendLayout();
             this.pnlEncabezadoProyecto.SuspendLayout();
             this.pnlContenedorFormulario.SuspendLayout();
@@ -102,6 +104,7 @@ namespace SIDAC.VISTA
             this.pnlEliminar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProyectos)).BeginInit();
             this.pnlEncabezado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Validacion)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlDetallesProyecto
@@ -225,7 +228,7 @@ namespace SIDAC.VISTA
             // txtCostoMateriales
             // 
             this.txtCostoMateriales.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCostoMateriales.DefaultText = "";
+            this.txtCostoMateriales.DefaultText = "0";
             this.txtCostoMateriales.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtCostoMateriales.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtCostoMateriales.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -245,6 +248,7 @@ namespace SIDAC.VISTA
             this.txtCostoMateriales.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtCostoMateriales.PlaceholderText = "0.00";
             this.txtCostoMateriales.SelectedText = "";
+            this.txtCostoMateriales.SelectionStart = 1;
             this.txtCostoMateriales.ShadowDecoration.Parent = this.txtCostoMateriales;
             this.txtCostoMateriales.Size = new System.Drawing.Size(150, 30);
             this.txtCostoMateriales.TabIndex = 42;
@@ -355,7 +359,7 @@ namespace SIDAC.VISTA
             // txtPagoTrabajadores
             // 
             this.txtPagoTrabajadores.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPagoTrabajadores.DefaultText = "";
+            this.txtPagoTrabajadores.DefaultText = "0";
             this.txtPagoTrabajadores.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtPagoTrabajadores.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtPagoTrabajadores.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -374,14 +378,17 @@ namespace SIDAC.VISTA
             this.txtPagoTrabajadores.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtPagoTrabajadores.PlaceholderText = "0.00";
             this.txtPagoTrabajadores.SelectedText = "";
+            this.txtPagoTrabajadores.SelectionStart = 1;
             this.txtPagoTrabajadores.ShadowDecoration.Parent = this.txtPagoTrabajadores;
             this.txtPagoTrabajadores.Size = new System.Drawing.Size(150, 30);
             this.txtPagoTrabajadores.TabIndex = 34;
+            this.txtPagoTrabajadores.TextChanged += new System.EventHandler(this.txtPagoTrabajadores_TextChanged);
+            this.txtPagoTrabajadores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPagoTrabajadores_KeyPress);
             // 
             // txtNumTrabajadores
             // 
             this.txtNumTrabajadores.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNumTrabajadores.DefaultText = "";
+            this.txtNumTrabajadores.DefaultText = "0";
             this.txtNumTrabajadores.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtNumTrabajadores.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtNumTrabajadores.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -400,9 +407,12 @@ namespace SIDAC.VISTA
             this.txtNumTrabajadores.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtNumTrabajadores.PlaceholderText = "0.00";
             this.txtNumTrabajadores.SelectedText = "";
+            this.txtNumTrabajadores.SelectionStart = 1;
             this.txtNumTrabajadores.ShadowDecoration.Parent = this.txtNumTrabajadores;
             this.txtNumTrabajadores.Size = new System.Drawing.Size(150, 30);
             this.txtNumTrabajadores.TabIndex = 32;
+            this.txtNumTrabajadores.TextChanged += new System.EventHandler(this.txtNumTrabajadores_TextChanged);
+            this.txtNumTrabajadores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTrabajadores_KeyPress);
             // 
             // label13
             // 
@@ -416,7 +426,7 @@ namespace SIDAC.VISTA
             // txtDiasTrabajo
             // 
             this.txtDiasTrabajo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDiasTrabajo.DefaultText = "";
+            this.txtDiasTrabajo.DefaultText = "0";
             this.txtDiasTrabajo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtDiasTrabajo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtDiasTrabajo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -435,9 +445,12 @@ namespace SIDAC.VISTA
             this.txtDiasTrabajo.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtDiasTrabajo.PlaceholderText = "0.00";
             this.txtDiasTrabajo.SelectedText = "";
+            this.txtDiasTrabajo.SelectionStart = 1;
             this.txtDiasTrabajo.ShadowDecoration.Parent = this.txtDiasTrabajo;
             this.txtDiasTrabajo.Size = new System.Drawing.Size(150, 30);
             this.txtDiasTrabajo.TabIndex = 30;
+            this.txtDiasTrabajo.TextChanged += new System.EventHandler(this.txtDiasTrabajo_TextChanged);
+            this.txtDiasTrabajo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiasTrabajo_KeyPress);
             // 
             // label9
             // 
@@ -461,7 +474,7 @@ namespace SIDAC.VISTA
             // 
             this.txtPresupuesto.BackColor = System.Drawing.SystemColors.Control;
             this.txtPresupuesto.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPresupuesto.DefaultText = "";
+            this.txtPresupuesto.DefaultText = "0";
             this.txtPresupuesto.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtPresupuesto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtPresupuesto.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -469,7 +482,7 @@ namespace SIDAC.VISTA
             this.txtPresupuesto.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtPresupuesto.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPresupuesto.FocusedState.Parent = this.txtPresupuesto;
-            this.txtPresupuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPresupuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txtPresupuesto.ForeColor = System.Drawing.Color.Black;
             this.txtPresupuesto.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPresupuesto.HoverState.Parent = this.txtPresupuesto;
@@ -480,9 +493,12 @@ namespace SIDAC.VISTA
             this.txtPresupuesto.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtPresupuesto.PlaceholderText = "0.00";
             this.txtPresupuesto.SelectedText = "";
+            this.txtPresupuesto.SelectionStart = 1;
             this.txtPresupuesto.ShadowDecoration.Parent = this.txtPresupuesto;
             this.txtPresupuesto.Size = new System.Drawing.Size(150, 30);
             this.txtPresupuesto.TabIndex = 13;
+            this.txtPresupuesto.TextChanged += new System.EventHandler(this.txtPresupuesto_TextChanged);
+            this.txtPresupuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPresupuesto_KeyPress);
             // 
             // label6
             // 
@@ -496,7 +512,7 @@ namespace SIDAC.VISTA
             // txtCosto
             // 
             this.txtCosto.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCosto.DefaultText = "";
+            this.txtCosto.DefaultText = "0";
             this.txtCosto.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtCosto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtCosto.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -515,9 +531,12 @@ namespace SIDAC.VISTA
             this.txtCosto.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.txtCosto.PlaceholderText = "0.00";
             this.txtCosto.SelectedText = "";
+            this.txtCosto.SelectionStart = 1;
             this.txtCosto.ShadowDecoration.Parent = this.txtCosto;
             this.txtCosto.Size = new System.Drawing.Size(150, 30);
             this.txtCosto.TabIndex = 15;
+            this.txtCosto.TextChanged += new System.EventHandler(this.txtCosto_TextChanged);
+            this.txtCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCosto_KeyPress);
             // 
             // label8
             // 
@@ -923,6 +942,10 @@ namespace SIDAC.VISTA
             this.lblTituloFormulario.TabIndex = 0;
             this.lblTituloFormulario.Text = "PROYECTOS";
             // 
+            // Validacion
+            // 
+            this.Validacion.ContainerControl = this;
+            // 
             // FrmProyectos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -950,6 +973,7 @@ namespace SIDAC.VISTA
             ((System.ComponentModel.ISupportInitialize)(this.dtgProyectos)).EndInit();
             this.pnlEncabezado.ResumeLayout(false);
             this.pnlEncabezado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Validacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1008,5 +1032,6 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.ErrorProvider Validacion;
     }
 }

@@ -159,6 +159,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="VALIDACIONES\VsFrmPagos.cs" />
+    <Compile Include="VALIDACIONES\VsFrmProyectos.cs" />
     <Compile Include="VISTA\FrmCompras.cs">
       <SubType>Form</SubType>
     </Compile>
