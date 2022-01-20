@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Compras">
           <Key>
             <PropertyRef Name="idCompra" />
@@ -381,6 +381,7 @@
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Ryear_Proyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_YearsInPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estado" Type="varchar" Mode="In" />
@@ -429,8 +430,7 @@
             <End Role="Inventarios" EntitySet="Inventarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIDACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -766,19 +766,19 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarCompra">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarConsumidor">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarInventario">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarPago">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarProyecto">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIDACModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -842,7 +842,7 @@
           <FunctionImport Name="sp_MostrarConsumidoresDefault" ReturnType="Collection(SIDACModel.sp_MostrarConsumidoresDefault_Result)" />
           <FunctionImport Name="sp_MostrarInventarios" ReturnType="Collection(SIDACModel.sp_MostrarInventarios_Result)" />
           <FunctionImport Name="sp_MostrarPagoPorId" ReturnType="Collection(SIDACModel.sp_MostrarPagoPorId_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarPagoPorYear" ReturnType="Collection(SIDACModel.sp_MostrarPagoPorYear_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -855,13 +855,13 @@
             <Parameter Name="mes" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarPagosPorYearPorId" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarProyectos_year" ReturnType="Collection(SIDACModel.sp_MostrarProyectos_year_Result)">
-            <Parameter Name="year" Mode="In" Type="String" />
+          <Parameter Name="year" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarYearsPorPagosPorId" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -870,8 +870,9 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
-            <Parameter Name="estado" Mode="In" Type="String" />
+          <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_Ryear_Proyectos" ReturnType="Collection(Int32)" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1314,6 +1315,7 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SIDACModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIDACModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_YearsInPagos" FunctionName="SIDACModel.Store.sp_YearsInPagos" />
+          <FunctionImportMapping FunctionImportName="sp_Ryear_Proyectos" FunctionName="SIDACModel.Store.sp_Ryear_Proyectos" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

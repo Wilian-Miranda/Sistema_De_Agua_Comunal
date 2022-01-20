@@ -98,5 +98,47 @@ namespace SIDAC.DAO
             }
         }
         #endregion
+
+        #region Filtro por Años
+        public void Ryears_Proyectos(Guna.UI2.WinForms.Guna2ComboBox cbFiltroYears)
+        {
+            using (SIDACEntities db = new SIDACEntities())
+            {
+                var years = db.sp_Ryear_Proyectos().ToList();
+
+                if (years.Count > 0)
+                {
+                    cbFiltroYears.DataSource = years;
+                    cbFiltroYears.DisplayMember = "years";
+                    
+                }
+            }
+        }
+
+        //filtrar los proyectos por un año en específico
+        public void MostrarProyectos_Year(String year,System.Windows.Forms.DataGridView dtgProyectos)
+        {
+            try
+            {
+                using (SIDACEntities db = new SIDACEntities())
+                {
+                    var proyectosInYears = db.sp_MostrarProyectos_year(year).ToList();
+
+                    dtgProyectos.Rows.Clear();
+                    foreach (var i in proyectosInYears)
+                    {
+                        dtgProyectos.Rows.Add(i.idProyecto, i.nombre, i.presupuesto, i.costo, i.costoMateriales,
+                            i.diasTrabajo, i.numeroTrabajadores, i.pagoTotalTrabajadores,
+                            i.fechaInicio, i.fechaFinalizado, i.descripcion);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error al mostrar los Proyectos. \n\n" + ex.ToString());
+            }
+
+        }
+        #endregion
     }
 }

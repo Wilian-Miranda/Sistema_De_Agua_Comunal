@@ -376,6 +376,7 @@
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_Ryear_Proyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_YearsInPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="estado" Type="varchar" Mode="In" />

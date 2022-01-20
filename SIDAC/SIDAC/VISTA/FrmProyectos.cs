@@ -27,6 +27,7 @@ namespace SIDAC.VISTA
         private void FrmProyectos_Load(object sender, EventArgs e)
         {
             clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
+            clsD_Proyectos.Ryears_Proyectos(this.cbFiltroYear);
         }
         #region CRUD
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -97,19 +98,15 @@ namespace SIDAC.VISTA
         {
             if (pnlControlesDeFiltros.Width == 33)
             {
-                cbFiltroPrincipal.Visible = true;
-                cbYears.Visible = true;
-                cbMes.Visible = true;
+                cbFiltroYear.Visible = true;
 
-                pnlControlesDeFiltros.Width = 360;
+                pnlControlesDeFiltros.Width = 150;
             }
-            else if (pnlControlesDeFiltros.Width == 360)
+            else if (pnlControlesDeFiltros.Width == 150)
             {
                 pnlControlesDeFiltros.Width = 33;
 
-                cbFiltroPrincipal.Visible = false;
-                cbYears.Visible = false;
-                cbMes.Visible = false;
+                cbFiltroYear.Visible = false;
 
             }
         }
@@ -189,6 +186,24 @@ namespace SIDAC.VISTA
 
 
         #endregion
+
+        #region FILTRO POR AÑOS
+        private void cbFiltroYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbFiltroYear.SelectedIndex >= 0)
+            {
+                clsD_Proyectos.MostrarProyectos_Year(cbFiltroYear.Text, this.dtgProyectos);
+            }
+        }
+
+        //para mostrar de nuevo todos los proyectos al dar click en la caja, cuando se hallan filtrado por años
+        private void cbFiltroYear_MouseClick(object sender, MouseEventArgs e)
+        {
+            clsD_Proyectos.MostrarProyectos(this.dtgProyectos);
+
+        }
+        #endregion
+
 
     }
 }

@@ -73,9 +73,7 @@ namespace SIDAC.VISTA
             this.pnlContenedorDtg = new Guna.UI2.WinForms.Guna2Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlControlesDeFiltros = new System.Windows.Forms.Panel();
-            this.cbMes = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cbYears = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cbFiltroPrincipal = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbFiltroYear = new Guna.UI2.WinForms.Guna2ComboBox();
             this.btnMostrarControlesFiltros = new Guna.UI2.WinForms.Guna2Button();
             this.pnlEliminar = new Guna.UI2.WinForms.Guna2Panel();
             this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
@@ -635,80 +633,38 @@ namespace SIDAC.VISTA
             // pnlControlesDeFiltros
             // 
             this.pnlControlesDeFiltros.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pnlControlesDeFiltros.Controls.Add(this.cbMes);
-            this.pnlControlesDeFiltros.Controls.Add(this.cbYears);
-            this.pnlControlesDeFiltros.Controls.Add(this.cbFiltroPrincipal);
+            this.pnlControlesDeFiltros.Controls.Add(this.cbFiltroYear);
             this.pnlControlesDeFiltros.Controls.Add(this.btnMostrarControlesFiltros);
             this.pnlControlesDeFiltros.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlControlesDeFiltros.Location = new System.Drawing.Point(0, 0);
             this.pnlControlesDeFiltros.Name = "pnlControlesDeFiltros";
             this.pnlControlesDeFiltros.Padding = new System.Windows.Forms.Padding(2);
-            this.pnlControlesDeFiltros.Size = new System.Drawing.Size(360, 34);
+            this.pnlControlesDeFiltros.Size = new System.Drawing.Size(150, 34);
             this.pnlControlesDeFiltros.TabIndex = 0;
             // 
-            // cbMes
+            // cbFiltroYear
             // 
-            this.cbMes.BackColor = System.Drawing.Color.Transparent;
-            this.cbMes.BorderRadius = 5;
-            this.cbMes.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbMes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMes.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbMes.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbMes.FocusedState.Parent = this.cbMes;
-            this.cbMes.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.cbMes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbMes.HoverState.Parent = this.cbMes;
-            this.cbMes.ItemHeight = 25;
-            this.cbMes.ItemsAppearance.Parent = this.cbMes;
-            this.cbMes.Location = new System.Drawing.Point(212, 2);
-            this.cbMes.Name = "cbMes";
-            this.cbMes.ShadowDecoration.Parent = this.cbMes;
-            this.cbMes.Size = new System.Drawing.Size(110, 31);
-            this.cbMes.TabIndex = 21;
-            // 
-            // cbYears
-            // 
-            this.cbYears.BackColor = System.Drawing.Color.Transparent;
-            this.cbYears.BorderRadius = 5;
-            this.cbYears.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbYears.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbYears.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbYears.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbYears.FocusedState.Parent = this.cbYears;
-            this.cbYears.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.cbYears.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbYears.HoverState.Parent = this.cbYears;
-            this.cbYears.ItemHeight = 25;
-            this.cbYears.ItemsAppearance.Parent = this.cbYears;
-            this.cbYears.Location = new System.Drawing.Point(115, 2);
-            this.cbYears.Name = "cbYears";
-            this.cbYears.ShadowDecoration.Parent = this.cbYears;
-            this.cbYears.Size = new System.Drawing.Size(97, 31);
-            this.cbYears.TabIndex = 20;
-            // 
-            // cbFiltroPrincipal
-            // 
-            this.cbFiltroPrincipal.BackColor = System.Drawing.Color.Transparent;
-            this.cbFiltroPrincipal.BorderRadius = 5;
-            this.cbFiltroPrincipal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbFiltroPrincipal.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbFiltroPrincipal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiltroPrincipal.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbFiltroPrincipal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbFiltroPrincipal.FocusedState.Parent = this.cbFiltroPrincipal;
-            this.cbFiltroPrincipal.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.cbFiltroPrincipal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbFiltroPrincipal.HoverState.Parent = this.cbFiltroPrincipal;
-            this.cbFiltroPrincipal.ItemHeight = 25;
-            this.cbFiltroPrincipal.ItemsAppearance.Parent = this.cbFiltroPrincipal;
-            this.cbFiltroPrincipal.Location = new System.Drawing.Point(2, 2);
-            this.cbFiltroPrincipal.Name = "cbFiltroPrincipal";
-            this.cbFiltroPrincipal.ShadowDecoration.Parent = this.cbFiltroPrincipal;
-            this.cbFiltroPrincipal.Size = new System.Drawing.Size(113, 31);
-            this.cbFiltroPrincipal.TabIndex = 19;
-            this.cbFiltroPrincipal.Tag = "hola";
+            this.cbFiltroYear.BackColor = System.Drawing.Color.Transparent;
+            this.cbFiltroYear.BorderRadius = 5;
+            this.cbFiltroYear.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbFiltroYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbFiltroYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiltroYear.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFiltroYear.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbFiltroYear.FocusedState.Parent = this.cbFiltroYear;
+            this.cbFiltroYear.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbFiltroYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbFiltroYear.HoverState.Parent = this.cbFiltroYear;
+            this.cbFiltroYear.ItemHeight = 25;
+            this.cbFiltroYear.ItemsAppearance.Parent = this.cbFiltroYear;
+            this.cbFiltroYear.Location = new System.Drawing.Point(2, 2);
+            this.cbFiltroYear.Name = "cbFiltroYear";
+            this.cbFiltroYear.ShadowDecoration.Parent = this.cbFiltroYear;
+            this.cbFiltroYear.Size = new System.Drawing.Size(113, 31);
+            this.cbFiltroYear.TabIndex = 19;
+            this.cbFiltroYear.Tag = "hola";
+            this.cbFiltroYear.SelectedIndexChanged += new System.EventHandler(this.cbFiltroYear_SelectedIndexChanged);
+            this.cbFiltroYear.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cbFiltroYear_MouseClick);
             // 
             // btnMostrarControlesFiltros
             // 
@@ -719,7 +675,7 @@ namespace SIDAC.VISTA
             this.btnMostrarControlesFiltros.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnMostrarControlesFiltros.ForeColor = System.Drawing.Color.White;
             this.btnMostrarControlesFiltros.HoverState.Parent = this.btnMostrarControlesFiltros;
-            this.btnMostrarControlesFiltros.Location = new System.Drawing.Point(328, 2);
+            this.btnMostrarControlesFiltros.Location = new System.Drawing.Point(118, 2);
             this.btnMostrarControlesFiltros.Name = "btnMostrarControlesFiltros";
             this.btnMostrarControlesFiltros.ShadowDecoration.Parent = this.btnMostrarControlesFiltros;
             this.btnMostrarControlesFiltros.Size = new System.Drawing.Size(30, 30);
@@ -1015,9 +971,7 @@ namespace SIDAC.VISTA
         private Guna.UI2.WinForms.Guna2Panel pnlContenedorDtg;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlControlesDeFiltros;
-        private Guna.UI2.WinForms.Guna2ComboBox cbMes;
-        private Guna.UI2.WinForms.Guna2ComboBox cbYears;
-        private Guna.UI2.WinForms.Guna2ComboBox cbFiltroPrincipal;
+        private Guna.UI2.WinForms.Guna2ComboBox cbFiltroYear;
         private Guna.UI2.WinForms.Guna2Button btnMostrarControlesFiltros;
         private Guna.UI2.WinForms.Guna2Panel pnlEliminar;
         private Guna.UI2.WinForms.Guna2Button btnEliminar;

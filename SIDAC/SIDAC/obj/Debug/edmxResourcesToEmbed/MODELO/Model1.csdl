@@ -438,6 +438,7 @@
     <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
       <Parameter Name="estado" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_Ryear_Proyectos" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />

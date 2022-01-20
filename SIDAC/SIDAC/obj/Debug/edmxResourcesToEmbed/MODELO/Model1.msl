@@ -319,5 +319,6 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SIDACModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIDACModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="sp_YearsInPagos" FunctionName="SIDACModel.Store.sp_YearsInPagos" />
+    <FunctionImportMapping FunctionImportName="sp_Ryear_Proyectos" FunctionName="SIDACModel.Store.sp_Ryear_Proyectos" />
   </EntityContainerMapping>
 </Mapping>

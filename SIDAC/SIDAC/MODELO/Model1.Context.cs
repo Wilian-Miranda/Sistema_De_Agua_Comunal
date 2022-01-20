@@ -625,5 +625,10 @@ namespace SIDAC.MODELO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_YearsInPagos", estadoParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> sp_Ryear_Proyectos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Ryear_Proyectos");
+        }
     }
 }
