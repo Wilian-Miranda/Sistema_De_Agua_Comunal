@@ -52,5 +52,9 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmDetallesCompras.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmInventario.resources
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmRegistrosInventario.resources
-C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmProyectos.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.dll
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.xml
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmDeudas.resources

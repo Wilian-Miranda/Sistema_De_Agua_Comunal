@@ -14,8 +14,12 @@ namespace SIDAC.MODELO
     public partial class sp_MostrarCompras_Result
     {
         public int idCompra { get; set; }
+        public Nullable<int> compra { get; set; }
         public string proveedor { get; set; }
         public decimal valor { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
+        public byte[] foto { get; set; }
+        public int idProyecto { get; set; }
+        public string nombre { get; set; }
     }
 }

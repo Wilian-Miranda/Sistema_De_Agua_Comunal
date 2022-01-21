@@ -612,6 +612,11 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> sp_Ryear_Proyectos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Ryear_Proyectos");
+        }
+    
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
@@ -624,11 +629,6 @@ namespace SIDAC.MODELO
                 new ObjectParameter("estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_YearsInPagos", estadoParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_Ryear_Proyectos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Ryear_Proyectos");
         }
     }
 }

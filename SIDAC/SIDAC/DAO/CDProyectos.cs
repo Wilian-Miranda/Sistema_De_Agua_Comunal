@@ -139,6 +139,32 @@ namespace SIDAC.DAO
             }
 
         }
+        public void MostrarProyectos_Year(String year, System.Windows.Forms.ComboBox cbProyectos)
+        {
+            try
+            {
+                using (SIDACEntities db = new SIDACEntities())
+                {
+                    var proyectosInYears =(from t in db.sp_MostrarProyectos_year(year)
+                                           select new { 
+                                           t.idProyecto,
+                                           t.nombre
+                                           }).ToList();
+
+                    cbProyectos.ResetText();
+                    cbProyectos.DataSource = proyectosInYears;
+                    cbProyectos.DisplayMember = "nombre";
+                    cbProyectos.ValueMember = "idProyecto";
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error al mostrar los Proyectos. \n\n" + ex.ToString());
+            }
+
+        }
         #endregion
     }
 }

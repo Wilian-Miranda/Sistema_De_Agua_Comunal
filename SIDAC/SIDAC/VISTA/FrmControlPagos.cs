@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 using SIDAC.DAO;
 using SIDAC.MODELO;
 using SIDAC.VALIDACIONES;
@@ -637,6 +641,33 @@ namespace SIDAC.VISTA
             }
         }
         #endregion
-        
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog guardarDoc = new SaveFileDialog();
+            guardarDoc.FileName = DateTime.Today.ToString() + ".pdf";
+
+            String paginaHtml = "";
+
+            if (guardarDoc.ShowDialog()==DialogResult.OK)
+            {
+
+                using (FileStream stream = new FileStream(guardarDoc.FileName, FileMode.Create))
+                {
+                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter writter = PdfWriter.GetInstance(pdf, stream);
+
+                    pdf.Open();
+
+                    using (StringReader stringReader = new StringReader(paginaHtml))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writter, pdf, stringReader);
+                    }
+                    pdf.Close();
+
+                }
+            }
+        }
     }
 }

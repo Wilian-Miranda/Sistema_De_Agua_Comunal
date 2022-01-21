@@ -36,13 +36,13 @@ namespace SIDAC.VISTA
                 using (SIDACEntities db = new SIDACEntities())
                 {
                     dtgCompras.Rows.Clear();
-                    var compras = db.Compras.ToList();
+                    var compras = db.sp_MostrarCompras().ToList();
 
                     if (compras.Count > 0)
                     {
                         foreach (var i in compras)
                         {
-                            dtgCompras.Rows.Add(i.idCompra,i.compra, i.proveedor, i.valor, i.fecha, i.foto);
+                            dtgCompras.Rows.Add(i.idCompra,i.compra, i.proveedor, i.valor, i.fecha, i.foto, i.idProyecto, i.nombre);
                         }
                     }
 
@@ -101,6 +101,7 @@ namespace SIDAC.VISTA
                         Compras guardar = new Compras();
                         guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
                         guardar.proveedor = txtProveedor.Text;
+                        guardar.Fk_idProyecto = Convert.ToInt32(cbYear.SelectedValue.ToString());
                         guardar.valor = Convert.ToDecimal(txtValor.Text);
                         guardar.fecha = Convert.ToDateTime(txtFecha.Text);
                         guardar.foto = ConvertirImagen();
@@ -120,6 +121,7 @@ namespace SIDAC.VISTA
 
                         guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
                         guardar.proveedor = txtProveedor.Text;
+                        guardar.Fk_idProyecto = Convert.ToInt32(cbYear.SelectedValue.ToString());
                         guardar.valor = Convert.ToDecimal(txtValor.Text);
                         guardar.fecha = Convert.ToDateTime(txtFecha.Text);
                         guardar.foto = ConvertirImagen();
@@ -213,6 +215,9 @@ namespace SIDAC.VISTA
                 txtValor.Text = dtgCompras.CurrentRow.Cells[3].Value.ToString();
                 byte[] img = (byte[])dtgCompras.CurrentRow.Cells[5].Value;
                 ptrFactura.Image = ByteAImagen(img);
+                txtIdProyecto.Text = dtgCompras.CurrentRow.Cells[6].Value.ToString();
+                txtNombreProyecto.Text = dtgCompras.CurrentRow.Cells[7].Value.ToString();
+
 
                 btnRealizarCompra.Text = "Actualizar";
             }
@@ -244,6 +249,9 @@ namespace SIDAC.VISTA
             txtProveedor.Text = "";
             txtValor.Text = "";
             ptrFactura.Image = null;
+            txtIdProyecto.Clear();
+            txtNombreProyecto.Clear();
+            cbYear.ResetText();
         }
 
         private void pnlEncabezadoNuevoCompra_DoubleClick(object sender, EventArgs e)
@@ -284,6 +292,22 @@ namespace SIDAC.VISTA
 
 
             detalles.ShowDialog();
+        }
+
+        CDProyectos ClsDProyectos = new CDProyectos();
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ClsDProyectos.MostrarProyectos_Year(cbYear.Text, this.cbYear);
+        }
+
+        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbYear.SelectedIndex >=0)
+            {
+                txtNombreProyecto.Text = cbYear.Text;
+                txtIdProyecto.Text = cbYear.SelectedValue.ToString();
+            }
         }
     }
 }

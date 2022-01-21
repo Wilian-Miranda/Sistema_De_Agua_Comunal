@@ -434,11 +434,11 @@
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_Ryear_Proyectos" ReturnType="Collection(Int32)" />
     <FunctionImport Name="sp_upgraddiagrams" />
     <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
       <Parameter Name="estado" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_Ryear_Proyectos" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -466,9 +466,13 @@
   </ComplexType>
   <ComplexType Name="sp_MostrarCompras_Result">
     <Property Type="Int32" Name="idCompra" Nullable="false" />
+    <Property Type="Int32" Name="compra" Nullable="true" />
     <Property Type="String" Name="proveedor" Nullable="false" MaxLength="50" />
     <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" />
     <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
+    <Property Type="Int32" Name="idProyecto" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
   </ComplexType>
   <ComplexType Name="sp_MostrarConsumidores_Result">
     <Property Type="Int32" Name="idConsumidor" Nullable="false" />

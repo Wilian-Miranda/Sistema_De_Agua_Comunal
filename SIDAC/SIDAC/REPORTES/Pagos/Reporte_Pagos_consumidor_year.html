@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago en un año</title>
+    <style type="text/css">
+    body{
+        font-family: Arial;
+        line-height: 1.5;
+        font-size: 12pt;
+    }
+    .contenedorEncabezado{
+        display: flex;
+        justify-content: space-between;
+    }
+    .titulo{
+        text-align: center;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .nombreConsumidor{
+        width: 80%;
+        border-width: 0px;
+        border-bottom-width: 1px;
+        margin-left: 1em;
+    }
+    .contenedor_infoConsumidor{
+        margin-top: 3em;
+    }
+    .table{
+        border: 1px solid gray;
+        width: 100%;
+    }
+    .celda_fila{
+        text-align: center;
+
+    }
+
+    table.table{
+        border-collapse: collapse;
+    }
+    table.table td{
+        margin: 0;
+        border: 1px solid gray;
+
+    }
+    .contenedor_firmas{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2em;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="">
+        <p class="titulo">CONSTANCIA DE PAGO</p>
+    </div>
+    <div class="contenedorEncabezado">
+        <div class="logo">
+            <img src="@IMG" alt="logo">
+        </div>
+        <div class="infoSistemaLocal">
+            <p>@NOMBRESISTEMA</p>
+            <p>@COMUNIDAD</p>
+        </div>
+        <div class="fecha">
+            <p>Año: @YEAR</p>
+            <p>Fecha: @FECHA</p>
+        </div>
+    </div>
+        <div class="contenedor_infoConsumidor">
+            <label for="">Nombre:</label><input class="nombreConsumidor" type="text" value="@NOMBRECONSUMIDOR" style="font-size: 12pt;font-family: Arial;">
+            <p>Por medio de este documento se detallan todos los pagos recibidos en un año por el servicio de agua local.</p>
+        </div>
+        <div class="contenedor_tabla">
+            <table class="table">
+                <thead style="background-color: lightgray;">
+                    <tr style="border-bottom: 1px solid gray !important;">
+                        <th class="table_header">Mes</th>
+                        <th class="table_header">Monto Base</th>
+                        <th class="table_header">Cancelado</th>
+                        <th class="table_header">Pendiente</th>
+                        <th class="table_header">Mora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Enero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila">Febrero</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.5</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                    </tr>
+                    <tr>
+                        <td class="celda_fila" style="font-weight: bold;">Total</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td>
+                        <td class="celda_fila">$0.0</td> 
+                    </tr>
+                </tbody>
+            </table>
+            <div class="contenedor_firmas">
+                <div>
+                    <p>F:_______________</p>
+                    <p>Nombre:</p>
+                    <p>Administrador</p>
+                </div>
+                <div>
+                    <p>F:_______________</p>
+                    <p>Nombre:</p>
+                    <p>Consumidor</p>
+                </div>
+            </div>
+        </div>
+
+
+
+</body>
+</html>
