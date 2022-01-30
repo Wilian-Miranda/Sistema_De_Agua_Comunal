@@ -161,6 +161,9 @@
     <Compile Include="MODELO\sp_MostrarPagos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODELO\sp_MostrarPagos_Year_Consumidor_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODELO\sp_MostrarProyectos_year_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -304,6 +307,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ReporteGeneralPagos.html" />
+    <None Include="Resources\ReportePagosConsumidor.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="REPORTES\Pagos\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="MODELO\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -314,9 +324,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="REPORTES\Pagos\Reporte_Pagos_consumidor_year.html" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

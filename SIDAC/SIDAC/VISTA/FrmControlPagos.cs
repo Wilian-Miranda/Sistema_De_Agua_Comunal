@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.tool.xml;
 using SIDAC.DAO;
 using SIDAC.MODELO;
 using SIDAC.VALIDACIONES;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 
 namespace SIDAC.VISTA
 {
@@ -34,7 +35,9 @@ namespace SIDAC.VISTA
         {
             pago.MostrarPagos(cbFiltroPrincipal.Text, this.dtgPagos);
             CargarEstados();
+            CargarReportes();
         }
+
         #region METODOS DE CARGA DE DATOS
 
         //se carga los datos del filtro por estados en los pagos
@@ -61,6 +64,14 @@ namespace SIDAC.VISTA
                 cbEstado.DisplayMember = "nombre";
                 cbEstado.ValueMember = "idEstado";
             }
+        }
+        //carga de items del menu de reportes
+        private void CargarReportes()
+        {
+            //cbMenuFiltro.Items.Add("Estado");
+            cbMenuFiltro.Items.Add("Reporte General por Año");
+            //cbMenuFiltro.Items.Add("Estado-Año-Mes");
+            cbMenuFiltro.Items.Add("Pagos por Consumidor");
         }
         #endregion
 
@@ -644,29 +655,157 @@ namespace SIDAC.VISTA
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            SaveFileDialog guardarDoc = new SaveFileDialog();
-            guardarDoc.FileName = DateTime.Today.ToString() + ".pdf";
+            if (cbMenuFiltro.Text.Equals("Reporte General por Año"))
+            {
+                SaveFileDialog guardarDoc = new SaveFileDialog();
+                guardarDoc.FileName = DateTime.Today.ToString("dd/MM/yyyy") + ".pdf";
 
-            String paginaHtml = "";
+                String paginaHtml = Properties.Resources.ReporteGeneralPagos.ToString();
+                paginaHtml = paginaHtml.Replace("@NombreSistema", "Sistema Comunal de Agua");
+                paginaHtml = paginaHtml.Replace("@Comunidad", "Las Lomas");
+                paginaHtml = paginaHtml.Replace("@Year", cbYears.Text);
+                paginaHtml = paginaHtml.Replace("@Fecha", DateTime.Today.ToString("dd/MM/yyyy"));
+//                paginaHtml = paginaHtml.Replace("@NombreConsumidor", txtNombreABuscar.Text);
 
-            if (guardarDoc.ShowDialog()==DialogResult.OK)
+                //var img = Properties.Resources._3;
+                //paginaHtml = paginaHtml.Replace("@IMAGEN", img);
+
+                string filas = string.Empty;
+                decimal totalMontoBase = 0;
+                decimal totalCancelado = 0;
+                decimal totalPendiente = 0;
+                decimal totalMora = 0;
+                foreach (DataGridViewRow i in dtgPagos.Rows)
+                {
+                    filas += "<tr>";
+                    filas += "<td class='celda'>" + (i.Index + 1).ToString() + "</td>";
+                    filas += "<td style='text-align: left; border:1px solid gray;height:1cm; padding-left:0.5cm;'>" + i.Cells[1].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[3].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[4].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[5].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[6].Value.ToString() + "</td>";
+                    filas += "</tr>";
+                    totalMontoBase += Convert.ToDecimal(i.Cells[3].Value.ToString());
+                    totalCancelado += Convert.ToDecimal(i.Cells[4].Value.ToString());
+                    totalPendiente += Convert.ToDecimal(i.Cells[5].Value.ToString());
+                    totalMora += Convert.ToDecimal(i.Cells[6].Value.ToString());
+                }
+                paginaHtml = paginaHtml.Replace("@Filas", filas);
+                paginaHtml = paginaHtml.Replace("@Monto", "$" + totalMontoBase.ToString());
+                paginaHtml = paginaHtml.Replace("@Cancelado", "$" + totalCancelado.ToString());
+                paginaHtml = paginaHtml.Replace("@Pendiente", "$" + totalPendiente.ToString());
+                paginaHtml = paginaHtml.Replace("@Mora", "$" + totalMora.ToString());
+
+                if (guardarDoc.ShowDialog() == DialogResult.OK)
+                {
+
+                    using (FileStream stream = new FileStream(guardarDoc.FileName, FileMode.Create))
+                    {
+                        Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                        PdfWriter writter = PdfWriter.GetInstance(pdf, stream);
+
+                        pdf.Open();
+                        pdf.Add(new Phrase(""));
+
+                        using (StringReader stringReader = new StringReader(paginaHtml))
+                        {
+                            XMLWorkerHelper.GetInstance().ParseXHtml(writter, pdf, stringReader);
+                        }
+                        pdf.Close();
+
+                    }
+                }
+            }
+
+            //reporte general
+            if (cbMenuFiltro.Text.Equals("Pagos por Consumidor"))
+            {
+                SaveFileDialog guardarDoc = new SaveFileDialog();
+                guardarDoc.FileName = DateTime.Today.ToString("dd//MM//yyyy") + ".pdf";
+
+                String paginaHtml = Properties.Resources.ReportePagosConsumidor.ToString();
+                paginaHtml = paginaHtml.Replace("@NombreSistema", "Sistema Comunal de Agua");
+                paginaHtml = paginaHtml.Replace("@Comunidad", "Las Lomas");
+                paginaHtml = paginaHtml.Replace("@Year", cbYear.Text);
+                paginaHtml = paginaHtml.Replace("@Fecha", DateTime.Today.ToString("dd/MM/yyyy"));
+                paginaHtml = paginaHtml.Replace("@NombreConsumidor", txtNombreABuscar.Text);
+
+                //var img = Properties.Resources._3;
+                //paginaHtml = paginaHtml.Replace("@IMAGEN", img);
+
+                string filas = string.Empty;
+                decimal totalMontoBase = 0;
+                decimal totalCancelado = 0;
+                decimal totalPendiente = 0;
+                decimal totalMora = 0;
+                foreach (DataGridViewRow i in dtgPagos.Rows)
+                {
+                    filas += "<tr>";
+                    filas += "<td style='text-align: left; border:1px solid gray;height:1cm; padding-left:0.5cm;'>" + i.Cells[2].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[3].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[4].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[5].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>$" + i.Cells[6].Value.ToString() + "</td>";
+                    filas += "<td class='celda'>" + i.Cells[8].Value + "</td>";
+                    filas += "</tr>";
+                    totalMontoBase += Convert.ToDecimal(i.Cells[3].Value.ToString());
+                    totalCancelado += Convert.ToDecimal(i.Cells[4].Value.ToString());
+                    totalPendiente += Convert.ToDecimal(i.Cells[5].Value.ToString());
+                    totalMora += Convert.ToDecimal(i.Cells[6].Value.ToString());
+                }
+                paginaHtml = paginaHtml.Replace("@Filas", filas);
+                paginaHtml = paginaHtml.Replace("@Monto", "$" + totalMontoBase.ToString());
+                paginaHtml = paginaHtml.Replace("@Cancelado", "$" + totalCancelado.ToString());
+                paginaHtml = paginaHtml.Replace("@Pendiente", "$" + totalPendiente.ToString());
+                paginaHtml = paginaHtml.Replace("@Mora", "$" + totalMora.ToString());
+
+                if (guardarDoc.ShowDialog() == DialogResult.OK)
+                {
+
+                    using (FileStream stream = new FileStream(guardarDoc.FileName, FileMode.Create))
+                    {
+                        Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                        PdfWriter writter = PdfWriter.GetInstance(pdf, stream);
+
+                        pdf.Open();
+                        pdf.Add(new Phrase(""));
+
+                        using (StringReader stringReader = new StringReader(paginaHtml))
+                        {
+                            XMLWorkerHelper.GetInstance().ParseXHtml(writter, pdf, stringReader);
+                        }
+                        pdf.Close();
+
+                    }
+                }
+            }
+            
+        }
+
+        private void btnCargarReporte_Click(object sender, EventArgs e)
+        {
+            using (SIDACEntities db = new SIDACEntities())
             {
 
-                using (FileStream stream = new FileStream(guardarDoc.FileName, FileMode.Create))
+                var consumidores = (from t in db.Consumidores
+                                    select t.idConsumidor).ToList();
+                dtgPagos.Rows.Clear();
+                foreach (var i in consumidores)
                 {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter writter = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-
-                    using (StringReader stringReader = new StringReader(paginaHtml))
+                    using (SIDACEntities dB = new SIDACEntities())
                     {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(writter, pdf, stringReader);
-                    }
-                    pdf.Close();
+                        var pagos = dB.sp_MostrarPagos_Year_Consumidor(i, cbYears.Text).ToList();
 
+                        foreach (var x in pagos)
+                        {
+                            dtgPagos.Rows.Add(0, x.nombre,"-",x.montoBase, x.montoCancelado,
+                                         x.montoPendiente, x.mora,"-","-","-");
+                        }
+                    }
                 }
+
             }
         }
     }

@@ -362,6 +362,10 @@
     <Parameter Name="year" Type="varchar" Mode="In" />
     <Parameter Name="mes" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_MostrarPagos_Year_Consumidor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idConsumidor" Type="int" Mode="In" />
+    <Parameter Name="Year" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_MostrarPagosPorYearPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>

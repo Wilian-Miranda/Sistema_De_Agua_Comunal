@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Pago en un año</title>
+    <style type="text/css">
+    .celda{
+        border:1px solid gray; 
+        text-align: center;
+        height: 1cm;
+    }
+    </style>
+</head>
+<body style="font-family: Arial; font-size: 12pt;">
+
+
+    <Table colspan="3" style="border-collapse: collapse;border:0px solid black; width: 100%;">
+        <thead>
+            <tr>
+                <th style="text-decoration: underline; text-align: center; padding-bottom: 50px;" colspan="3">CONSTANCIA DE PAGO</th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="3.png" alt="" style="border: 1px solid gray;" width="120" height="120" ></img>
+                </th>
+                <th>
+                    <p>@NombreSistema</p>
+                    <p>@Comunidad</p>
+                </th>
+                <th>
+                    <p>Año: @Year</p>
+                    <p>Fecha de emisión: @Fecha</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="3" style="padding: 2cm 0cm 1cm 0cm;">
+                    <p style="text-align: justify; font-weight: normal;">
+                        Por medio de este documento se detallan todos los pagos recibidos,
+                        por el administrador del servicio de agua local, de todos los consumidores durante un año.</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </Table>
+    
+    <table style="border-collapse: collapse;border: 1px solid black;width: 100%;">
+        <thead>
+            <thead style="background-color: gray;">
+                <tr style="border-bottom: 1px solid gray !important; height: 1cm;">
+                    <th style="text-align: center;">No.</th>
+                    <th style="text-align: center;">Nombre</th>
+                    <th style="text-align: center;">Monto Base</th>
+                    <th style="text-align: center;">Cancelado</th>
+                    <th style="text-align: center;">Pendiente</th>
+                    <th style="text-align: center;">Mora</th>
+                </tr>
+            </thead>
+        </thead>
+        <tbody>
+            <!--
+            <tr>
+                <td class='celda'>Febrero</td>
+                <td class='celda'>$0.5</td>
+                <td class='celda'>$0.5</td>
+                <td class='celda'>$0.0</td>
+                <td class='celda'>$0.0</td>
+            </tr>
+        -->
+        @Filas
+            <tr style="height: 1cm;">
+                <td style="font-weight: bold;border:1px solid gray; text-align: center;" colspan="2">Total</td>
+                <td style="border:1px solid gray; text-align: center; font-weight: bold;">@Monto</td>
+                <td style="border:1px solid gray; text-align: center; font-weight: bold;">@Cancelado</td>
+                <td style="border:1px solid gray; text-align: center; font-weight: bold;">@Pendiente</td>
+                <td style="border:1px solid gray; text-align: center; font-weight: bold;">@Mora</td> 
+            </tr>
+
+        </tbody>
+    </table><br></br>
+
+    <div style="width: 100%;">
+        <div style=" margin-right: 3em; width: min-content; float: left;">
+            <p >F:______________</p>
+            <p style="text-align: left;">Nombre:</p>
+            <p >Administrador</p>
+        </div>
+        <div style="width: min-content; float: right; width: 50%;" >
+            <p >F:______________</p>
+            <p style="text-align: left;">Nombre:</p>
+            <p >Consumidor</p>
+        </div>
+</div>
+</body>
+</html>

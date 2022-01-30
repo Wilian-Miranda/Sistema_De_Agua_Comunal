@@ -91,6 +91,60 @@ namespace SIDAC.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;es&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Pago en un año&lt;/title&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///    .celda{
+        ///        border:1px solid gray; 
+        ///        text-align: center;
+        ///        height: 1cm;
+        ///    }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body style=&quot;font-family: Arial; font-size: 12pt;&quot;&gt;
+        ///
+        ///
+        ///    &lt;Table colspan=&quot;3&quot; style=&quot;border-collapse: collapse;border:0px solid black; width: 100%;&quot;&gt;
+        ///        &lt;thead&gt;
+        ///            &lt;tr&gt;
+        ///                &lt;th style=&quot;text-decoration: underline; text-align: center; padding-bottom: [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string ReporteGeneralPagos {
+            get {
+                return ResourceManager.GetString("ReporteGeneralPagos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;es&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Pago en un año&lt;/title&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///    .celda{
+        ///        border:1px solid gray; 
+        ///        text-align: center;
+        ///        height: 1cm;
+        ///    }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body style=&quot;font-family: Arial; font-size: 12pt;&quot;&gt;
+        ///
+        ///
+        ///    &lt;Table colspan=&quot;3&quot; style=&quot;border-collapse: collapse;border:0px solid black; width: 100%;&quot;&gt;
+        ///        &lt;thead&gt;
+        ///            &lt;tr&gt;
+        ///                &lt;th style=&quot;text-decoration: underline; text-align: center; padding-bottom: [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string ReportePagosConsumidor {
+            get {
+                return ResourceManager.GetString("ReportePagosConsumidor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RetiroInventario {

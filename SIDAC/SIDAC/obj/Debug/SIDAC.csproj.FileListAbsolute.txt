@@ -58,3 +58,4 @@ C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.d
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\bin\Debug\itextsharp.xml
 C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.VISTA.FrmDeudas.resources
+C:\Users\Jose\Desktop\Sistema_De_Agua_Comunal\SIDAC\SIDAC\obj\Debug\SIDAC.csproj.AssemblyReference.cache

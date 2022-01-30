@@ -568,6 +568,19 @@ namespace SIDAC.MODELO
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Estado_Year_Mes_Result>("sp_MostrarPagos_Estado_Year_Mes", estadoParameter, yearParameter, mesParameter);
         }
     
+        public virtual ObjectResult<sp_MostrarPagos_Year_Consumidor_Result> sp_MostrarPagos_Year_Consumidor(Nullable<int> idConsumidor, string year)
+        {
+            var idConsumidorParameter = idConsumidor.HasValue ?
+                new ObjectParameter("idConsumidor", idConsumidor) :
+                new ObjectParameter("idConsumidor", typeof(int));
+    
+            var yearParameter = year != null ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MostrarPagos_Year_Consumidor_Result>("sp_MostrarPagos_Year_Consumidor", idConsumidorParameter, yearParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> sp_MostrarPagosPorYearPorId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?

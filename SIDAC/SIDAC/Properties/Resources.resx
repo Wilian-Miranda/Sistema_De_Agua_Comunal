@@ -127,6 +127,12 @@
   <data name="buscarUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buscarUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ReporteGeneralPagos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReporteGeneralPagos.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ReportePagosConsumidor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ReportePagosConsumidor.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="RetiroInventario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RetiroInventario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

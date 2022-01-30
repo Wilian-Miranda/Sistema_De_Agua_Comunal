@@ -301,6 +301,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_MostrarPagos_Year_Consumidor" FunctionName="SIDACModel.Store.sp_MostrarPagos_Year_Consumidor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SIDACModel.sp_MostrarPagos_Year_Consumidor_Result">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="montoBase" ColumnName="montoBase" />
+          <ScalarProperty Name="montoCancelado" ColumnName="montoCancelado" />
+          <ScalarProperty Name="montoPendiente" ColumnName="montoPendiente" />
+          <ScalarProperty Name="mora" ColumnName="mora" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_MostrarPagosPorYearPorId" FunctionName="SIDACModel.Store.sp_MostrarPagosPorYearPorId" />
     <FunctionImportMapping FunctionImportName="sp_MostrarProyectos_year" FunctionName="SIDACModel.Store.sp_MostrarProyectos_year">
       <ResultMapping>

@@ -420,6 +420,10 @@
       <Parameter Name="year" Mode="In" Type="String" />
       <Parameter Name="mes" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_MostrarPagos_Year_Consumidor" ReturnType="Collection(SIDACModel.sp_MostrarPagos_Year_Consumidor_Result)">
+      <Parameter Name="idConsumidor" Mode="In" Type="Int32" />
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_MostrarPagosPorYearPorId" ReturnType="Collection(Int32)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -547,6 +551,13 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="estado" Nullable="false" MaxLength="20" />
     <Property Type="DateTime" Name="fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_MostrarPagos_Year_Consumidor_Result">
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="102" />
+    <Property Type="Decimal" Name="montoBase" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="montoCancelado" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="montoPendiente" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="mora" Nullable="true" Precision="19" />
   </ComplexType>
   <ComplexType Name="sp_MostrarProyectos_year_Result">
     <Property Type="Int32" Name="idProyecto" Nullable="false" />
