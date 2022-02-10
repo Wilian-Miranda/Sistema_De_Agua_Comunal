@@ -44,7 +44,6 @@
     </Table>
     
     <table style="border-collapse: collapse;border: 1px solid black;width: 100%;">
-        <thead>
             <thead style="background-color: gray;">
                 <tr style="border-bottom: 1px solid gray !important; height: 1cm;">
                     <th style="text-align: center;">No.</th>
@@ -55,18 +54,9 @@
                     <th style="text-align: center;">Mora</th>
                 </tr>
             </thead>
-        </thead>
         <tbody>
-            <!--
-            <tr>
-                <td class='celda'>Febrero</td>
-                <td class='celda'>$0.5</td>
-                <td class='celda'>$0.5</td>
-                <td class='celda'>$0.0</td>
-                <td class='celda'>$0.0</td>
-            </tr>
-        -->
-        @Filas
+
+            <tr>@Filas</tr>
             <tr style="height: 1cm;">
                 <td style="font-weight: bold;border:1px solid gray; text-align: center;" colspan="2">Total</td>
                 <td style="border:1px solid gray; text-align: center; font-weight: bold;">@Monto</td>
@@ -76,7 +66,8 @@
             </tr>
 
         </tbody>
-    </table><br></br>
+    </table>
+    <br></br>
 
     <div style="width: 100%;">
         <div style=" margin-right: 3em; width: min-content; float: left;">

@@ -170,6 +170,7 @@
     <Compile Include="MODELO\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="REPORTES\ClsRepo_Pagos.cs" />
     <Compile Include="VALIDACIONES\VsFrmPagos.cs" />
     <Compile Include="VALIDACIONES\VsFrmProyectos.cs" />
     <Compile Include="VISTA\FrmCompras.cs">
@@ -228,6 +229,12 @@
     <Compile Include="VISTA\FrmRegistrosInventario.Designer.cs">
       <DependentUpon>FrmRegistrosInventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\FrmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\FrmReportes.Designer.cs">
+      <DependentUpon>FrmReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\VisualizarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +278,9 @@
     <EmbeddedResource Include="VISTA\FrmRegistrosInventario.resx">
       <DependentUpon>FrmRegistrosInventario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\FrmReportes.resx">
+      <DependentUpon>FrmReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTA\VisualizarFactura.resx">
       <DependentUpon>VisualizarFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,9 +320,7 @@
     <None Include="Resources\ReporteGeneralPagos.html" />
     <None Include="Resources\ReportePagosConsumidor.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="REPORTES\Pagos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="MODELO\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
