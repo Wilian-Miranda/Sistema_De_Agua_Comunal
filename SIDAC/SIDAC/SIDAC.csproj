@@ -332,6 +332,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\minimizar.png" />
+    <None Include="Resources\pago-en-efectivo.png" />
+    <None Include="Resources\inventario.png" />
+    <None Include="Resources\expandir.png" />
+    <None Include="Resources\dashboard.png" />
+    <None Include="Resources\compras.png" />
+    <None Include="Resources\cliente.png" />
+    <None Include="Resources\cerrar.png" />
+    <None Include="Resources\ajustes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

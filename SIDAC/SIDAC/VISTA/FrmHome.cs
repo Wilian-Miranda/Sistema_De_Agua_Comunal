@@ -18,11 +18,7 @@ namespace SIDAC
             InitializeComponent();
         }
 
-        private Form currentFrmConsumidores;
-        private Form currentFrmPagos = null;
-        private Form currentFrmCompras = null;
-        private Form currentFrmInventarios = null;
-        private Form currentFrmReportes = null;
+        private Form currentFrm = null;
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
@@ -31,70 +27,74 @@ namespace SIDAC
 
         private void btnConsumidores_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanelPadre(new FrmConsumidores(), currentFrmConsumidores);
-            //if (currentFrmConsumidores != null)
-            //{
-            //    currentFrmConsumidores.Close();
-            //    currentFrmConsumidores = null;
-            //}
+            AbrirFormularioEnPanelPadre(new FrmConsumidores(), currentFrm);
 
-            ////formulario = panelPadre.Controls.OfType<Miform>().FirstOrDefault();
-
-            //else if (currentFrmConsumidores == null)
-            //{
-            //    //formulario = new Miform();
-            //    currentFrmConsumidores = new FrmConsumidores();
-            //    currentFrmConsumidores.TopLevel = false;
-            //    currentFrmConsumidores.Dock = DockStyle.Fill;
-            //    pnlPadre.Controls.Add(currentFrmConsumidores);
-            //    pnlPadre.Tag = currentFrmConsumidores;
-            //    currentFrmConsumidores.Show();
-            //    currentFrmConsumidores.BringToFront();
-            //}
         }
 
         private void AbrirFormularioEnPanelPadre(Form ObjetoFormulario, Form CurrentVariable)
         {
-            if (CurrentVariable != null)
+            //formulario = panelPadre.Controls.OfType<Miform>().FirstOrDefault();
+            if (pnlPadre.Controls != null)
             {
+                pnlPadre.Controls.Clear();
                 CurrentVariable = null;
-                CurrentVariable.Close();
-                
             }
 
-            //formulario = panelPadre.Controls.OfType<Miform>().FirstOrDefault();
-
-            else if (CurrentVariable == null)
+            if (CurrentVariable == null)
             {
-                //formulario = new Miform();
                 CurrentVariable = ObjetoFormulario;
-                CurrentVariable.TopLevel = false;
+                CurrentVariable.TopLevel = false; 
                 CurrentVariable.Dock = DockStyle.Fill;
                 pnlPadre.Controls.Add(CurrentVariable);
-                pnlPadre.Tag = CurrentVariable;
                 CurrentVariable.Show();
                 CurrentVariable.BringToFront();
             }
+
         }
 
         private void btnPagos_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanelPadre(new FrmControlPagos(), currentFrmPagos);
+            AbrirFormularioEnPanelPadre(new FrmControlPagos(), currentFrm);
         }
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanelPadre(new FrmCompras(), currentFrmCompras);
+            AbrirFormularioEnPanelPadre(new FrmCompras(), currentFrm);
         }
 
         private void btnInventarios_Click(object sender, EventArgs e)
         {
-            AbrirFormularioEnPanelPadre(new FrmInventario(), currentFrmInventarios);
+            AbrirFormularioEnPanelPadre(new FrmInventario(), currentFrm);
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
 
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                WindowState = FormWindowState.Minimized;
+            }
         }
     }
 }

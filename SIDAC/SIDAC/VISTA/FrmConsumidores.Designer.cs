@@ -643,11 +643,12 @@ namespace SIDAC.VISTA
             this.Controls.Add(this.pnlNuevoConsumidor);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmConsumidores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmConsumidores";
+            this.Text = "Consumidores";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmConsumidores_Load);
             this.pnlConsumidores.ResumeLayout(false);
             this.pnlTablaConsumidores.ResumeLayout(false);

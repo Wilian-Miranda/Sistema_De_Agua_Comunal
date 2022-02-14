@@ -418,6 +418,7 @@ namespace SIDAC.VISTA
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmReportes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmReportes";
             this.pnlControlesPagos.ResumeLayout(false);
             this.pnlControlesPagos.PerformLayout();
