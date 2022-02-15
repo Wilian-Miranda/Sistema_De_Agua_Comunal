@@ -180,5 +180,11 @@ namespace SIDAC.VISTA
             }
 
         }
+        int x = 0;
+        int y = 0;
+        private void pnlSeleccioFormulario_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

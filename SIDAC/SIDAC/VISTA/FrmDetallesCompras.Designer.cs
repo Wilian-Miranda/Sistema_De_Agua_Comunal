@@ -81,34 +81,38 @@ namespace SIDAC.VISTA
             this.pnlSeleccioFormulario.Controls.Add(this.btnCerrarAplicacion);
             this.pnlSeleccioFormulario.Controls.Add(this.label6);
             this.pnlSeleccioFormulario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSeleccioFormulario.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlSeleccioFormulario.Location = new System.Drawing.Point(0, 0);
             this.pnlSeleccioFormulario.Name = "pnlSeleccioFormulario";
             this.pnlSeleccioFormulario.ShadowDecoration.Parent = this.pnlSeleccioFormulario;
             this.pnlSeleccioFormulario.Size = new System.Drawing.Size(879, 30);
             this.pnlSeleccioFormulario.TabIndex = 1;
+            this.pnlSeleccioFormulario.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlSeleccioFormulario_MouseMove);
             // 
             // btnCerrarAplicacion
             // 
-            this.btnCerrarAplicacion.BorderRadius = 19;
+            this.btnCerrarAplicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.btnCerrarAplicacion.CheckedState.Parent = this.btnCerrarAplicacion;
             this.btnCerrarAplicacion.CustomImages.Parent = this.btnCerrarAplicacion;
             this.btnCerrarAplicacion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrarAplicacion.FillColor = System.Drawing.Color.Red;
+            this.btnCerrarAplicacion.FillColor = System.Drawing.Color.Transparent;
             this.btnCerrarAplicacion.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnCerrarAplicacion.ForeColor = System.Drawing.Color.White;
             this.btnCerrarAplicacion.HoverState.Parent = this.btnCerrarAplicacion;
+            this.btnCerrarAplicacion.Image = global::SIDAC.Properties.Resources.cerrar;
             this.btnCerrarAplicacion.Location = new System.Drawing.Point(846, 0);
             this.btnCerrarAplicacion.Name = "btnCerrarAplicacion";
             this.btnCerrarAplicacion.ShadowDecoration.Parent = this.btnCerrarAplicacion;
             this.btnCerrarAplicacion.Size = new System.Drawing.Size(33, 30);
             this.btnCerrarAplicacion.TabIndex = 22;
-            this.btnCerrarAplicacion.Text = "X";
             this.btnCerrarAplicacion.Click += new System.EventHandler(this.btnCerrarAplicacion_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(12, 8);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(217, 19);
@@ -118,13 +122,12 @@ namespace SIDAC.VISTA
             // pnlNuevoCompra
             // 
             this.pnlNuevoCompra.BackColor = System.Drawing.Color.Transparent;
-            this.pnlNuevoCompra.BorderColor = System.Drawing.Color.Silver;
             this.pnlNuevoCompra.BorderRadius = 14;
             this.pnlNuevoCompra.BorderThickness = 1;
             this.pnlNuevoCompra.Controls.Add(this.btnActualizar);
             this.pnlNuevoCompra.Controls.Add(this.pnlDatosPagos);
             this.pnlNuevoCompra.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlNuevoCompra.FillColor = System.Drawing.SystemColors.Control;
+            this.pnlNuevoCompra.FillColor = System.Drawing.Color.White;
             this.pnlNuevoCompra.Location = new System.Drawing.Point(0, 30);
             this.pnlNuevoCompra.Name = "pnlNuevoCompra";
             this.pnlNuevoCompra.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
@@ -137,24 +140,24 @@ namespace SIDAC.VISTA
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActualizar.BorderColor = System.Drawing.Color.DimGray;
             this.btnActualizar.BorderRadius = 7;
-            this.btnActualizar.BorderThickness = 1;
             this.btnActualizar.CheckedState.Parent = this.btnActualizar;
             this.btnActualizar.CustomImages.Parent = this.btnActualizar;
-            this.btnActualizar.FillColor = System.Drawing.Color.Gray;
+            this.btnActualizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
             this.btnActualizar.HoverState.Parent = this.btnActualizar;
-            this.btnActualizar.Location = new System.Drawing.Point(724, 187);
+            this.btnActualizar.Image = global::SIDAC.Properties.Resources.guardar_datos;
+            this.btnActualizar.Location = new System.Drawing.Point(698, 187);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.ShadowDecoration.Parent = this.btnActualizar;
-            this.btnActualizar.Size = new System.Drawing.Size(145, 30);
+            this.btnActualizar.Size = new System.Drawing.Size(171, 30);
             this.btnActualizar.TabIndex = 32;
             this.btnActualizar.Text = "Guardar detalles";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // pnlDatosPagos
             // 
-            this.pnlDatosPagos.BorderColor = System.Drawing.Color.Silver;
+            this.pnlDatosPagos.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlDatosPagos.BorderRadius = 14;
             this.pnlDatosPagos.BorderThickness = 1;
             this.pnlDatosPagos.Controls.Add(this.txtPrecioUnitario);
@@ -172,6 +175,7 @@ namespace SIDAC.VISTA
             this.pnlDatosPagos.Controls.Add(this.label10);
             this.pnlDatosPagos.Controls.Add(this.txtValor);
             this.pnlDatosPagos.Controls.Add(this.label9);
+            this.pnlDatosPagos.FillColor = System.Drawing.Color.Azure;
             this.pnlDatosPagos.Location = new System.Drawing.Point(16, 13);
             this.pnlDatosPagos.Name = "pnlDatosPagos";
             this.pnlDatosPagos.Padding = new System.Windows.Forms.Padding(10);
@@ -182,6 +186,7 @@ namespace SIDAC.VISTA
             // 
             // txtPrecioUnitario
             // 
+            this.txtPrecioUnitario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtPrecioUnitario.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPrecioUnitario.DefaultText = "";
             this.txtPrecioUnitario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -215,6 +220,7 @@ namespace SIDAC.VISTA
             // 
             // txtCantidad
             // 
+            this.txtCantidad.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtCantidad.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCantidad.DefaultText = "";
             this.txtCantidad.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -257,6 +263,7 @@ namespace SIDAC.VISTA
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtDescripcion.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtDescripcion.DefaultText = "";
             this.txtDescripcion.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -290,6 +297,7 @@ namespace SIDAC.VISTA
             // 
             // txtProveedor
             // 
+            this.txtProveedor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtProveedor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtProveedor.DefaultText = "";
             this.txtProveedor.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -297,7 +305,6 @@ namespace SIDAC.VISTA
             this.txtProveedor.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtProveedor.DisabledState.Parent = this.txtProveedor;
             this.txtProveedor.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtProveedor.Enabled = false;
             this.txtProveedor.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtProveedor.FocusedState.Parent = this.txtProveedor;
             this.txtProveedor.Font = new System.Drawing.Font("Arial", 12F);
@@ -308,6 +315,7 @@ namespace SIDAC.VISTA
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.PasswordChar = '\0';
             this.txtProveedor.PlaceholderText = "";
+            this.txtProveedor.ReadOnly = true;
             this.txtProveedor.SelectedText = "";
             this.txtProveedor.ShadowDecoration.Parent = this.txtProveedor;
             this.txtProveedor.Size = new System.Drawing.Size(327, 30);
@@ -315,6 +323,7 @@ namespace SIDAC.VISTA
             // 
             // txtNumeroCompra
             // 
+            this.txtNumeroCompra.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtNumeroCompra.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtNumeroCompra.DefaultText = "";
             this.txtNumeroCompra.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -322,7 +331,6 @@ namespace SIDAC.VISTA
             this.txtNumeroCompra.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtNumeroCompra.DisabledState.Parent = this.txtNumeroCompra;
             this.txtNumeroCompra.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNumeroCompra.Enabled = false;
             this.txtNumeroCompra.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNumeroCompra.FocusedState.Parent = this.txtNumeroCompra;
             this.txtNumeroCompra.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,6 +341,7 @@ namespace SIDAC.VISTA
             this.txtNumeroCompra.Name = "txtNumeroCompra";
             this.txtNumeroCompra.PasswordChar = '\0';
             this.txtNumeroCompra.PlaceholderText = "";
+            this.txtNumeroCompra.ReadOnly = true;
             this.txtNumeroCompra.SelectedText = "";
             this.txtNumeroCompra.ShadowDecoration.Parent = this.txtNumeroCompra;
             this.txtNumeroCompra.Size = new System.Drawing.Size(100, 30);
@@ -349,7 +358,7 @@ namespace SIDAC.VISTA
             // 
             // txtFecha
             // 
-            this.txtFecha.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtFecha.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtFecha.BorderThickness = 1;
             this.txtFecha.CheckedState.Parent = this.txtFecha;
             this.txtFecha.Enabled = false;
@@ -388,6 +397,7 @@ namespace SIDAC.VISTA
             // 
             // txtValor
             // 
+            this.txtValor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.txtValor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtValor.DefaultText = "";
             this.txtValor.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -395,7 +405,6 @@ namespace SIDAC.VISTA
             this.txtValor.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtValor.DisabledState.Parent = this.txtValor;
             this.txtValor.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtValor.Enabled = false;
             this.txtValor.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtValor.FocusedState.Parent = this.txtValor;
             this.txtValor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -406,6 +415,7 @@ namespace SIDAC.VISTA
             this.txtValor.Name = "txtValor";
             this.txtValor.PasswordChar = '\0';
             this.txtValor.PlaceholderText = "0.00";
+            this.txtValor.ReadOnly = true;
             this.txtValor.SelectedText = "";
             this.txtValor.ShadowDecoration.Parent = this.txtValor;
             this.txtValor.Size = new System.Drawing.Size(150, 30);
@@ -474,7 +484,7 @@ namespace SIDAC.VISTA
             this.dtgDetallesCompras.ReadOnly = true;
             this.dtgDetallesCompras.RowHeadersVisible = false;
             this.dtgDetallesCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgDetallesCompras.Size = new System.Drawing.Size(859, 319);
+            this.dtgDetallesCompras.Size = new System.Drawing.Size(859, 317);
             this.dtgDetallesCompras.TabIndex = 19;
             this.dtgDetallesCompras.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dtgDetallesCompras.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -547,10 +557,10 @@ namespace SIDAC.VISTA
             this.tercero.Controls.Add(this.label4);
             this.tercero.Controls.Add(this.btnEliminar);
             this.tercero.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tercero.Location = new System.Drawing.Point(10, 329);
+            this.tercero.Location = new System.Drawing.Point(10, 327);
             this.tercero.Name = "tercero";
             this.tercero.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.tercero.Size = new System.Drawing.Size(859, 38);
+            this.tercero.Size = new System.Drawing.Size(859, 40);
             this.tercero.TabIndex = 34;
             // 
             // lblTotal
@@ -578,18 +588,18 @@ namespace SIDAC.VISTA
             // 
             this.btnEliminar.BorderColor = System.Drawing.Color.DimGray;
             this.btnEliminar.BorderRadius = 7;
-            this.btnEliminar.BorderThickness = 1;
             this.btnEliminar.CheckedState.Parent = this.btnEliminar;
             this.btnEliminar.CustomImages.Parent = this.btnEliminar;
             this.btnEliminar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEliminar.FillColor = System.Drawing.Color.Gray;
+            this.btnEliminar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F);
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.HoverState.Parent = this.btnEliminar;
+            this.btnEliminar.Image = global::SIDAC.Properties.Resources.eliminar_base_de_datos;
             this.btnEliminar.Location = new System.Drawing.Point(739, 5);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.ShadowDecoration.Parent = this.btnEliminar;
-            this.btnEliminar.Size = new System.Drawing.Size(120, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(120, 30);
             this.btnEliminar.TabIndex = 30;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -600,16 +610,16 @@ namespace SIDAC.VISTA
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(879, 620);
+            this.ControlBox = false;
             this.Controls.Add(this.primero);
             this.Controls.Add(this.pnlNuevoCompra);
             this.Controls.Add(this.pnlSeleccioFormulario);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmDetallesCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmDetallesCompras";
             this.Load += new System.EventHandler(this.FrmDetallesCompras_Load);
             this.pnlSeleccioFormulario.ResumeLayout(false);
             this.pnlSeleccioFormulario.PerformLayout();

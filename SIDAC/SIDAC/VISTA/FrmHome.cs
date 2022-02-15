@@ -33,7 +33,8 @@ namespace SIDAC
 
         private void AbrirFormularioEnPanelPadre(Form ObjetoFormulario, Form CurrentVariable)
         {
-            //formulario = panelPadre.Controls.OfType<Miform>().FirstOrDefault();
+            //Form formulario = pnlPadre.Controls.OfType<Form>().FirstOrDefault();
+            //CurrentVariable = formulario;
             if (pnlPadre.Controls != null)
             {
                 pnlPadre.Controls.Clear();
@@ -46,6 +47,7 @@ namespace SIDAC
                 CurrentVariable.TopLevel = false; 
                 CurrentVariable.Dock = DockStyle.Fill;
                 pnlPadre.Controls.Add(CurrentVariable);
+                pnlPadre.Tag = CurrentVariable;
                 CurrentVariable.Show();
                 CurrentVariable.BringToFront();
             }

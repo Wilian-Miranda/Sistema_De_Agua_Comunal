@@ -26,13 +26,97 @@ namespace SIDAC.VISTA
             MostrarCompras();
             TotalCompras();
         }
+        #region Validaciones
+        private Boolean ValidarCajas()
+        {
+            Boolean validacion = true;
 
+            validadorCampos.SetError(txtProveedor, "");
+            validadorCampos.SetError(txtIdProyecto, "");
+            validadorCampos.SetError(txtNombreProyecto, "");
+            validadorCampos.SetError(txtValor, "");
+            validadorCampos.SetError(txtFecha, "");
+            validadorCampos.SetError(ptrFactura, "");
+
+            if (txtProveedor.Text.Equals(""))
+            {
+                validadorCampos.SetError(txtProveedor, "Este campo es obligatorio.");
+                validacion = false;
+            }
+
+            if (txtIdProyecto.Text.Equals(""))
+            {
+                validadorCampos.SetError(txtIdProyecto, "Este campo es obligatorio.");
+                validacion = false;
+            }
+
+            if (txtNombreProyecto.Text.Equals(""))
+            {
+                validadorCampos.SetError(txtNombreProyecto, "Este campo es obligatorio.");
+                validacion = false;
+            }
+
+            if (txtValor.Text.Equals(""))
+            {
+                validadorCampos.SetError(txtValor, "Este campo es obligatorio.");
+                validacion = false;
+            }
+            else
+            {
+                try
+                {
+                    decimal valor = Convert.ToDecimal(txtValor.Text);
+                    if (valor <= 0)
+                    {
+                        validadorCampos.SetError(txtValor, "Solo valores positivos son permitidos.");
+                        validacion = false;
+                    }
+                    //validadorCampos.SetError(txtValor, "");
+                    //validacion = true;
+                }
+                catch (Exception ex)
+                {
+                    validadorCampos.SetError(txtValor, "Valor no válido.");
+                    validacion = false;
+                }
+            }
+
+            if (txtFecha.Text.Equals(""))
+            {
+                validadorCampos.SetError(txtFecha, "Este campo es obligatorio.");
+                validacion = false;
+            }
+
+            if (ptrFactura.Image == null)
+            {
+                validadorCampos.SetError(ptrFactura, "La imagen de factura es obligatoria.");
+                validacion = false;
+            }
+
+            return validacion; 
+        }
+
+        #endregion 
+        private void NumeroCompra()
+        {
+            using (SIDACEntities db = new SIDACEntities())
+            {
+                var noCompras = (from a in db.Compras select a.compra).ToList();
+                if (noCompras.Count == 0)
+                {
+                    txtNumeroCompra.Text = (0 + 1).ToString();
+                }
+                else
+                {
+                    txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
+                }
+            }
+        }
         #region CRUD COMPRAS
         private void MostrarCompras()
         {
             try
             {
-
                 using (SIDACEntities db = new SIDACEntities())
                 {
                     dtgCompras.Rows.Clear();
@@ -45,27 +129,22 @@ namespace SIDAC.VISTA
                             dtgCompras.Rows.Add(i.idCompra,i.compra, i.proveedor, i.valor, i.fecha, i.foto, i.idProyecto, i.nombre);
                         }
                     }
-
-                    var noCompras = (from a in db.Compras
-                                   select a.compra).ToList();
-                    if (compras.Count == 0)
-                    {
-                        txtNumeroCompra.Text = (0 + 1).ToString();
-                    }
-                    else
-                    {
-                        txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
-                    }
-                    
-
-                    //dtgCompras.DataSource = compras.ToList();
+                    NumeroCompra();
+                    //var noCompras = (from a in db.Compras select a.compra).ToList();
+                    //if (compras.Count == 0)
+                    //{
+                    //    txtNumeroCompra.Text = (0 + 1).ToString();
+                    //}
+                    //else
+                    //{
+                    //    txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
+                    //}
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la lista de compras.\n\n" + ex.ToString());
             }
-
         }
 
         private void TotalCompras()
@@ -95,9 +174,8 @@ namespace SIDAC.VISTA
             {
                 using (SIDACEntities db = new SIDACEntities())
                 {
-                    if (btnRealizarCompra.Text.Equals("Agregar compra"))
+                    if (btnGuardar.Text.Equals("Guardar") && ValidarCajas() == true)
                     {
-
                         Compras guardar = new Compras();
                         guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
                         guardar.proveedor = txtProveedor.Text;
@@ -113,7 +191,7 @@ namespace SIDAC.VISTA
                         MessageBox.Show("Guardado");
 
                     }
-                    else if (btnRealizarCompra.Text.Equals("Actualizar"))
+                    else if (btnGuardar.Text.Equals("Actualizar") && ValidarCajas() == true)
                     {
                         int id = Convert.ToInt32(dtgCompras.CurrentRow.Cells[0].Value);
 
@@ -148,7 +226,6 @@ namespace SIDAC.VISTA
         }
         #endregion
 
-
         private void guna2DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -176,11 +253,6 @@ namespace SIDAC.VISTA
                 ptrFactura.ImageLocation = buscarImagen.FileName;
                 ptrFactura.SizeMode = PictureBoxSizeMode.Zoom;
             }
-        }
-
-        private void dtgCompras_DoubleClick(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -218,8 +290,13 @@ namespace SIDAC.VISTA
                 txtIdProyecto.Text = dtgCompras.CurrentRow.Cells[6].Value.ToString();
                 txtNombreProyecto.Text = dtgCompras.CurrentRow.Cells[7].Value.ToString();
 
+                pnlNuevoCompra.Enabled = true;
+                pnlNuevoCompra.Width = 400;
+                lblCompras.Visible = false;
+                lblTotalCompras.Visible = false;
 
-                btnRealizarCompra.Text = "Actualizar";
+
+                btnGuardar.Text = "Actualizar";
             }
             else
             {
@@ -252,6 +329,10 @@ namespace SIDAC.VISTA
             txtIdProyecto.Clear();
             txtNombreProyecto.Clear();
             cbYear.ResetText();
+
+            btnGuardar.Text = "Guardar";
+
+            NumeroCompra();
         }
 
         private void pnlEncabezadoNuevoCompra_DoubleClick(object sender, EventArgs e)
@@ -266,12 +347,16 @@ namespace SIDAC.VISTA
                 //pnlNuevoCompra.Visible = false;
                 pnlNuevoCompra.Width = 10;
                 pnlNuevoCompra.Enabled = false;
+                lblCompras.Visible = true;
+                lblTotalCompras.Visible = true;
             }
             else
             {
                 //pnlNuevoCompra.Visible = true;
                 pnlNuevoCompra.Enabled = true;
                 pnlNuevoCompra.Width = 400;
+                lblCompras.Visible = false;
+                lblTotalCompras.Visible = false;
             }
         }
 
@@ -308,6 +393,16 @@ namespace SIDAC.VISTA
                 txtNombreProyecto.Text = cbYear.Text;
                 txtIdProyecto.Text = cbYear.SelectedValue.ToString();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlEncabezadoNuevoCompra_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

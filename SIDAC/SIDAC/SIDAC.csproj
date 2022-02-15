@@ -235,6 +235,12 @@
     <Compile Include="VISTA\FrmReportes.Designer.cs">
       <DependentUpon>FrmReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\pruebas_graficas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\pruebas_graficas.Designer.cs">
+      <DependentUpon>pruebas_graficas.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\VisualizarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\FrmReportes.resx">
       <DependentUpon>FrmReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\pruebas_graficas.resx">
+      <DependentUpon>pruebas_graficas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\VisualizarFactura.resx">
       <DependentUpon>VisualizarFactura.cs</DependentUpon>
@@ -332,6 +341,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\lista-de-la-compra.png" />
+    <None Include="Resources\guardar-datos.png" />
+    <None Include="Resources\eliminar-base-de-datos.png" />
+    <None Include="Resources\datos-de-busqueda.png" />
+    <None Include="Resources\anadir-al-carrito.png" />
+    <None Include="Resources\actualizar.png" />
     <None Include="Resources\minimizar.png" />
     <None Include="Resources\pago-en-efectivo.png" />
     <None Include="Resources\inventario.png" />
