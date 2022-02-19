@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIDAC.DAO;
 using SIDAC.MODELO;
+using SIDAC.VALIDACIONES;
 
 namespace SIDAC.VISTA
 {
@@ -20,105 +22,52 @@ namespace SIDAC.VISTA
             
         }
         public int ID;
-        private void CargarDatos()
-        {
-            dtgDetallesCompras.Rows.Clear();
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                int id = ID;
-                var detalles = db.DetallesCompras.Where(x => x.FK_compra == id);
+        CDDetallesCompras ClsD_DetallesCompra = new CDDetallesCompras();
+        DetallesCompras detalles = new DetallesCompras();
+        CDDetallesCompras clsD_Detalles = new CDDetallesCompras();
+        VsFrmDetallesCompras validador = new VsFrmDetallesCompras();
+        #region CRUD
 
-                foreach (var i in detalles)
-                {
-                    dtgDetallesCompras.Rows.Add(i.idDetalleCompras,i.cantidad,i.descripcion,i.precioUnitario,i.total);
-                }
-
-                var total = (from a in db.DetallesCompras
-                             where a.FK_compra == id
-                             select a.total).ToList();
-
-                if (total.Sum()>Convert.ToDecimal(txtValor.Text))
-                {
-                    lblTotal.ForeColor = Color.Red;
-                    lblTotal.Text = "Las cantidades ingresadas exceden en valor total declarado en la factura. Revise los datos.";
-                }
-                else
-                {
-                    lblTotal.ForeColor = Color.Black;
-                    lblTotal.Text = "$" + total.Sum().ToString()+"  |" + "  Total establecido: $"+txtValor.Text + "  |" + "  Diferencia: $" + 
-                        (Convert.ToDecimal(txtValor.Text)-total.Sum()).ToString();
-                }
-                
-            }
-        }
-
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dtgDetallesCompras.SelectedRows.Count>0)
-            {
-                try
-                {
-                    int id = Convert.ToInt32(dtgDetallesCompras.CurrentRow.Cells[0].Value.ToString());
-                    using (SIDACEntities db = new SIDACEntities())
-                    {
-
-                        //eliminando detalle en inventario
-                        var eliminarInventario = db.Inventarios.Where(x => x.FK_DetalleCompra == id).FirstOrDefault();
-                        db.Inventarios.Remove(eliminarInventario);
-                        db.SaveChanges();
-                    }
-
-                    using (SIDACEntities db = new SIDACEntities())
-                    {
-                        //eliminando detalle en las compras
-                        var eliminar = db.DetallesCompras.Where(x => x.idDetalleCompras == id).FirstOrDefault();
-                        db.DetallesCompras.Remove(eliminar);
-                        db.SaveChanges();
-                        CargarDatos();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al eliminar detalle de compra.\n\n" + ex.ToString());
-                }
-            }
-        }
-
-        private void pnlDatosPagos_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        //Actualizar
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            int id = ID;
-
-            try
+            if (validador.ValidarCajas(validadorCajas,this.txtCantidad,this.txtPrecioUnitario,this.txtDescripcion))
             {
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    DetallesCompras detalles = new DetallesCompras();
+                int id = ID;//id de compra
 
-                    detalles.cantidad = Convert.ToInt32(txtCantidad.Text);
-                    detalles.descripcion = txtDescripcion.Text;
-                    detalles.precioUnitario = Convert.ToDecimal(txtPrecioUnitario.Text);
-                    detalles.total = Convert.ToInt32(txtCantidad.Text)* Convert.ToDecimal(txtPrecioUnitario.Text);
-                    detalles.FK_compra = id;
+                detalles.cantidad = Convert.ToInt32(txtCantidad.Text);
+                detalles.descripcion = txtDescripcion.Text;
+                detalles.precioUnitario = Convert.ToDecimal(txtPrecioUnitario.Text);
+                detalles.total = Convert.ToInt32(txtCantidad.Text) * Convert.ToDecimal(txtPrecioUnitario.Text);
+                detalles.FK_compra = id;
 
-                    db.DetallesCompras.Add(detalles);
-                    db.SaveChanges();
-                    CargarDatos();
-                    Limpiar();
-                }
+                clsD_Detalles.AgregarDetalleDeCompra(detalles);
+
+                ClsD_DetallesCompra.MostrarDetallesCompra(ID, this.dtgDetallesCompras, this.txtValor, this.lblTotal);
+                Limpiar();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al agregar los detalles a la compra.\n\n" + ex.ToString());
 
-            }
         }
 
+        //eliminar
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dtgDetallesCompras.SelectedRows.Count > 0)
+            {
+                ClsD_DetallesCompra.EliminarDetalleCompra(this.dtgDetallesCompras);
+                ClsD_DetallesCompra.MostrarDetallesCompra(ID, this.dtgDetallesCompras, this.txtValor, this.lblTotal);
+            }
+        }
+        #endregion
+
+        #region Carga de datos 
+        private void FrmDetallesCompras_Load(object sender, EventArgs e)
+        {
+            ClsD_DetallesCompra.MostrarDetallesCompra(ID, this.dtgDetallesCompras, this.txtValor, this.lblTotal);
+        }
+        #endregion
+
+        #region Otros
         private void Limpiar()
         {
             txtCantidad.Clear();
@@ -126,65 +75,56 @@ namespace SIDAC.VISTA
             txtDescripcion.Clear();
         }
 
-        private void FrmDetallesCompras_Load(object sender, EventArgs e)
-        {
-            CargarDatos();
-        }
-
         private void btnCerrarAplicacion_Click(object sender, EventArgs e)
         {
-            decimal total = 0;
-            for (int i = 0; i < dtgDetallesCompras.RowCount; i++)
+            ClsD_DetallesCompra.VerificarDetallesAlCerrar(this, dtgDetallesCompras, txtValor);
+
+        }
+
+        int posicionX = 0;
+        int posicionY = 0;
+        private void pnlSeleccioFormulario_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
             {
-                total += Convert.ToDecimal(dtgDetallesCompras.Rows[i].Cells[4].Value);
-            }
-            if (Convert.ToDecimal(txtValor.Text)==total)
-            {
-                this.Close();
+                posicionX = e.X;
+                posicionY = e.Y;
             }
             else
             {
-                try
-                {
-                    for (int i = 0; i < dtgDetallesCompras.RowCount;i++)
-                    {
-                        int id = Convert.ToInt32(dtgDetallesCompras.Rows[i].Cells[0].Value.ToString());
-                        using (SIDACEntities db = new SIDACEntities())
-                        {
-
-                            //eliminando detalle en inventario
-                            var eliminarInventario = db.Inventarios.Where(x => x.FK_DetalleCompra == id).FirstOrDefault();
-                            db.Inventarios.Remove(eliminarInventario);
-                            db.SaveChanges();
-                        }
-                    }
-
-                    for (int i = 0; i < dtgDetallesCompras.RowCount;i++)
-                    {
-                        int ID = Convert.ToInt32(dtgDetallesCompras.Rows[i].Cells[0].Value);
-                        using (SIDACEntities db = new SIDACEntities())
-                        {
-                            var eliminarDetalles = db.DetallesCompras.Where(x => x.idDetalleCompras == ID).FirstOrDefault();
-                            db.DetallesCompras.Remove(eliminarDetalles);
-                            db.SaveChanges();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show("Error al eliminar detalles no válidos.\n\n" + ex.ToString());
-                }
-
-                this.Close();
+                Left += e.X - posicionX;
+                Top += e.Y - posicionY;
             }
-
         }
-        int x = 0;
-        int y = 0;
-        private void pnlSeleccioFormulario_MouseMove(object sender, MouseEventArgs e)
+        #endregion
+
+        #region Validaciones
+
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
+
+        private void txtPrecioUnitario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || char.Parse(".")==e.KeyChar)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        #endregion
     }
 }

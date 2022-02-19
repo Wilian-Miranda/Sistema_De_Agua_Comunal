@@ -29,17 +29,18 @@ namespace SIDAC.VISTA
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlSeleccioFormulario = new Guna.UI2.WinForms.Guna2Panel();
             this.btnCerrarAplicacion = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlNuevoCompra = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnActualizar = new Guna.UI2.WinForms.Guna2Button();
+            this.btnGuardarDetalles = new Guna.UI2.WinForms.Guna2Button();
             this.pnlDatosPagos = new Guna.UI2.WinForms.Guna2Panel();
             this.txtPrecioUnitario = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,12 +68,14 @@ namespace SIDAC.VISTA
             this.lblTotal = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
+            this.validadorCajas = new System.Windows.Forms.ErrorProvider(this.components);
             this.pnlSeleccioFormulario.SuspendLayout();
             this.pnlNuevoCompra.SuspendLayout();
             this.pnlDatosPagos.SuspendLayout();
             this.primero.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetallesCompras)).BeginInit();
             this.tercero.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.validadorCajas)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSeleccioFormulario
@@ -124,7 +127,7 @@ namespace SIDAC.VISTA
             this.pnlNuevoCompra.BackColor = System.Drawing.Color.Transparent;
             this.pnlNuevoCompra.BorderRadius = 14;
             this.pnlNuevoCompra.BorderThickness = 1;
-            this.pnlNuevoCompra.Controls.Add(this.btnActualizar);
+            this.pnlNuevoCompra.Controls.Add(this.btnGuardarDetalles);
             this.pnlNuevoCompra.Controls.Add(this.pnlDatosPagos);
             this.pnlNuevoCompra.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlNuevoCompra.FillColor = System.Drawing.Color.White;
@@ -135,25 +138,25 @@ namespace SIDAC.VISTA
             this.pnlNuevoCompra.Size = new System.Drawing.Size(879, 223);
             this.pnlNuevoCompra.TabIndex = 19;
             // 
-            // btnActualizar
+            // btnGuardarDetalles
             // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.BorderColor = System.Drawing.Color.DimGray;
-            this.btnActualizar.BorderRadius = 7;
-            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
-            this.btnActualizar.CustomImages.Parent = this.btnActualizar;
-            this.btnActualizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
-            this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.HoverState.Parent = this.btnActualizar;
-            this.btnActualizar.Image = global::SIDAC.Properties.Resources.guardar_datos;
-            this.btnActualizar.Location = new System.Drawing.Point(698, 187);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.ShadowDecoration.Parent = this.btnActualizar;
-            this.btnActualizar.Size = new System.Drawing.Size(171, 30);
-            this.btnActualizar.TabIndex = 32;
-            this.btnActualizar.Text = "Guardar detalles";
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnGuardarDetalles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardarDetalles.BorderColor = System.Drawing.Color.DimGray;
+            this.btnGuardarDetalles.BorderRadius = 7;
+            this.btnGuardarDetalles.CheckedState.Parent = this.btnGuardarDetalles;
+            this.btnGuardarDetalles.CustomImages.Parent = this.btnGuardarDetalles;
+            this.btnGuardarDetalles.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnGuardarDetalles.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnGuardarDetalles.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarDetalles.HoverState.Parent = this.btnGuardarDetalles;
+            this.btnGuardarDetalles.Image = global::SIDAC.Properties.Resources.guardar_datos;
+            this.btnGuardarDetalles.Location = new System.Drawing.Point(698, 187);
+            this.btnGuardarDetalles.Name = "btnGuardarDetalles";
+            this.btnGuardarDetalles.ShadowDecoration.Parent = this.btnGuardarDetalles;
+            this.btnGuardarDetalles.Size = new System.Drawing.Size(171, 30);
+            this.btnGuardarDetalles.TabIndex = 32;
+            this.btnGuardarDetalles.Text = "Guardar detalles";
+            this.btnGuardarDetalles.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // pnlDatosPagos
             // 
@@ -182,7 +185,6 @@ namespace SIDAC.VISTA
             this.pnlDatosPagos.ShadowDecoration.Parent = this.pnlDatosPagos;
             this.pnlDatosPagos.Size = new System.Drawing.Size(849, 167);
             this.pnlDatosPagos.TabIndex = 23;
-            this.pnlDatosPagos.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDatosPagos_Paint);
             // 
             // txtPrecioUnitario
             // 
@@ -208,6 +210,7 @@ namespace SIDAC.VISTA
             this.txtPrecioUnitario.ShadowDecoration.Parent = this.txtPrecioUnitario;
             this.txtPrecioUnitario.Size = new System.Drawing.Size(150, 30);
             this.txtPrecioUnitario.TabIndex = 35;
+            this.txtPrecioUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioUnitario_KeyPress);
             // 
             // label3
             // 
@@ -242,6 +245,7 @@ namespace SIDAC.VISTA
             this.txtCantidad.ShadowDecoration.Parent = this.txtCantidad;
             this.txtCantidad.Size = new System.Drawing.Size(150, 30);
             this.txtCantidad.TabIndex = 33;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label5
             // 
@@ -446,21 +450,21 @@ namespace SIDAC.VISTA
             this.dtgDetallesCompras.AllowUserToAddRows = false;
             this.dtgDetallesCompras.AllowUserToDeleteRows = false;
             this.dtgDetallesCompras.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dtgDetallesCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.dtgDetallesCompras.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dtgDetallesCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgDetallesCompras.BackgroundColor = System.Drawing.Color.White;
             this.dtgDetallesCompras.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgDetallesCompras.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dtgDetallesCompras.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dtgDetallesCompras.ColumnHeadersHeight = 38;
             this.dtgDetallesCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
@@ -468,14 +472,14 @@ namespace SIDAC.VISTA
             this.Column6,
             this.Column7,
             this.Column8});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgDetallesCompras.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgDetallesCompras.DefaultCellStyle = dataGridViewCellStyle18;
             this.dtgDetallesCompras.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgDetallesCompras.EnableHeadersVisualStyles = false;
             this.dtgDetallesCompras.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
@@ -524,8 +528,8 @@ namespace SIDAC.VISTA
             // 
             // Column6
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle15;
             this.Column6.FillWeight = 200F;
             this.Column6.HeaderText = "Descripción";
             this.Column6.Name = "Column6";
@@ -533,20 +537,20 @@ namespace SIDAC.VISTA
             // 
             // Column7
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Format = "C4";
-            dataGridViewCellStyle4.NullValue = "-";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.Format = "C4";
+            dataGridViewCellStyle16.NullValue = "-";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle16;
             this.Column7.HeaderText = "P/U";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
             // Column8
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = "-";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.Format = "C2";
+            dataGridViewCellStyle17.NullValue = "-";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column8.HeaderText = "Subtotal";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -604,6 +608,10 @@ namespace SIDAC.VISTA
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // validadorCajas
+            // 
+            this.validadorCajas.ContainerControl = this;
+            // 
             // FrmDetallesCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -630,6 +638,7 @@ namespace SIDAC.VISTA
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetallesCompras)).EndInit();
             this.tercero.ResumeLayout(false);
             this.tercero.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.validadorCajas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -660,7 +669,7 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2TextBox txtDescripcion;
         private Guna.UI2.WinForms.Guna2Button btnCerrarAplicacion;
-        private Guna.UI2.WinForms.Guna2Button btnActualizar;
+        private Guna.UI2.WinForms.Guna2Button btnGuardarDetalles;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
@@ -668,5 +677,6 @@ namespace SIDAC.VISTA
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider validadorCajas;
     }
 }

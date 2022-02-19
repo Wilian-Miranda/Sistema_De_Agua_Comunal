@@ -98,5 +98,21 @@ namespace SIDAC
                 WindowState = FormWindowState.Minimized;
             }
         }
+
+        int posicionX = 0;
+        int posicionY = 0;
+        private void pnlEncabezado_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                posicionX = e.X;
+                posicionY = e.Y;
+            }
+            else
+            {
+                Left +=(e.X - posicionX);
+                Top +=(e.Y - posicionY);
+            }
+        }
     }
 }

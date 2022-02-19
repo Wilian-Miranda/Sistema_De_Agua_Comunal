@@ -62,6 +62,7 @@ namespace SIDAC
             this.pnlEncabezado.ShadowDecoration.Parent = this.pnlEncabezado;
             this.pnlEncabezado.Size = new System.Drawing.Size(1200, 30);
             this.pnlEncabezado.TabIndex = 0;
+            this.pnlEncabezado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseMove);
             // 
             // pnlControlesWindow
             // 

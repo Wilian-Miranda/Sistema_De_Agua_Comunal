@@ -731,7 +731,6 @@ namespace SIDAC.VISTA
             this.pnlEncabezadoNuevoCompra.ShadowDecoration.Parent = this.pnlEncabezadoNuevoCompra;
             this.pnlEncabezadoNuevoCompra.Size = new System.Drawing.Size(0, 25);
             this.pnlEncabezadoNuevoCompra.TabIndex = 30;
-            this.pnlEncabezadoNuevoCompra.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlEncabezadoNuevoCompra_Paint);
             this.pnlEncabezadoNuevoCompra.DoubleClick += new System.EventHandler(this.pnlEncabezadoNuevoCompra_DoubleClick);
             // 
             // label2
@@ -787,7 +786,6 @@ namespace SIDAC.VISTA
             this.label1.Size = new System.Drawing.Size(67, 19);
             this.label1.TabIndex = 27;
             this.label1.Text = "Factura";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ptrFactura
             // 

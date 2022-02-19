@@ -21,10 +21,11 @@ namespace SIDAC.VISTA
             txtFecha.Value = DateTime.Today;
         }
 
+        CDCompras ClsD_Compras = new CDCompras();
         private void FrmCompras_Load(object sender, EventArgs e)
         {
-            MostrarCompras();
-            TotalCompras();
+            ClsD_Compras.MostrarCompras(this.dtgCompras, this.txtNumeroCompra);
+            ClsD_Compras.TotalCompras(this.lblTotalCompras);
         }
         #region Validaciones
         private Boolean ValidarCajas()
@@ -97,126 +98,43 @@ namespace SIDAC.VISTA
         }
 
         #endregion 
-        private void NumeroCompra()
-        {
-            using (SIDACEntities db = new SIDACEntities())
-            {
-                var noCompras = (from a in db.Compras select a.compra).ToList();
-                if (noCompras.Count == 0)
-                {
-                    txtNumeroCompra.Text = (0 + 1).ToString();
-                }
-                else
-                {
-                    txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
-                }
-            }
-        }
+
         #region CRUD COMPRAS
-        private void MostrarCompras()
-        {
-            try
-            {
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    dtgCompras.Rows.Clear();
-                    var compras = db.sp_MostrarCompras().ToList();
 
-                    if (compras.Count > 0)
-                    {
-                        foreach (var i in compras)
-                        {
-                            dtgCompras.Rows.Add(i.idCompra,i.compra, i.proveedor, i.valor, i.fecha, i.foto, i.idProyecto, i.nombre);
-                        }
-                    }
-                    NumeroCompra();
-                    //var noCompras = (from a in db.Compras select a.compra).ToList();
-                    //if (compras.Count == 0)
-                    //{
-                    //    txtNumeroCompra.Text = (0 + 1).ToString();
-                    //}
-                    //else
-                    //{
-                    //    txtNumeroCompra.Text = (noCompras.Last() + 1).ToString();
-                    //}
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar la lista de compras.\n\n" + ex.ToString());
-            }
-        }
-
-        private void TotalCompras()
-        {
-            try
-            {
-                using(SIDACEntities db = new SIDACEntities())
-                {
-                    var totalCompras = (from a in db.Compras
-                                        select a.valor).ToList();
-
-                    var totalMateriales = (from a in db.DetallesCompras
-                                           select a.cantidad).ToList();
-
-
-                    lblTotalCompras.Text = "$" + totalCompras.Sum().ToString() + " | " + "Materiales: " + totalMateriales.Sum().ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar el total de las compras.\n\n" + ex.ToString());
-            }
-        }
         private void btnRealizarCompra_Click(object sender, EventArgs e)
         {
-            try
+
+            if (btnGuardar.Text.Equals("Guardar") && ValidarCajas() == true)
             {
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    if (btnGuardar.Text.Equals("Guardar") && ValidarCajas() == true)
-                    {
-                        Compras guardar = new Compras();
-                        guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
-                        guardar.proveedor = txtProveedor.Text;
-                        guardar.Fk_idProyecto = Convert.ToInt32(cbYear.SelectedValue.ToString());
-                        guardar.valor = Convert.ToDecimal(txtValor.Text);
-                        guardar.fecha = Convert.ToDateTime(txtFecha.Text);
-                        guardar.foto = ConvertirImagen();
-                        db.Compras.Add(guardar);
-                        db.SaveChanges();
-                        MostrarCompras();
-                        TotalCompras();
-                        Limpiar();
-                        MessageBox.Show("Guardado");
+                Compras guardar = new Compras();
+                guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
+                guardar.proveedor = txtProveedor.Text;
+                guardar.Fk_idProyecto = Convert.ToInt32(cbYear.SelectedValue.ToString());
+                guardar.valor = Convert.ToDecimal(txtValor.Text);
+                guardar.fecha = Convert.ToDateTime(txtFecha.Text);
+                guardar.foto = ConvertirImagen();
 
-                    }
-                    else if (btnGuardar.Text.Equals("Actualizar") && ValidarCajas() == true)
-                    {
-                        int id = Convert.ToInt32(dtgCompras.CurrentRow.Cells[0].Value);
+                ClsD_Compras.GuardarRegistroCompra(guardar, this.dtgCompras, this.txtNumeroCompra, this.lblTotalCompras);
 
-                        var guardar = db.Compras.Where(x => x.idCompra == id).SingleOrDefault();
+                Limpiar();
 
-                        guardar.compra = Convert.ToInt32(txtNumeroCompra.Text);
-                        guardar.proveedor = txtProveedor.Text;
-                        guardar.Fk_idProyecto = Convert.ToInt32(cbYear.SelectedValue.ToString());
-                        guardar.valor = Convert.ToDecimal(txtValor.Text);
-                        guardar.fecha = Convert.ToDateTime(txtFecha.Text);
-                        guardar.foto = ConvertirImagen();
-                        db.SaveChanges();
-
-                        MostrarCompras();
-                        TotalCompras();
-                        Limpiar();
-                        MessageBox.Show("Actualizado");
-                    }
-                }
-                
             }
-            catch (Exception ex)
+            else if (btnGuardar.Text.Equals("Actualizar") && ValidarCajas() == true)
             {
-                MessageBox.Show("Error al actualizar/guardar compra\n\n", ex.ToString());
+                Compras actualizar = new Compras();
+
+                actualizar.compra = Convert.ToInt32(txtNumeroCompra.Text);
+                actualizar.proveedor = txtProveedor.Text;
+                actualizar.Fk_idProyecto = Convert.ToInt32(txtIdProyecto.Text);
+                actualizar.valor = Convert.ToDecimal(txtValor.Text);
+                actualizar.fecha = Convert.ToDateTime(txtFecha.Text);
+                actualizar.foto = ConvertirImagen();
+
+                ClsD_Compras.ActualizarRegistroCompra(actualizar, this.dtgCompras, this.txtNumeroCompra, this.lblTotalCompras);
+
+                Limpiar();
             }
+
         }
         private byte[] ConvertirImagen()
         {
@@ -257,24 +175,13 @@ namespace SIDAC.VISTA
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            if (dtgCompras.SelectedRows.Count > 0)
             {
-                using (SIDACEntities db = new SIDACEntities())
-                {
-                    //encontrando el id de la fila seleccionada
-                    int id = Convert.ToInt32(dtgCompras.CurrentRow.Cells[0].Value);
-
-                    var eliminar = db.Compras.Where(x => x.idCompra == id).FirstOrDefault();
-                    db.Compras.Remove(eliminar);
-                    db.SaveChanges();
-                    MostrarCompras();
-                    TotalCompras();
-                    MessageBox.Show("Eliminado");
-                }
+                ClsD_Compras.EliminarRegistroCompra(this.dtgCompras, this.txtNumeroCompra, this.lblTotalCompras);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error al eliminar compra\n\n", ex.ToString());
+                MessageBox.Show("Para eliminar un registro de compra, debe anteriormente seleccionar uno.");
             }
         }
 
@@ -332,7 +239,7 @@ namespace SIDAC.VISTA
 
             btnGuardar.Text = "Guardar";
 
-            NumeroCompra();
+            ClsD_Compras.NumeroCompra(this.txtNumeroCompra);
         }
 
         private void pnlEncabezadoNuevoCompra_DoubleClick(object sender, EventArgs e)
@@ -395,14 +302,5 @@ namespace SIDAC.VISTA
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlEncabezadoNuevoCompra_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
