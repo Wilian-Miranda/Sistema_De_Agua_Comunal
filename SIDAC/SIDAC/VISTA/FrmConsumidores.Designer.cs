@@ -93,15 +93,16 @@ namespace SIDAC.VISTA
             // 
             // pnlTablaConsumidores
             // 
+            this.pnlTablaConsumidores.BackColor = System.Drawing.Color.White;
             this.pnlTablaConsumidores.Controls.Add(this.dtgConsumidores);
             this.pnlTablaConsumidores.Controls.Add(this.panel1);
             this.pnlTablaConsumidores.Controls.Add(this.pnlEliminar);
             this.pnlTablaConsumidores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTablaConsumidores.Location = new System.Drawing.Point(0, 60);
+            this.pnlTablaConsumidores.Location = new System.Drawing.Point(0, 40);
             this.pnlTablaConsumidores.Name = "pnlTablaConsumidores";
             this.pnlTablaConsumidores.Padding = new System.Windows.Forms.Padding(20);
             this.pnlTablaConsumidores.ShadowDecoration.Parent = this.pnlTablaConsumidores;
-            this.pnlTablaConsumidores.Size = new System.Drawing.Size(1000, 560);
+            this.pnlTablaConsumidores.Size = new System.Drawing.Size(1000, 580);
             this.pnlTablaConsumidores.TabIndex = 5;
             // 
             // dtgConsumidores
@@ -147,7 +148,7 @@ namespace SIDAC.VISTA
             this.dtgConsumidores.ReadOnly = true;
             this.dtgConsumidores.RowHeadersVisible = false;
             this.dtgConsumidores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgConsumidores.Size = new System.Drawing.Size(960, 455);
+            this.dtgConsumidores.Size = new System.Drawing.Size(960, 474);
             this.dtgConsumidores.TabIndex = 5;
             this.dtgConsumidores.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dtgConsumidores.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -273,18 +274,18 @@ namespace SIDAC.VISTA
             this.pnlEliminar.Controls.Add(this.lblCantidadConsumidores);
             this.pnlEliminar.Controls.Add(this.btnEliminar);
             this.pnlEliminar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlEliminar.Location = new System.Drawing.Point(20, 505);
+            this.pnlEliminar.Location = new System.Drawing.Point(20, 524);
             this.pnlEliminar.Name = "pnlEliminar";
-            this.pnlEliminar.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlEliminar.Padding = new System.Windows.Forms.Padding(3);
             this.pnlEliminar.ShadowDecoration.Parent = this.pnlEliminar;
-            this.pnlEliminar.Size = new System.Drawing.Size(960, 35);
+            this.pnlEliminar.Size = new System.Drawing.Size(960, 36);
             this.pnlEliminar.TabIndex = 1;
             // 
             // lblCantidadConsumidores
             // 
             this.lblCantidadConsumidores.AutoSize = true;
             this.lblCantidadConsumidores.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblCantidadConsumidores.Location = new System.Drawing.Point(925, 5);
+            this.lblCantidadConsumidores.Location = new System.Drawing.Point(927, 3);
             this.lblCantidadConsumidores.Name = "lblCantidadConsumidores";
             this.lblCantidadConsumidores.Size = new System.Drawing.Size(30, 18);
             this.lblCantidadConsumidores.TabIndex = 4;
@@ -292,18 +293,22 @@ namespace SIDAC.VISTA
             // 
             // btnEliminar
             // 
+            this.btnEliminar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnEliminar.BorderRadius = 3;
+            this.btnEliminar.BorderThickness = 1;
             this.btnEliminar.CheckedState.Parent = this.btnEliminar;
             this.btnEliminar.CustomImages.Parent = this.btnEliminar;
             this.btnEliminar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnEliminar.Enabled = false;
-            this.btnEliminar.FillColor = System.Drawing.Color.Gray;
+            this.btnEliminar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.HoverState.Parent = this.btnEliminar;
-            this.btnEliminar.Location = new System.Drawing.Point(5, 5);
+            this.btnEliminar.Image = global::SIDAC.Properties.Resources.eliminar_base_de_datos;
+            this.btnEliminar.Location = new System.Drawing.Point(3, 3);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.ShadowDecoration.Parent = this.btnEliminar;
-            this.btnEliminar.Size = new System.Drawing.Size(200, 25);
+            this.btnEliminar.Size = new System.Drawing.Size(150, 30);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -314,37 +319,42 @@ namespace SIDAC.VISTA
             this.pnlEncabezadoConsumidores.Controls.Add(this.btnAbrirFormulario);
             this.pnlEncabezadoConsumidores.Controls.Add(this.label1);
             this.pnlEncabezadoConsumidores.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezadoConsumidores.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlEncabezadoConsumidores.Location = new System.Drawing.Point(0, 0);
             this.pnlEncabezadoConsumidores.Name = "pnlEncabezadoConsumidores";
-            this.pnlEncabezadoConsumidores.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlEncabezadoConsumidores.Padding = new System.Windows.Forms.Padding(5);
             this.pnlEncabezadoConsumidores.ShadowDecoration.Parent = this.pnlEncabezadoConsumidores;
-            this.pnlEncabezadoConsumidores.Size = new System.Drawing.Size(1000, 60);
+            this.pnlEncabezadoConsumidores.Size = new System.Drawing.Size(1000, 40);
             this.pnlEncabezadoConsumidores.TabIndex = 3;
             // 
             // btnAbrirFormulario
             // 
+            this.btnAbrirFormulario.BorderColor = System.Drawing.Color.Lavender;
+            this.btnAbrirFormulario.BorderRadius = 3;
+            this.btnAbrirFormulario.BorderThickness = 1;
             this.btnAbrirFormulario.CheckedState.Parent = this.btnAbrirFormulario;
             this.btnAbrirFormulario.CustomImages.Parent = this.btnAbrirFormulario;
             this.btnAbrirFormulario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAbrirFormulario.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAbrirFormulario.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnAbrirFormulario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAbrirFormulario.ForeColor = System.Drawing.Color.White;
             this.btnAbrirFormulario.HoverState.Parent = this.btnAbrirFormulario;
-            this.btnAbrirFormulario.Location = new System.Drawing.Point(960, 10);
+            this.btnAbrirFormulario.Location = new System.Drawing.Point(845, 5);
             this.btnAbrirFormulario.Name = "btnAbrirFormulario";
             this.btnAbrirFormulario.ShadowDecoration.Parent = this.btnAbrirFormulario;
-            this.btnAbrirFormulario.Size = new System.Drawing.Size(30, 40);
+            this.btnAbrirFormulario.Size = new System.Drawing.Size(150, 30);
             this.btnAbrirFormulario.TabIndex = 3;
-            this.btnAbrirFormulario.Text = "+";
+            this.btnAbrirFormulario.Text = "Nuevo consumidor";
             this.btnAbrirFormulario.Click += new System.EventHandler(this.btnAbrirFormulario_Click);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(390, 19);
+            this.label1.Location = new System.Drawing.Point(345, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(246, 19);
             this.label1.TabIndex = 0;
@@ -357,19 +367,21 @@ namespace SIDAC.VISTA
             this.pnlEncabezadoNuevoConsumidor.BorderThickness = 1;
             this.pnlEncabezadoNuevoConsumidor.Controls.Add(this.label2);
             this.pnlEncabezadoNuevoConsumidor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezadoNuevoConsumidor.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlEncabezadoNuevoConsumidor.Location = new System.Drawing.Point(0, 0);
             this.pnlEncabezadoNuevoConsumidor.Name = "pnlEncabezadoNuevoConsumidor";
             this.pnlEncabezadoNuevoConsumidor.ShadowDecoration.Parent = this.pnlEncabezadoNuevoConsumidor;
-            this.pnlEncabezadoNuevoConsumidor.Size = new System.Drawing.Size(0, 60);
+            this.pnlEncabezadoNuevoConsumidor.Size = new System.Drawing.Size(0, 40);
             this.pnlEncabezadoNuevoConsumidor.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(-85, 19);
+            this.label2.Location = new System.Drawing.Point(-85, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(183, 19);
             this.label2.TabIndex = 1;
@@ -421,6 +433,7 @@ namespace SIDAC.VISTA
             // 
             // txtNombres
             // 
+            this.txtNombres.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtNombres.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtNombres.DefaultText = "";
             this.txtNombres.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -453,6 +466,7 @@ namespace SIDAC.VISTA
             // 
             // txtApellidos
             // 
+            this.txtApellidos.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtApellidos.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtApellidos.DefaultText = "";
             this.txtApellidos.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -485,6 +499,7 @@ namespace SIDAC.VISTA
             // 
             // txtTelefono
             // 
+            this.txtTelefono.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtTelefono.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtTelefono.DefaultText = "";
             this.txtTelefono.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -517,6 +532,7 @@ namespace SIDAC.VISTA
             // 
             // txtCorreo
             // 
+            this.txtCorreo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtCorreo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCorreo.DefaultText = "-";
             this.txtCorreo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -551,6 +567,7 @@ namespace SIDAC.VISTA
             // cbEstado
             // 
             this.cbEstado.BackColor = System.Drawing.Color.Transparent;
+            this.cbEstado.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.cbEstado.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -569,12 +586,16 @@ namespace SIDAC.VISTA
             // 
             // btnAgregar
             // 
+            this.btnAgregar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnAgregar.BorderRadius = 3;
+            this.btnAgregar.BorderThickness = 1;
             this.btnAgregar.CheckedState.Parent = this.btnAgregar;
             this.btnAgregar.CustomImages.Parent = this.btnAgregar;
-            this.btnAgregar.FillColor = System.Drawing.Color.Gray;
+            this.btnAgregar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnAgregar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.HoverState.Parent = this.btnAgregar;
+            this.btnAgregar.Image = global::SIDAC.Properties.Resources.guardar_datos;
             this.btnAgregar.Location = new System.Drawing.Point(21, 428);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.ShadowDecoration.Parent = this.btnAgregar;
@@ -585,13 +606,17 @@ namespace SIDAC.VISTA
             // 
             // btnModificar
             // 
+            this.btnModificar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnModificar.BorderRadius = 3;
+            this.btnModificar.BorderThickness = 1;
             this.btnModificar.CheckedState.Parent = this.btnModificar;
             this.btnModificar.CustomImages.Parent = this.btnModificar;
             this.btnModificar.Enabled = false;
-            this.btnModificar.FillColor = System.Drawing.Color.Gray;
+            this.btnModificar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnModificar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.White;
             this.btnModificar.HoverState.Parent = this.btnModificar;
+            this.btnModificar.Image = global::SIDAC.Properties.Resources.actualizar;
             this.btnModificar.Location = new System.Drawing.Point(163, 428);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.ShadowDecoration.Parent = this.btnModificar;
@@ -602,6 +627,7 @@ namespace SIDAC.VISTA
             // 
             // pnlNuevoConsumidor
             // 
+            this.pnlNuevoConsumidor.BackColor = System.Drawing.Color.Azure;
             this.pnlNuevoConsumidor.BorderColor = System.Drawing.Color.DarkGray;
             this.pnlNuevoConsumidor.BorderThickness = 1;
             this.pnlNuevoConsumidor.Controls.Add(this.btnModificar);
@@ -643,7 +669,7 @@ namespace SIDAC.VISTA
             this.Controls.Add(this.pnlNuevoConsumidor);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmConsumidores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

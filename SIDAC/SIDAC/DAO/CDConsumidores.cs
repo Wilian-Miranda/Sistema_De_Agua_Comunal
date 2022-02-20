@@ -4,26 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 using SIDAC.MODELO;
 
 namespace SIDAC.DAO
 {
     class CDConsumidores
     {
+        #region CRUD  
         //mostrar consumidores activos
-        public List<sp_MostrarConsumidoresDefault_Result> MostrarConsumidoresDefault()
+        public void MostrarConsumidoresActivos(Guna2DataGridView dtgConsumidores, Guna2TextBox txtID, Label lblCantidadConsumidores)
         {
             using(SIDACEntities db = new SIDACEntities())
             {
-                return db.sp_MostrarConsumidoresDefault().ToList();
+                dtgConsumidores.Rows.Clear();
+                foreach (var i in db.sp_MostrarConsumidoresDefault().ToList())
+                {
+                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
+
+                }
+                lblCantidadConsumidores.Text = db.sp_MostrarConsumidoresDefault().ToList().Count().ToString() + " consumidores";
+                txtID.Text = (db.sp_MostrarConsumidoresDefault().Count() + 1).ToString();
             }
         }
         //mostrar consumidores inactivos
-        public List<sp_MostrarConsumidores_Result> MostrarConsumidores()
+        public void MostrarConsumidoresInactivos(Guna2DataGridView dtgConsumidores, Guna2TextBox txtID, Label lblCantidadConsumidores)
         {
             using (SIDACEntities db = new SIDACEntities())
             {
-                return db.sp_MostrarConsumidores().ToList();
+                dtgConsumidores.Rows.Clear();
+                foreach (var i in db.sp_MostrarConsumidores().ToList())
+                {
+                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
+
+                }
+                txtID.Text = (db.sp_MostrarConsumidores().ToList().Count() + 1).ToString();
+                lblCantidadConsumidores.Text = db.sp_MostrarConsumidores().ToList().Count().ToString() + " consumidores";
             }
         }
 
@@ -81,6 +97,7 @@ namespace SIDAC.DAO
                 MessageBox.Show("Error al eliminar.\n\n" + ex.ToString());
             }
         }
+        #endregion
 
     }
 }

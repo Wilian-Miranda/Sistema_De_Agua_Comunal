@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SIDAC.DAO;
 using SIDAC.MODELO;
+using SIDAC.VALIDACIONES;
 
 namespace SIDAC.VISTA
 {
@@ -44,57 +45,41 @@ namespace SIDAC.VISTA
         #endregion
 
         #region Metodos CRUD
+        CDConsumidores clsD_consumidor = new CDConsumidores();
+        Consumidores consumidor = new Consumidores();
+        VsFrmConsumidores validador = new VsFrmConsumidores();
         //mostrar
         private void MostrarConsumidores()
         {
-            CDConsumidores consumidores = new CDConsumidores();
             if (rbActivos.Checked) {
                 //cargando datos a la tabla de consumidores
-                dtgConsumidores.Rows.Clear();
-                foreach (var i in consumidores.MostrarConsumidoresDefault())
-                {
-                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
-                   
-                }
-                lblCantidadConsumidores.Text = consumidores.MostrarConsumidoresDefault().Count().ToString() + " consumidores";
-                txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
+                clsD_consumidor.MostrarConsumidoresActivos(this.dtgConsumidores, this.txtID, this.lblCantidadConsumidores);
 
             }
 
             if (rbInactivos.Checked)
             {
                 //cargando datos a la tabla de consumidores
-                dtgConsumidores.Rows.Clear();
-                foreach (var i in consumidores.MostrarConsumidores())
-                {
-                    dtgConsumidores.Rows.Add(i.idConsumidor, i.nombres, i.apellidos, i.telefono, i.correo, i.nombre);
-
-                }
-                txtID.Text = (consumidores.MostrarConsumidores().Count() + 1).ToString();
-                lblCantidadConsumidores.Text = consumidores.MostrarConsumidores().Count().ToString() + " consumidores";
-
-
+                clsD_consumidor.MostrarConsumidoresInactivos(this.dtgConsumidores, this.txtID, this.lblCantidadConsumidores);
             }
         }
 
         //Agregar consumidor
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (ValidarCajas()==true)
+            if (validador.ValidarCajas(validacion,this.txtApellidos,this.cbEstado,this.txtNombres))
             {
-                CDConsumidores consumidores = new CDConsumidores();
-
                 //cargando datos al objeto consumidor
-                Consumidores consumidores1 = new Consumidores();
-                consumidores1.nombres = txtNombres.Text;
-                consumidores1.apellidos = txtApellidos.Text;
-                consumidores1.telefono = txtTelefono.Text;
-                consumidores1.correo = txtCorreo.Text;
-                consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                consumidor.nombres = txtNombres.Text;
+                consumidor.apellidos = txtApellidos.Text;
+                consumidor.telefono = txtTelefono.Text;
+                consumidor.correo = txtCorreo.Text;
+                consumidor.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
 
                 //guardando datos
-                consumidores.AgregarConsumidor(consumidores1);
+                clsD_consumidor.AgregarConsumidor(consumidor);
                 Limpiar();
+                LimpiarEntidad(consumidor);
             }
 
 
@@ -103,21 +88,20 @@ namespace SIDAC.VISTA
         //MODIFICAR
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (ValidarCajas()==true)
+            if (validador.ValidarCajas(validacion, this.txtApellidos, this.cbEstado, this.txtNombres))
             {
-                CDConsumidores consumidores = new CDConsumidores();
-
                 //cargando datos al objeto consumidor
-                Consumidores consumidores1 = new Consumidores();
-                consumidores1.idConsumidor = Convert.ToInt32(txtID.Text);
-                consumidores1.nombres = txtNombres.Text;
-                consumidores1.apellidos = txtApellidos.Text;
-                consumidores1.telefono = txtTelefono.Text;
-                consumidores1.correo = txtCorreo.Text;
-                consumidores1.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
+                consumidor.idConsumidor = Convert.ToInt32(txtID.Text);
+                consumidor.nombres = txtNombres.Text;
+                consumidor.apellidos = txtApellidos.Text;
+                consumidor.telefono = txtTelefono.Text;
+                consumidor.correo = txtCorreo.Text;
+                consumidor.Fk_estado = Convert.ToInt32(cbEstado.SelectedValue.ToString());
                 //guardando datos
-                consumidores.ActualizarConsumidor(consumidores1);
+                clsD_consumidor.ActualizarConsumidor(consumidor);
+
                 Limpiar();
+                LimpiarEntidad(consumidor);
             }
             
         }
@@ -127,42 +111,10 @@ namespace SIDAC.VISTA
         {
             if (dtgConsumidores.Rows.Count>0)
             {
-                CDConsumidores consumidores = new CDConsumidores();
-                consumidores.EliminarConsumidor(Convert.ToInt32(txtID.Text));
+                clsD_consumidor.EliminarConsumidor(Convert.ToInt32(txtID.Text));
                 Limpiar();
             }
             
-        }
-        #endregion
-
-        #region VALIDACIONES
-        private Boolean ValidarCajas()
-        {
-            Boolean validar = true;
-
-            validacion.SetError(txtApellidos, "");
-            validacion.SetError(cbEstado, "");
-            validacion.SetError(txtNombres, "");
-
-            if (txtNombres.Text.Equals(""))
-            {
-                validacion.SetError(txtNombres, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            if (txtApellidos.Text.Equals(""))
-            {
-                validacion.SetError(txtApellidos, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            if (cbEstado.SelectedValue == null)
-            {
-                validacion.SetError(cbEstado, "Este campo es obligatorio");
-                validar = false;
-            }
-
-            return validar;
         }
         #endregion
 
@@ -266,6 +218,17 @@ namespace SIDAC.VISTA
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
             btnAgregar.Enabled = true;
+
+        }
+
+        private void LimpiarEntidad(Consumidores consumidor)
+        {
+            consumidor.idConsumidor = 0;
+            consumidor.nombres = string.Empty;
+            consumidor.apellidos = string.Empty;
+            consumidor.correo = string.Empty;
+            consumidor.Fk_estado = 0;
+            consumidor.telefono = string.Empty;
 
         }
         private void pnlNuevoConsumidor_DoubleClick(object sender, EventArgs e)
