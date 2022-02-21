@@ -19,6 +19,7 @@ namespace SIDAC.VISTA
         {
             InitializeComponent();
             CargarDatosCBEstado();
+            rbActivos.Checked = true;
         }
 
         private void FrmConsumidores_Load(object sender, EventArgs e)
@@ -151,6 +152,13 @@ namespace SIDAC.VISTA
                 btnModificar.Enabled = true;
                 btnEliminar.Enabled = true;
                 btnAgregar.Enabled = false;
+
+                if (pnlNuevoConsumidor.Width == 10)
+                {
+                    pnlNuevoConsumidor.Visible = true;
+                    pnlNuevoConsumidor.Enabled = true;
+                    pnlNuevoConsumidor.Width = 300;
+                }
             }
             else
             {
@@ -162,17 +170,15 @@ namespace SIDAC.VISTA
         #region MOSTRAR FORMULARIO
         private void btnAbrirFormulario_Click(object sender, EventArgs e)
         {
-            if (pnlNuevoConsumidor.Width == 0)
+            if (pnlNuevoConsumidor.Width == 10)
             {
-                pnlNuevoConsumidor.Visible = true;
                 pnlNuevoConsumidor.Enabled = true;
                 pnlNuevoConsumidor.Width = 300;
             }
             else if (pnlNuevoConsumidor.Width == 300)
             {
-                pnlNuevoConsumidor.Visible = true;
                 pnlNuevoConsumidor.Enabled = true;
-                pnlNuevoConsumidor.Width = 0;
+                pnlNuevoConsumidor.Width = 10;
             }
         }
 
@@ -237,5 +243,14 @@ namespace SIDAC.VISTA
         }
         #endregion
 
+        private void dtgConsumidores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
