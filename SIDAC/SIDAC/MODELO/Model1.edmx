@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIDACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Compras">
           <Key>
             <PropertyRef Name="idCompra" />
@@ -293,6 +293,15 @@
         <Function Name="sp_EliminarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Grafico_PagosBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Grafico_PagosCancelados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Grafico_PagosPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="year" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -434,8 +443,7 @@
             <End Role="Inventarios" EntitySet="Inventarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIDACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -771,19 +779,19 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarCompra">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarConsumidor">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarInventario">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarPago">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminarProyecto">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIDACModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -847,7 +855,7 @@
           <FunctionImport Name="sp_MostrarConsumidoresDefault" ReturnType="Collection(SIDACModel.sp_MostrarConsumidoresDefault_Result)" />
           <FunctionImport Name="sp_MostrarInventarios" ReturnType="Collection(SIDACModel.sp_MostrarInventarios_Result)" />
           <FunctionImport Name="sp_MostrarPagoPorId" ReturnType="Collection(SIDACModel.sp_MostrarPagoPorId_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarPagoPorYear" ReturnType="Collection(SIDACModel.sp_MostrarPagoPorYear_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -864,13 +872,13 @@
             <Parameter Name="Year" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarPagosPorYearPorId" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarProyectos_year" ReturnType="Collection(SIDACModel.sp_MostrarProyectos_year_Result)">
-            <Parameter Name="year" Mode="In" Type="String" />
+          <Parameter Name="year" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_MostrarYearsPorPagosPorId" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -880,7 +888,16 @@
           <FunctionImport Name="sp_Ryear_Proyectos" ReturnType="Collection(Int32)" />
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
-            <Parameter Name="estado" Mode="In" Type="String" />
+          <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grafico_PagosBase" ReturnType="Collection(SIDACModel.sp_Grafico_PagosBase_Result)">
+          <Parameter Name="year" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grafico_PagosCancelados" ReturnType="Collection(SIDACModel.sp_Grafico_PagosCancelados_Result)">
+          <Parameter Name="year" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Grafico_PagosPendientes" ReturnType="Collection(SIDACModel.sp_Grafico_PagosPendientes_Result)">
+          <Parameter Name="year" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1010,6 +1027,21 @@
           <Property Type="DateTime" Name="fechaInicio" Nullable="true" />
           <Property Type="DateTime" Name="fechaFinalizado" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_Grafico_PagosBase_Result">
+          <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="dos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Grafico_PagosCancelados_Result">
+          <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="dos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Grafico_PagosPendientes_Result">
+          <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="dos" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1351,6 +1383,33 @@
           <FunctionImportMapping FunctionImportName="sp_Ryear_Proyectos" FunctionName="SIDACModel.Store.sp_Ryear_Proyectos" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIDACModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_YearsInPagos" FunctionName="SIDACModel.Store.sp_YearsInPagos" />
+          <FunctionImportMapping FunctionImportName="sp_Grafico_PagosBase" FunctionName="SIDACModel.Store.sp_Grafico_PagosBase">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosBase_Result">
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="dos" ColumnName="dos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Grafico_PagosCancelados" FunctionName="SIDACModel.Store.sp_Grafico_PagosCancelados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosCancelados_Result">
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="dos" ColumnName="dos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Grafico_PagosPendientes" FunctionName="SIDACModel.Store.sp_Grafico_PagosPendientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosPendientes_Result">
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="dos" ColumnName="dos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

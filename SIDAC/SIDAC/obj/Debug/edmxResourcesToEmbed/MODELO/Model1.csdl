@@ -443,6 +443,15 @@
     <FunctionImport Name="sp_YearsInPagos" ReturnType="Collection(Int32)">
       <Parameter Name="estado" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_Grafico_PagosBase" ReturnType="Collection(SIDACModel.sp_Grafico_PagosBase_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Grafico_PagosCancelados" ReturnType="Collection(SIDACModel.sp_Grafico_PagosCancelados_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Grafico_PagosPendientes" ReturnType="Collection(SIDACModel.sp_Grafico_PagosPendientes_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -571,5 +580,20 @@
     <Property Type="DateTime" Name="fechaInicio" Nullable="true" />
     <Property Type="DateTime" Name="fechaFinalizado" Nullable="true" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="sp_Grafico_PagosBase_Result">
+    <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="dos" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Grafico_PagosCancelados_Result">
+    <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="dos" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Grafico_PagosPendientes_Result">
+    <Property Type="String" Name="mes" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="dos" Nullable="true" />
   </ComplexType>
 </Schema>

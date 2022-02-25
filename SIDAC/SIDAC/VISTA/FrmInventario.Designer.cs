@@ -139,12 +139,12 @@ namespace SIDAC.VISTA
             this.dtgInventario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgInventario.EnableHeadersVisualStyles = false;
             this.dtgInventario.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dtgInventario.Location = new System.Drawing.Point(0, 35);
+            this.dtgInventario.Location = new System.Drawing.Point(0, 40);
             this.dtgInventario.Name = "dtgInventario";
             this.dtgInventario.ReadOnly = true;
             this.dtgInventario.RowHeadersVisible = false;
             this.dtgInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgInventario.Size = new System.Drawing.Size(960, 497);
+            this.dtgInventario.Size = new System.Drawing.Size(960, 488);
             this.dtgInventario.TabIndex = 19;
             this.dtgInventario.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dtgInventario.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -253,7 +253,7 @@ namespace SIDAC.VISTA
             // 
             this.tercero.Controls.Add(this.lblTotal);
             this.tercero.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tercero.Location = new System.Drawing.Point(0, 532);
+            this.tercero.Location = new System.Drawing.Point(0, 528);
             this.tercero.Name = "tercero";
             this.tercero.Padding = new System.Windows.Forms.Padding(5);
             this.tercero.Size = new System.Drawing.Size(960, 38);
@@ -278,39 +278,46 @@ namespace SIDAC.VISTA
             this.segundo.Dock = System.Windows.Forms.DockStyle.Top;
             this.segundo.Location = new System.Drawing.Point(0, 0);
             this.segundo.Name = "segundo";
-            this.segundo.Padding = new System.Windows.Forms.Padding(0, 5, 5, 5);
-            this.segundo.Size = new System.Drawing.Size(960, 35);
+            this.segundo.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.segundo.Size = new System.Drawing.Size(960, 40);
             this.segundo.TabIndex = 33;
             // 
             // btnReporte
             // 
+            this.btnReporte.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnReporte.BorderRadius = 3;
+            this.btnReporte.BorderThickness = 1;
             this.btnReporte.CheckedState.Parent = this.btnReporte;
             this.btnReporte.CustomImages.Parent = this.btnReporte;
             this.btnReporte.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnReporte.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnReporte.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnReporte.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnReporte.ForeColor = System.Drawing.Color.White;
             this.btnReporte.HoverState.Parent = this.btnReporte;
-            this.btnReporte.Location = new System.Drawing.Point(715, 5);
+            this.btnReporte.Location = new System.Drawing.Point(660, 5);
             this.btnReporte.Name = "btnReporte";
             this.btnReporte.ShadowDecoration.Parent = this.btnReporte;
-            this.btnReporte.Size = new System.Drawing.Size(120, 25);
+            this.btnReporte.Size = new System.Drawing.Size(150, 30);
             this.btnReporte.TabIndex = 33;
             this.btnReporte.Text = "Reporte";
             // 
             // btnDesplagarMenu
             // 
+            this.btnDesplagarMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnDesplagarMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnDesplagarMenu.BorderRadius = 3;
+            this.btnDesplagarMenu.BorderThickness = 1;
             this.btnDesplagarMenu.CheckedState.Parent = this.btnDesplagarMenu;
             this.btnDesplagarMenu.CustomImages.Parent = this.btnDesplagarMenu;
             this.btnDesplagarMenu.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDesplagarMenu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDesplagarMenu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnDesplagarMenu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDesplagarMenu.ForeColor = System.Drawing.Color.White;
             this.btnDesplagarMenu.HoverState.Parent = this.btnDesplagarMenu;
-            this.btnDesplagarMenu.Location = new System.Drawing.Point(835, 5);
+            this.btnDesplagarMenu.Location = new System.Drawing.Point(810, 5);
             this.btnDesplagarMenu.Name = "btnDesplagarMenu";
             this.btnDesplagarMenu.ShadowDecoration.Parent = this.btnDesplagarMenu;
-            this.btnDesplagarMenu.Size = new System.Drawing.Size(120, 25);
+            this.btnDesplagarMenu.Size = new System.Drawing.Size(150, 30);
             this.btnDesplagarMenu.TabIndex = 32;
             this.btnDesplagarMenu.Text = "Retirar Inventario";
             this.btnDesplagarMenu.Click += new System.EventHandler(this.btnDesplagarMenu_Click);
@@ -331,11 +338,11 @@ namespace SIDAC.VISTA
             this.pnlCompras.BackColor = System.Drawing.Color.White;
             this.pnlCompras.Controls.Add(this.pnlNuevaCompra);
             this.pnlCompras.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCompras.Location = new System.Drawing.Point(0, 30);
+            this.pnlCompras.Location = new System.Drawing.Point(0, 34);
             this.pnlCompras.Name = "pnlCompras";
             this.pnlCompras.Padding = new System.Windows.Forms.Padding(10);
             this.pnlCompras.ShadowDecoration.Parent = this.pnlCompras;
-            this.pnlCompras.Size = new System.Drawing.Size(1000, 590);
+            this.pnlCompras.Size = new System.Drawing.Size(1000, 586);
             this.pnlCompras.TabIndex = 3;
             // 
             // pnlNuevaCompra
@@ -345,7 +352,7 @@ namespace SIDAC.VISTA
             this.pnlNuevaCompra.Location = new System.Drawing.Point(10, 10);
             this.pnlNuevaCompra.Name = "pnlNuevaCompra";
             this.pnlNuevaCompra.ShadowDecoration.Parent = this.pnlNuevaCompra;
-            this.pnlNuevaCompra.Size = new System.Drawing.Size(980, 570);
+            this.pnlNuevaCompra.Size = new System.Drawing.Size(980, 566);
             this.pnlNuevaCompra.TabIndex = 1;
             // 
             // pnlFactura
@@ -357,7 +364,7 @@ namespace SIDAC.VISTA
             this.pnlFactura.Location = new System.Drawing.Point(0, 0);
             this.pnlFactura.Name = "pnlFactura";
             this.pnlFactura.ShadowDecoration.Parent = this.pnlFactura;
-            this.pnlFactura.Size = new System.Drawing.Size(980, 570);
+            this.pnlFactura.Size = new System.Drawing.Size(980, 566);
             this.pnlFactura.TabIndex = 1;
             // 
             // primero
@@ -369,13 +376,13 @@ namespace SIDAC.VISTA
             this.primero.Location = new System.Drawing.Point(0, 0);
             this.primero.Name = "primero";
             this.primero.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.primero.Size = new System.Drawing.Size(970, 570);
+            this.primero.Size = new System.Drawing.Size(970, 566);
             this.primero.TabIndex = 36;
             // 
             // pnlRetiroInventario
             // 
             this.pnlRetiroInventario.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRetiroInventario.BorderColor = System.Drawing.Color.Silver;
+            this.pnlRetiroInventario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.pnlRetiroInventario.BorderRadius = 14;
             this.pnlRetiroInventario.BorderThickness = 1;
             this.pnlRetiroInventario.Controls.Add(this.btnModificar);
@@ -384,12 +391,12 @@ namespace SIDAC.VISTA
             this.pnlRetiroInventario.Controls.Add(this.pnlDatosPagos);
             this.pnlRetiroInventario.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRetiroInventario.Enabled = false;
-            this.pnlRetiroInventario.FillColor = System.Drawing.SystemColors.Control;
+            this.pnlRetiroInventario.FillColor = System.Drawing.Color.Azure;
             this.pnlRetiroInventario.Location = new System.Drawing.Point(970, 0);
             this.pnlRetiroInventario.Name = "pnlRetiroInventario";
             this.pnlRetiroInventario.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
             this.pnlRetiroInventario.ShadowDecoration.Parent = this.pnlRetiroInventario;
-            this.pnlRetiroInventario.Size = new System.Drawing.Size(10, 570);
+            this.pnlRetiroInventario.Size = new System.Drawing.Size(10, 566);
             this.pnlRetiroInventario.TabIndex = 18;
             // 
             // btnModificar
@@ -426,12 +433,12 @@ namespace SIDAC.VISTA
             // pnlEncabezadoNuevoCompra
             // 
             this.pnlEncabezadoNuevoCompra.BackColor = System.Drawing.Color.Transparent;
-            this.pnlEncabezadoNuevoCompra.BorderColor = System.Drawing.Color.Silver;
+            this.pnlEncabezadoNuevoCompra.BorderColor = System.Drawing.Color.Transparent;
             this.pnlEncabezadoNuevoCompra.BorderRadius = 14;
             this.pnlEncabezadoNuevoCompra.BorderThickness = 1;
             this.pnlEncabezadoNuevoCompra.Controls.Add(this.label2);
             this.pnlEncabezadoNuevoCompra.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlEncabezadoNuevoCompra.FillColor = System.Drawing.Color.DarkGray;
+            this.pnlEncabezadoNuevoCompra.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlEncabezadoNuevoCompra.Location = new System.Drawing.Point(20, 10);
             this.pnlEncabezadoNuevoCompra.Name = "pnlEncabezadoNuevoCompra";
             this.pnlEncabezadoNuevoCompra.ShadowDecoration.Parent = this.pnlEncabezadoNuevoCompra;
@@ -444,7 +451,7 @@ namespace SIDAC.VISTA
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(-148, 6);
+            this.label2.Location = new System.Drawing.Point(-111, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(199, 19);
             this.label2.TabIndex = 1;
@@ -452,7 +459,7 @@ namespace SIDAC.VISTA
             // 
             // pnlDatosPagos
             // 
-            this.pnlDatosPagos.BorderColor = System.Drawing.Color.Silver;
+            this.pnlDatosPagos.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.pnlDatosPagos.BorderRadius = 14;
             this.pnlDatosPagos.BorderThickness = 1;
             this.pnlDatosPagos.Controls.Add(this.rdAgregarInventario);
@@ -475,7 +482,7 @@ namespace SIDAC.VISTA
             this.pnlDatosPagos.Name = "pnlDatosPagos";
             this.pnlDatosPagos.Padding = new System.Windows.Forms.Padding(10);
             this.pnlDatosPagos.ShadowDecoration.Parent = this.pnlDatosPagos;
-            this.pnlDatosPagos.Size = new System.Drawing.Size(361, 419);
+            this.pnlDatosPagos.Size = new System.Drawing.Size(361, 495);
             this.pnlDatosPagos.TabIndex = 23;
             // 
             // rdAgregarInventario
@@ -524,6 +531,7 @@ namespace SIDAC.VISTA
             // 
             // txtTotal
             // 
+            this.txtTotal.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtTotal.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtTotal.DefaultText = "";
             this.txtTotal.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -558,17 +566,18 @@ namespace SIDAC.VISTA
             // 
             // btnRealizarRetiro
             // 
-            this.btnRealizarRetiro.BorderColor = System.Drawing.Color.DimGray;
-            this.btnRealizarRetiro.BorderRadius = 7;
+            this.btnRealizarRetiro.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnRealizarRetiro.BorderRadius = 3;
             this.btnRealizarRetiro.BorderThickness = 1;
             this.btnRealizarRetiro.CheckedState.Parent = this.btnRealizarRetiro;
             this.btnRealizarRetiro.CustomImages.Parent = this.btnRealizarRetiro;
             this.btnRealizarRetiro.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnRealizarRetiro.FillColor = System.Drawing.Color.Gray;
+            this.btnRealizarRetiro.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnRealizarRetiro.Font = new System.Drawing.Font("Arial", 12F);
             this.btnRealizarRetiro.ForeColor = System.Drawing.Color.White;
             this.btnRealizarRetiro.HoverState.Parent = this.btnRealizarRetiro;
-            this.btnRealizarRetiro.Location = new System.Drawing.Point(10, 379);
+            this.btnRealizarRetiro.Image = global::SIDAC.Properties.Resources.guardar_datos;
+            this.btnRealizarRetiro.Location = new System.Drawing.Point(10, 455);
             this.btnRealizarRetiro.Name = "btnRealizarRetiro";
             this.btnRealizarRetiro.ShadowDecoration.Parent = this.btnRealizarRetiro;
             this.btnRealizarRetiro.Size = new System.Drawing.Size(341, 30);
@@ -587,6 +596,7 @@ namespace SIDAC.VISTA
             // 
             // txtMotivo
             // 
+            this.txtMotivo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtMotivo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtMotivo.DefaultText = "";
             this.txtMotivo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -607,12 +617,13 @@ namespace SIDAC.VISTA
             this.txtMotivo.PlaceholderText = "";
             this.txtMotivo.SelectedText = "";
             this.txtMotivo.ShadowDecoration.Parent = this.txtMotivo;
-            this.txtMotivo.Size = new System.Drawing.Size(327, 96);
+            this.txtMotivo.Size = new System.Drawing.Size(327, 184);
             this.txtMotivo.TabIndex = 28;
             // 
             // txtCantidad
             // 
             this.txtCantidad.BackColor = System.Drawing.Color.Transparent;
+            this.txtCantidad.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtCantidad.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCantidad.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtCantidad.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -653,7 +664,7 @@ namespace SIDAC.VISTA
             // 
             // txtFecha
             // 
-            this.txtFecha.BorderColor = System.Drawing.Color.Gainsboro;
+            this.txtFecha.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtFecha.BorderThickness = 1;
             this.txtFecha.CheckedState.Parent = this.txtFecha;
             this.txtFecha.CustomFormat = "dd/MM/yyyy";
@@ -701,6 +712,7 @@ namespace SIDAC.VISTA
             // 
             // txtValor
             // 
+            this.txtValor.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtValor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtValor.DefaultText = "";
             this.txtValor.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -726,6 +738,7 @@ namespace SIDAC.VISTA
             // 
             // txtMaterial
             // 
+            this.txtMaterial.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.txtMaterial.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtMaterial.DefaultText = "";
             this.txtMaterial.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -765,60 +778,73 @@ namespace SIDAC.VISTA
             this.pnlSeleccioFormulario.Controls.Add(this.btnAgotados);
             this.pnlSeleccioFormulario.Controls.Add(this.btnStock);
             this.pnlSeleccioFormulario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSeleccioFormulario.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlSeleccioFormulario.Location = new System.Drawing.Point(0, 0);
             this.pnlSeleccioFormulario.Name = "pnlSeleccioFormulario";
-            this.pnlSeleccioFormulario.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlSeleccioFormulario.Padding = new System.Windows.Forms.Padding(2);
             this.pnlSeleccioFormulario.ShadowDecoration.Parent = this.pnlSeleccioFormulario;
-            this.pnlSeleccioFormulario.Size = new System.Drawing.Size(1000, 30);
+            this.pnlSeleccioFormulario.Size = new System.Drawing.Size(1000, 34);
             this.pnlSeleccioFormulario.TabIndex = 2;
             // 
             // btnRegistro
             // 
+            this.btnRegistro.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegistro.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnRegistro.BorderRadius = 3;
+            this.btnRegistro.BorderThickness = 1;
             this.btnRegistro.CheckedState.Parent = this.btnRegistro;
             this.btnRegistro.CustomImages.Parent = this.btnRegistro;
             this.btnRegistro.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRegistro.FillColor = System.Drawing.Color.Gray;
+            this.btnRegistro.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnRegistro.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnRegistro.ForeColor = System.Drawing.Color.White;
             this.btnRegistro.HoverState.Parent = this.btnRegistro;
-            this.btnRegistro.Location = new System.Drawing.Point(245, 5);
+            this.btnRegistro.Location = new System.Drawing.Point(302, 2);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.ShadowDecoration.Parent = this.btnRegistro;
-            this.btnRegistro.Size = new System.Drawing.Size(120, 20);
+            this.btnRegistro.Size = new System.Drawing.Size(150, 30);
             this.btnRegistro.TabIndex = 36;
             this.btnRegistro.Text = "Registro E/S";
             this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
             // btnAgotados
             // 
+            this.btnAgotados.BackColor = System.Drawing.Color.Transparent;
+            this.btnAgotados.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnAgotados.BorderRadius = 3;
+            this.btnAgotados.BorderThickness = 1;
             this.btnAgotados.CheckedState.Parent = this.btnAgotados;
             this.btnAgotados.CustomImages.Parent = this.btnAgotados;
             this.btnAgotados.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAgotados.FillColor = System.Drawing.Color.Gray;
+            this.btnAgotados.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnAgotados.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAgotados.ForeColor = System.Drawing.Color.White;
             this.btnAgotados.HoverState.Parent = this.btnAgotados;
-            this.btnAgotados.Location = new System.Drawing.Point(125, 5);
+            this.btnAgotados.Location = new System.Drawing.Point(152, 2);
             this.btnAgotados.Name = "btnAgotados";
             this.btnAgotados.ShadowDecoration.Parent = this.btnAgotados;
-            this.btnAgotados.Size = new System.Drawing.Size(120, 20);
+            this.btnAgotados.Size = new System.Drawing.Size(150, 30);
             this.btnAgotados.TabIndex = 35;
             this.btnAgotados.Text = "Agotados";
             this.btnAgotados.Click += new System.EventHandler(this.btnAgotados_Click);
             // 
             // btnStock
             // 
+            this.btnStock.BackColor = System.Drawing.Color.Transparent;
+            this.btnStock.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnStock.BorderRadius = 3;
+            this.btnStock.BorderThickness = 1;
             this.btnStock.CheckedState.Parent = this.btnStock;
             this.btnStock.CustomImages.Parent = this.btnStock;
             this.btnStock.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnStock.FillColor = System.Drawing.Color.Gray;
+            this.btnStock.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
             this.btnStock.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnStock.ForeColor = System.Drawing.Color.White;
             this.btnStock.HoverState.Parent = this.btnStock;
-            this.btnStock.Location = new System.Drawing.Point(5, 5);
+            this.btnStock.Location = new System.Drawing.Point(2, 2);
             this.btnStock.Name = "btnStock";
             this.btnStock.ShadowDecoration.Parent = this.btnStock;
-            this.btnStock.Size = new System.Drawing.Size(120, 20);
+            this.btnStock.Size = new System.Drawing.Size(150, 30);
             this.btnStock.TabIndex = 34;
             this.btnStock.Text = "Stock";
             this.btnStock.Click += new System.EventHandler(this.btnStock_Click);

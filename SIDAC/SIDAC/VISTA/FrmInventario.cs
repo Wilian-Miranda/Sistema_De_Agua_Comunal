@@ -1,4 +1,5 @@
-﻿using SIDAC.MODELO;
+﻿using SIDAC.DAO;
+using SIDAC.MODELO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,114 +21,30 @@ namespace SIDAC.VISTA
             txtFecha.Text = DateTime.Today.ToString();
 
         }
-
+        CDInventarios clsD_inventario = new CDInventarios();
         private void MostrarInventario(int valor)
         {
             //0=> inventario en stock
-            if (valor==0)
+            if (valor == 0)
             {
-                try
-                {
-                   // rdAgregarInventario.Enabled = false;
-                    //rdAgregarInventario.Checked = false;
-                    rdRetirarInventario.Checked = true;
-                    rdRetirarInventario.Enabled = true;
-                    dtgInventario.Rows.Clear();
-
-                    using (SIDACEntities db = new SIDACEntities())
-                    {
-                        var inventario = db.sp_MostrarInventarios().Where(x => x.nombre == "En Stock").ToList();
-
-                        foreach (var i in inventario)
-                        {
-                            dtgInventario.Rows.Add(i.Idinventario, i.compra, i.cantidad, i.descripcion, i.precioUnitario, i.total, i.Utilizado, i.nombre);
-                        }
-
-                        var totalMateriales = (from a in db.Inventarios
-                                               join c in db.DetallesCompras on a.FK_DetalleCompra equals c.idDetalleCompras
-                                               where a.FK_estado == 4
-                                               select c.cantidad).ToList();
-
-                        var totalValorMateriales = (from a in db.Inventarios
-                                                    join c in db.DetallesCompras on a.FK_DetalleCompra equals c.idDetalleCompras
-                                                    where a.FK_estado == 4
-                                                    select c.total).ToList();
-
-
-                        lblTotal.Text = "TOTAL: Materiales: " + totalMateriales.Sum().ToString() + "  |  " + "Valor: $" + totalValorMateriales.Sum().ToString()+ " || ACTUAL: " + "Materiales: " + CalculoInventarioActual().ToString() + "  |  " + "Valor: $" + CalculoValorInventarioActual().ToString(); ;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al mostrar el inventario disponible.\n\n" + ex.ToString());
-                }
+                // rdAgregarInventario.Enabled = false;
+                //rdAgregarInventario.Checked = false;
+                rdRetirarInventario.Checked = true;
+                rdRetirarInventario.Enabled = true;
+                clsD_inventario.MostrarInventarios_EnStock(this.dtgInventario, this.lblTotal, "En Stock");
             }
-            else if (valor==1)
+            else if (valor == 1)
             {
-                try
-                {
-                    rdAgregarInventario.Enabled = true;                     
+
+                    rdAgregarInventario.Enabled = true;
                     rdAgregarInventario.Checked = true;
                     rdRetirarInventario.Checked = false;
                     rdRetirarInventario.Enabled = false;
-                    dtgInventario.Rows.Clear();
-
-                    using (SIDACEntities db = new SIDACEntities())
-                    {
-                        var inventario = db.sp_MostrarInventarios().Where(x => x.nombre == "Agotados").ToList();
-
-                        foreach (var i in inventario)
-                        {
-                            dtgInventario.Rows.Add(i.Idinventario, i.compra, i.cantidad, i.descripcion, i.precioUnitario, i.total, i.Utilizado, i.nombre);
-                        }
-
-                        var totalMateriales = (from a in db.Inventarios
-                                               join c in db.DetallesCompras on a.FK_DetalleCompra equals c.idDetalleCompras
-                                               where a.FK_estado == 3
-                                               select c.cantidad).ToList();
-
-                        var totalValorMateriales = (from a in db.Inventarios
-                                                    join c in db.DetallesCompras on a.FK_DetalleCompra equals c.idDetalleCompras
-                                                    where a.FK_estado == 3
-                                                    select c.total).ToList();
-
-
-                        lblTotal.Text = "TOTAL: Materiales: " + totalMateriales.Sum().ToString() + "  |  " + "Valor: $" + totalValorMateriales.Sum().ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al mostrar el inventario utilizado.\n\n" + ex.ToString());
-                }
+                clsD_inventario.MostrarInventario_Agotado(this.dtgInventario, this.lblTotal, "Agotados");
             }
-            
         }
 
-        private double CalculoValorInventarioActual()
-        {
-            double valor=0;
-
-            for (int i = 0; i < dtgInventario.Rows.Count; i++)
-            {
-                valor += ((Convert.ToDouble(dtgInventario.Rows[i].Cells[2].Value)) - (Convert.ToDouble(dtgInventario.Rows[i].Cells[6].Value))) * Convert.ToDouble(dtgInventario.Rows[i].Cells[4].Value);
-            }
-
-            return valor;
-        }
-        private int CalculoInventarioActual()
-        {
-            int cantidad = 0;
-
-            for (int i = 0; i < dtgInventario.Rows.Count; i++)
-            {
-                int num = Convert.ToInt32(dtgInventario.Rows[i].Cells[2].Value.ToString());
-                int num2 = Convert.ToInt32(dtgInventario.Rows[i].Cells[6].Value.ToString());
-
-                cantidad += (num) - (num2);
-            }
-
-            return cantidad;
-        }
+        
 
         private void btnDesplagarMenu_Click(object sender, EventArgs e)
         {

@@ -335,5 +335,32 @@
     <FunctionImportMapping FunctionImportName="sp_Ryear_Proyectos" FunctionName="SIDACModel.Store.sp_Ryear_Proyectos" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIDACModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="sp_YearsInPagos" FunctionName="SIDACModel.Store.sp_YearsInPagos" />
+    <FunctionImportMapping FunctionImportName="sp_Grafico_PagosBase" FunctionName="SIDACModel.Store.sp_Grafico_PagosBase">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosBase_Result">
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="dos" ColumnName="dos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Grafico_PagosCancelados" FunctionName="SIDACModel.Store.sp_Grafico_PagosCancelados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosCancelados_Result">
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="dos" ColumnName="dos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Grafico_PagosPendientes" FunctionName="SIDACModel.Store.sp_Grafico_PagosPendientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SIDACModel.sp_Grafico_PagosPendientes_Result">
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="dos" ColumnName="dos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

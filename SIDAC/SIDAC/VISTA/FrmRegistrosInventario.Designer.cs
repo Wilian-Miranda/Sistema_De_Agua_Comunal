@@ -29,15 +29,15 @@ namespace SIDAC.VISTA
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlCompras = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlNuevaCompra = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlFactura = new Guna.UI2.WinForms.Guna2Panel();
@@ -55,8 +55,8 @@ namespace SIDAC.VISTA
             this.segundo = new System.Windows.Forms.Panel();
             this.lblNombreTabla = new System.Windows.Forms.Label();
             this.pnlSeleccioFormulario = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnImprimir = new Guna.UI2.WinForms.Guna2Button();
             this.btnCerrarVentana = new Guna.UI2.WinForms.Guna2Button();
+            this.btnImprimir = new Guna.UI2.WinForms.Guna2Button();
             this.pnlCompras.SuspendLayout();
             this.pnlNuevaCompra.SuspendLayout();
             this.pnlFactura.SuspendLayout();
@@ -72,11 +72,11 @@ namespace SIDAC.VISTA
             this.pnlCompras.BackColor = System.Drawing.Color.White;
             this.pnlCompras.Controls.Add(this.pnlNuevaCompra);
             this.pnlCompras.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCompras.Location = new System.Drawing.Point(0, 30);
+            this.pnlCompras.Location = new System.Drawing.Point(0, 40);
             this.pnlCompras.Name = "pnlCompras";
             this.pnlCompras.Padding = new System.Windows.Forms.Padding(10);
             this.pnlCompras.ShadowDecoration.Parent = this.pnlCompras;
-            this.pnlCompras.Size = new System.Drawing.Size(1000, 570);
+            this.pnlCompras.Size = new System.Drawing.Size(1000, 560);
             this.pnlCompras.TabIndex = 5;
             // 
             // pnlNuevaCompra
@@ -86,7 +86,7 @@ namespace SIDAC.VISTA
             this.pnlNuevaCompra.Location = new System.Drawing.Point(10, 10);
             this.pnlNuevaCompra.Name = "pnlNuevaCompra";
             this.pnlNuevaCompra.ShadowDecoration.Parent = this.pnlNuevaCompra;
-            this.pnlNuevaCompra.Size = new System.Drawing.Size(980, 550);
+            this.pnlNuevaCompra.Size = new System.Drawing.Size(980, 540);
             this.pnlNuevaCompra.TabIndex = 1;
             // 
             // pnlFactura
@@ -97,7 +97,7 @@ namespace SIDAC.VISTA
             this.pnlFactura.Location = new System.Drawing.Point(0, 0);
             this.pnlFactura.Name = "pnlFactura";
             this.pnlFactura.ShadowDecoration.Parent = this.pnlFactura;
-            this.pnlFactura.Size = new System.Drawing.Size(980, 550);
+            this.pnlFactura.Size = new System.Drawing.Size(980, 540);
             this.pnlFactura.TabIndex = 1;
             // 
             // primero
@@ -109,7 +109,7 @@ namespace SIDAC.VISTA
             this.primero.Location = new System.Drawing.Point(0, 0);
             this.primero.Name = "primero";
             this.primero.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.primero.Size = new System.Drawing.Size(980, 550);
+            this.primero.Size = new System.Drawing.Size(980, 540);
             this.primero.TabIndex = 36;
             // 
             // dtgRegistros
@@ -117,21 +117,21 @@ namespace SIDAC.VISTA
             this.dtgRegistros.AllowUserToAddRows = false;
             this.dtgRegistros.AllowUserToDeleteRows = false;
             this.dtgRegistros.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dtgRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dtgRegistros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgRegistros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgRegistros.BackgroundColor = System.Drawing.Color.White;
             this.dtgRegistros.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgRegistros.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dtgRegistros.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgRegistros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgRegistros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgRegistros.ColumnHeadersHeight = 38;
             this.dtgRegistros.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
@@ -141,14 +141,14 @@ namespace SIDAC.VISTA
             this.Column7,
             this.Column8,
             this.Column4});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgRegistros.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgRegistros.DefaultCellStyle = dataGridViewCellStyle9;
             this.dtgRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgRegistros.EnableHeadersVisualStyles = false;
             this.dtgRegistros.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
@@ -157,7 +157,7 @@ namespace SIDAC.VISTA
             this.dtgRegistros.ReadOnly = true;
             this.dtgRegistros.RowHeadersVisible = false;
             this.dtgRegistros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgRegistros.Size = new System.Drawing.Size(970, 477);
+            this.dtgRegistros.Size = new System.Drawing.Size(970, 467);
             this.dtgRegistros.TabIndex = 19;
             this.dtgRegistros.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dtgRegistros.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -184,9 +184,9 @@ namespace SIDAC.VISTA
             // 
             // Column3
             // 
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column3.HeaderText = "Id";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -194,9 +194,9 @@ namespace SIDAC.VISTA
             // 
             // Column1
             // 
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column1.FillWeight = 30F;
             this.Column1.HeaderText = "Cantidad";
             this.Column1.Name = "Column1";
@@ -204,9 +204,9 @@ namespace SIDAC.VISTA
             // 
             // Column6
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.NullValue = null;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.NullValue = null;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column6.FillWeight = 60F;
             this.Column6.HeaderText = "Descripcion";
             this.Column6.Name = "Column6";
@@ -220,10 +220,10 @@ namespace SIDAC.VISTA
             // 
             // Column7
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.Format = "C4";
-            dataGridViewCellStyle15.NullValue = "-";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.Format = "C4";
+            dataGridViewCellStyle6.NullValue = "-";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column7.FillWeight = 30F;
             this.Column7.HeaderText = "P/U";
             this.Column7.Name = "Column7";
@@ -231,10 +231,10 @@ namespace SIDAC.VISTA
             // 
             // Column8
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.Format = "C4";
-            dataGridViewCellStyle16.NullValue = "-";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.Format = "C4";
+            dataGridViewCellStyle7.NullValue = "-";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column8.FillWeight = 30F;
             this.Column8.HeaderText = "Subtotal";
             this.Column8.Name = "Column8";
@@ -242,9 +242,9 @@ namespace SIDAC.VISTA
             // 
             // Column4
             // 
-            dataGridViewCellStyle17.Format = "d";
-            dataGridViewCellStyle17.NullValue = "-";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = "-";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column4.FillWeight = 30F;
             this.Column4.HeaderText = "Fecha";
             this.Column4.Name = "Column4";
@@ -254,7 +254,7 @@ namespace SIDAC.VISTA
             // 
             this.tercero.Controls.Add(this.lblTotal);
             this.tercero.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tercero.Location = new System.Drawing.Point(0, 512);
+            this.tercero.Location = new System.Drawing.Point(0, 502);
             this.tercero.Name = "tercero";
             this.tercero.Padding = new System.Windows.Forms.Padding(5);
             this.tercero.Size = new System.Drawing.Size(970, 38);
@@ -298,60 +298,67 @@ namespace SIDAC.VISTA
             this.pnlSeleccioFormulario.Controls.Add(this.btnCerrarVentana);
             this.pnlSeleccioFormulario.Controls.Add(this.btnImprimir);
             this.pnlSeleccioFormulario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSeleccioFormulario.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(164)))), ((int)(((byte)(235)))));
             this.pnlSeleccioFormulario.Location = new System.Drawing.Point(0, 0);
             this.pnlSeleccioFormulario.Name = "pnlSeleccioFormulario";
             this.pnlSeleccioFormulario.Padding = new System.Windows.Forms.Padding(5);
             this.pnlSeleccioFormulario.ShadowDecoration.Parent = this.pnlSeleccioFormulario;
-            this.pnlSeleccioFormulario.Size = new System.Drawing.Size(1000, 30);
+            this.pnlSeleccioFormulario.Size = new System.Drawing.Size(1000, 40);
             this.pnlSeleccioFormulario.TabIndex = 4;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.CheckedState.Parent = this.btnImprimir;
-            this.btnImprimir.CustomImages.Parent = this.btnImprimir;
-            this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnImprimir.FillColor = System.Drawing.Color.Gray;
-            this.btnImprimir.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnImprimir.ForeColor = System.Drawing.Color.White;
-            this.btnImprimir.HoverState.Parent = this.btnImprimir;
-            this.btnImprimir.Location = new System.Drawing.Point(5, 5);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.ShadowDecoration.Parent = this.btnImprimir;
-            this.btnImprimir.Size = new System.Drawing.Size(120, 20);
-            this.btnImprimir.TabIndex = 36;
-            this.btnImprimir.Text = "Imprimir";
+            this.pnlSeleccioFormulario.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlSeleccioFormulario_MouseMove);
             // 
             // btnCerrarVentana
             // 
+            this.btnCerrarVentana.BackColor = System.Drawing.Color.Transparent;
+            this.btnCerrarVentana.BackgroundImage = global::SIDAC.Properties.Resources.cerrar;
+            this.btnCerrarVentana.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCerrarVentana.BorderRadius = 12;
             this.btnCerrarVentana.CheckedState.Parent = this.btnCerrarVentana;
             this.btnCerrarVentana.CustomImages.Parent = this.btnCerrarVentana;
             this.btnCerrarVentana.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrarVentana.FillColor = System.Drawing.Color.Red;
+            this.btnCerrarVentana.FillColor = System.Drawing.Color.Transparent;
             this.btnCerrarVentana.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnCerrarVentana.ForeColor = System.Drawing.Color.White;
             this.btnCerrarVentana.HoverState.Parent = this.btnCerrarVentana;
             this.btnCerrarVentana.Location = new System.Drawing.Point(966, 5);
             this.btnCerrarVentana.Name = "btnCerrarVentana";
             this.btnCerrarVentana.ShadowDecoration.Parent = this.btnCerrarVentana;
-            this.btnCerrarVentana.Size = new System.Drawing.Size(29, 20);
+            this.btnCerrarVentana.Size = new System.Drawing.Size(29, 30);
             this.btnCerrarVentana.TabIndex = 37;
-            this.btnCerrarVentana.Text = "X";
             this.btnCerrarVentana.Click += new System.EventHandler(this.btnCerrarVentana_Click);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BorderColor = System.Drawing.Color.Azure;
+            this.btnImprimir.BorderRadius = 3;
+            this.btnImprimir.BorderThickness = 1;
+            this.btnImprimir.CheckedState.Parent = this.btnImprimir;
+            this.btnImprimir.CustomImages.Parent = this.btnImprimir;
+            this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnImprimir.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(181)))), ((int)(((byte)(212)))));
+            this.btnImprimir.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.HoverState.Parent = this.btnImprimir;
+            this.btnImprimir.Location = new System.Drawing.Point(5, 5);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.ShadowDecoration.Parent = this.btnImprimir;
+            this.btnImprimir.Size = new System.Drawing.Size(120, 30);
+            this.btnImprimir.TabIndex = 36;
+            this.btnImprimir.Text = "Imprimir";
             // 
             // FrmRegistrosInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ControlBox = false;
             this.Controls.Add(this.pnlCompras);
             this.Controls.Add(this.pnlSeleccioFormulario);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmRegistrosInventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Entrada y Salida de Material";
             this.pnlCompras.ResumeLayout(false);
             this.pnlNuevaCompra.ResumeLayout(false);
             this.pnlFactura.ResumeLayout(false);

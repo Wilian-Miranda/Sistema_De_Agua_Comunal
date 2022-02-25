@@ -45,5 +45,21 @@ namespace SIDAC.VISTA
         {
             this.Close();
         }
+
+        int posX = 0;
+        int posY = 0;
+        private void pnlSeleccioFormulario_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                posX = e.X;
+                posY = e.Y;
+            }
+            else
+            {
+                Left += e.X - posX;
+                Top += e.Y - posY;
+            }
+        }
     }
 }

@@ -157,6 +157,12 @@ namespace SIDAC.VISTA
                 txtApellidos.Enabled = false;
 
                 accionEnPagos = "Modificar";
+
+                if (pnlNuevoPago.Width == 10)
+                {
+                    pnlNuevoPago.Width = 400;
+                    //pnlNuevoPago.Visible = false;
+                }
             }
         }
 
@@ -473,20 +479,20 @@ namespace SIDAC.VISTA
         //filtro 1: donde se filtran pagos segun estado-año-mes
         private void btnMostrarControlesFiltros1_Click(object sender, EventArgs e)
         {
-            if (pnlControlesDeFiltros1.Width == 33)
+            if (pnlControlesDeFiltros1.Width == 38)
             {
                 cbFiltroPrincipal.Visible = true;
                 cbYears.Visible = true;
                 cbMes.Visible = true;
 
-                pnlControlesDeFiltros1.Width = 360;
+                pnlControlesDeFiltros1.Width = 365;
 
                 cbConsumidor.Enabled = false;
                 cbYear.Enabled = false;
             }
-            else if (pnlControlesDeFiltros1.Width == 360)
+            else if (pnlControlesDeFiltros1.Width == 365)
             {
-                pnlControlesDeFiltros1.Width = 33;
+                pnlControlesDeFiltros1.Width = 38;
 
                 cbFiltroPrincipal.Visible = false;
                 cbYears.Visible = false;
@@ -496,7 +502,7 @@ namespace SIDAC.VISTA
                 cbYear.Enabled = false;
             }
 
-            if (pnlControlesDeFiltros2.Width == 382 || pnlControlesDeFiltros2.Width == 33)
+            if (pnlControlesDeFiltros2.Width == 387 || pnlControlesDeFiltros2.Width == 38)
             {
                 cbConsumidor.Visible = false;
                 cbYear.Visible = false;
@@ -504,14 +510,14 @@ namespace SIDAC.VISTA
                 btnBuscarConsumidor.Visible = false;
                 btnFiltrar.Visible = false;
 
-                pnlControlesDeFiltros2.Width = 33;
+                pnlControlesDeFiltros2.Width = 38;
             }
         }
 
         //filtro dos: donde se buscar pagos segun consumidor-year
         private void btnMostrarControlesFiltros2_Click(object sender, EventArgs e)
         {
-            if (pnlControlesDeFiltros2.Width == 33)
+            if (pnlControlesDeFiltros2.Width == 38)
             {
                 cbConsumidor.Visible = true;
                 cbYear.Visible = true;
@@ -523,11 +529,11 @@ namespace SIDAC.VISTA
                 cbConsumidor.Enabled = true;
                 cbYear.Enabled = true;
 
-                pnlControlesDeFiltros2.Width = 382;
+                pnlControlesDeFiltros2.Width = 387;
             }
-            else if (pnlControlesDeFiltros2.Width == 382)
+            else if (pnlControlesDeFiltros2.Width == 387)
             {
-                pnlControlesDeFiltros2.Width = 33;
+                pnlControlesDeFiltros2.Width = 38;
 
                 cbConsumidor.Visible = false;
                 cbYear.Visible = false;
@@ -545,13 +551,13 @@ namespace SIDAC.VISTA
 
             }
 
-            if (pnlControlesDeFiltros1.Width == 360 || pnlControlesDeFiltros1.Width == 33)
+            if (pnlControlesDeFiltros1.Width == 365 || pnlControlesDeFiltros1.Width == 38)
             {
                 cbFiltroPrincipal.Visible = false;
                 cbYears.Visible = false;
                 cbMes.Visible = false;
 
-                pnlControlesDeFiltros1.Width = 33;
+                pnlControlesDeFiltros1.Width = 38;
             }
         }
 
@@ -561,12 +567,12 @@ namespace SIDAC.VISTA
             if (pnlNuevoPago.Width == 400)
             {
                 pnlNuevoPago.Width = 10;
-                pnlNuevoPago.Visible = false;
+                //pnlNuevoPago.Visible = false;
             }
             else
             {
                 pnlNuevoPago.Width = 400;
-                pnlNuevoPago.Visible = true;
+               // pnlNuevoPago.Visible = true;
             }
         }
         #endregion
@@ -654,6 +660,11 @@ namespace SIDAC.VISTA
         {
             FrmReportes reportes = new FrmReportes();
             reportes.ShowDialog();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

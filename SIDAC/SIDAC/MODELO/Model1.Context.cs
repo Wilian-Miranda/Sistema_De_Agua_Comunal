@@ -643,5 +643,32 @@ namespace SIDAC.MODELO
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_YearsInPagos", estadoParameter);
         }
+    
+        public virtual ObjectResult<sp_Grafico_PagosBase_Result> sp_Grafico_PagosBase(string year)
+        {
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Grafico_PagosBase_Result>("sp_Grafico_PagosBase", yearParameter);
+        }
+    
+        public virtual ObjectResult<sp_Grafico_PagosCancelados_Result> sp_Grafico_PagosCancelados(string year)
+        {
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Grafico_PagosCancelados_Result>("sp_Grafico_PagosCancelados", yearParameter);
+        }
+    
+        public virtual ObjectResult<sp_Grafico_PagosPendientes_Result> sp_Grafico_PagosPendientes(string year)
+        {
+            var yearParameter = year != null ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Grafico_PagosPendientes_Result>("sp_Grafico_PagosPendientes", yearParameter);
+        }
     }
 }
